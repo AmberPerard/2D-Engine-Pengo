@@ -31,11 +31,15 @@ namespace dae
 		template <typename T> T* GetComponent() const;
 		template <typename T> void RemoveComponent();
 
+		Transform* GetTransform() const { return m_pTransform; }
+
 	private:
 		std::vector<std::unique_ptr<BaseComponent>> m_pComponents{};
 
 		GameObject* m_Parent{ nullptr };
 		std::vector<GameObject*> m_Children{};
+
+		Transform* const m_pTransform;
 
 		void AddChild(GameObject* child);
 		void RemoveChild(GameObject* child);
