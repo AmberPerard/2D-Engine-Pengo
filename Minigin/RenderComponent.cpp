@@ -18,10 +18,10 @@ void dae::RenderComponent::Render()
 {
 	if (m_texture != nullptr)
 	{
-		const auto transform = GetOwner()->GetComponent<Transform>();
+		const auto transform = GetOwner()->GetTransform();
 		if (transform != nullptr)
 		{
-			const auto& pos = transform->GetPosition();
+			const auto& pos = transform->GetWorldPosition();
 			Renderer::GetInstance().RenderTexture(*m_texture, pos.x, pos.y);
 		}else
 		{

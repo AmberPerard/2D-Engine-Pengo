@@ -10,7 +10,7 @@ namespace dae
 	class GameObject final
 	{
 	public:
-		GameObject() = default;
+		GameObject();
 		~GameObject();
 		GameObject(const GameObject& other) = delete;
 		GameObject(GameObject&& other) = delete;
@@ -23,13 +23,15 @@ namespace dae
 		// Scenegraph
 		GameObject* GetParent() const { return m_Parent; };
 		void SetParent(GameObject* parent, bool keepWorldPosition = false);
-		const std::vector<GameObject*>& GetChildren() { return m_Children; };
-
+		void AddChild(GameObject* child, bool keepWorldPosition = false);
+		void RemoveChild(GameObject* child);
+		const std::vector<GameObject*>& GetChildren() { return m_pChildren; }
 
 		//components
 		template <typename T> T* AddComponent();
 		template <typename T> T* GetComponent() const;
 		template <typename T> void RemoveComponent();
+		template <typename T> void RemoveComponent(T* comp);
 
 		Transform* GetTransform() const { return m_pTransform; }
 
@@ -37,12 +39,12 @@ namespace dae
 		std::vector<std::unique_ptr<BaseComponent>> m_pComponents{};
 
 		GameObject* m_Parent{ nullptr };
-		std::vector<GameObject*> m_Children{};
+		std::vector<GameObject*> m_pChildren{};
 
-		Transform* const m_pTransform;
+		Transform* m_pTransform{};
 
-		void AddChild(GameObject* child);
-		void RemoveChild(GameObject* child);
+		void AddChildToCollection(GameObject* child);
+		void RemoveChildFromCollection(GameObject* child);
 	};
 
 	template <typename T>
@@ -75,6 +77,19 @@ namespace dae
 		for (auto it = begin(m_pComponents); it != end(m_pComponents); ++it)
 		{
 			if (dynamic_cast<T*>(it->get()))
+			{
+				m_pComponents.erase(it);
+				break;
+			}
+		}
+	}
+
+	template <typename T>
+	void GameObject::RemoveComponent(T* comp)
+	{
+		for(auto it = begin(m_pComponents); it != end(m_pComponents); ++it)
+		{
+			if(dynamic_cast<T*>(it->get()) == comp)
 			{
 				m_pComponents.erase(it);
 				break;
