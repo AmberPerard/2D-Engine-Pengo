@@ -11,13 +11,6 @@ dae::GameObject::GameObject()
 
 dae::GameObject::~GameObject()
 {
-	// Delete children
-	for (GameObject* child : m_pChildren)
-	{
-		delete child;
-	}
-	m_pChildren.clear();
-
 	delete m_pTransform;
 }
 
@@ -54,7 +47,7 @@ void dae::GameObject::Render() const
 	}
 }
 
-void dae::GameObject::SetParent(GameObject* parent, bool keepWorldPosition)
+void dae::GameObject::SetParent(std::shared_ptr<GameObject> parent, bool keepWorldPosition)
 {
 	if(parent)
 	{
@@ -83,15 +76,9 @@ void dae::GameObject::SetParent(GameObject* parent, bool keepWorldPosition)
 	}
 }
 
-void dae::GameObject::AddChild(GameObject* child, bool keepWorldPosition)
-{
-	child->SetParent(this, keepWorldPosition);
-
-}
-
 void dae::GameObject::AddChildToCollection(GameObject* child)
 {
-	m_pChildren.emplace_back(child);
+	m_pChildren.emplace_back(std::move(child));
 }
 
 void dae::GameObject::RemoveChildFromCollection(GameObject* child)
@@ -99,11 +86,3 @@ void dae::GameObject::RemoveChildFromCollection(GameObject* child)
 	std::erase(m_pChildren, child);
 }
 
-void dae::GameObject::RemoveChild(GameObject* child)
-{
-	const auto findItr = std::find(begin(m_pChildren), end(m_pChildren), child);
-	if(findItr != end(m_pChildren))
-	{
-		m_pChildren.erase(findItr);
-	}
-}

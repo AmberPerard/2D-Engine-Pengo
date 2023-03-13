@@ -21,11 +21,9 @@ namespace dae
 		void Render() const;
 		
 		// Scenegraph
-		GameObject* GetParent() const { return m_Parent; };
-		void SetParent(GameObject* parent, bool keepWorldPosition = false);
-		void AddChild(GameObject* child, bool keepWorldPosition = false);
-		void RemoveChild(GameObject* child);
-		const std::vector<GameObject*>& GetChildren() { return m_pChildren; }
+		std::shared_ptr<GameObject> GetParent() const { return m_Parent; }
+		void SetParent(std::shared_ptr<GameObject> parent, bool keepWorldPosition = false);
+		const std::vector<std::unique_ptr<GameObject>>& GetChildren() { return m_pChildren; }
 
 		//components
 		template <typename T> T* AddComponent();
@@ -38,8 +36,8 @@ namespace dae
 	private:
 		std::vector<std::unique_ptr<BaseComponent>> m_pComponents{};
 
-		GameObject* m_Parent{ nullptr };
-		std::vector<GameObject*> m_pChildren{};
+		std::shared_ptr<GameObject> m_Parent{ nullptr };
+		std::vector<std::unique_ptr<GameObject>> m_pChildren{};
 
 		Transform* m_pTransform{};
 
