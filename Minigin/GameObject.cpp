@@ -65,23 +65,23 @@ void dae::GameObject::SetParent(std::shared_ptr<GameObject> parent, bool keepWor
 
 	if (m_Parent)
 	{
-		m_Parent->RemoveChildFromCollection(this);
+		m_Parent->RemoveChildFromCollection(this->shared_from_this());
 	}
 
 	m_Parent = parent;
 
 	if (m_Parent)
 	{
-		m_Parent->AddChildToCollection(this);
+		m_Parent->AddChildToCollection(this->shared_from_this());
 	}
 }
 
-void dae::GameObject::AddChildToCollection(GameObject* child)
+void dae::GameObject::AddChildToCollection(std::shared_ptr<dae::GameObject> child)
 {
-	m_pChildren.emplace_back(std::move(child));
+	m_pChildren.emplace_back((child));
 }
 
-void dae::GameObject::RemoveChildFromCollection(GameObject* child)
+void dae::GameObject::RemoveChildFromCollection(std::shared_ptr<dae::GameObject> child)
 {
 	std::erase(m_pChildren, child);
 }

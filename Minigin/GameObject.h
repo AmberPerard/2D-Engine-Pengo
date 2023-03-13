@@ -7,7 +7,7 @@ namespace dae
 {
 	class BaseComponent;
 
-	class GameObject final
+	class GameObject final: public std::enable_shared_from_this<GameObject>
 	{
 	public:
 		GameObject();
@@ -23,7 +23,7 @@ namespace dae
 		// Scenegraph
 		std::shared_ptr<GameObject> GetParent() const { return m_Parent; }
 		void SetParent(std::shared_ptr<GameObject> parent, bool keepWorldPosition = false);
-		const std::vector<std::unique_ptr<GameObject>>& GetChildren() { return m_pChildren; }
+		const std::vector<std::shared_ptr<GameObject>>& GetChildren() { return m_pChildren; }
 
 		//components
 		template <typename T> T* AddComponent();
@@ -37,12 +37,12 @@ namespace dae
 		std::vector<std::unique_ptr<BaseComponent>> m_pComponents{};
 
 		std::shared_ptr<GameObject> m_Parent{ nullptr };
-		std::vector<std::unique_ptr<GameObject>> m_pChildren{};
+		std::vector<std::shared_ptr<GameObject>> m_pChildren{};
 
 		Transform* m_pTransform{};
 
-		void AddChildToCollection(GameObject* child);
-		void RemoveChildFromCollection(GameObject* child);
+		void AddChildToCollection(std::shared_ptr<dae::GameObject> child);
+		void RemoveChildFromCollection(std::shared_ptr<dae::GameObject> child);
 	};
 
 	template <typename T>
