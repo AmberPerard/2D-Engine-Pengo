@@ -21,7 +21,7 @@ namespace dae
 		void Render() const;
 		
 		// Scenegraph
-		std::shared_ptr<GameObject> GetParent() const { return m_Parent; }
+		GameObject* GetParent() const { return m_Parent; }
 		void SetParent(std::shared_ptr<GameObject> parent, bool keepWorldPosition = false);
 		const std::vector<std::shared_ptr<GameObject>>& GetChildren() { return m_pChildren; }
 
@@ -36,7 +36,7 @@ namespace dae
 	private:
 		std::vector<std::unique_ptr<BaseComponent>> m_pComponents{};
 
-		std::shared_ptr<GameObject> m_Parent{ nullptr };
+		GameObject* m_Parent{ nullptr };
 		std::vector<std::shared_ptr<GameObject>> m_pChildren{};
 
 		Transform* m_pTransform{};
@@ -50,9 +50,9 @@ namespace dae
 	{
 		static_assert(std::is_base_of<BaseComponent, T>::value, "Provided template argument is not a component");
 		auto comp = std::make_unique<T>(this);
-		T* dsfa = comp.get();
+		T* returnPtr = comp.get();
 		m_pComponents.push_back(std::move(comp));
-		return dsfa;
+		return returnPtr;
 	}
 
 	template <typename T>

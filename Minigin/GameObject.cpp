@@ -1,5 +1,8 @@
 #include <string>
 #include "GameObject.h"
+
+#include <iostream>
+
 #include "ResourceManager.h"
 #include "Renderer.h"
 #include "BaseComponent.h"
@@ -68,7 +71,7 @@ void dae::GameObject::SetParent(std::shared_ptr<GameObject> parent, bool keepWor
 		m_Parent->RemoveChildFromCollection(this->shared_from_this());
 	}
 
-	m_Parent = parent;
+	m_Parent = parent.get();
 
 	if (m_Parent)
 	{
