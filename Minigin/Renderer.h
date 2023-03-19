@@ -25,6 +25,10 @@ namespace dae
 
 		const SDL_Color& GetBackgroundColor() const { return m_clearColor; }
 		void SetBackgroundColor(const SDL_Color& color) { m_clearColor = color; }
+
+		private:
+			void Exercise1() const;
+			void Exercise2() const;
 	};
 }
 

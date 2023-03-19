@@ -50,7 +50,9 @@ void dae::Renderer::Render() const
 	ImGui_ImplOpenGL2_NewFrame();
 	ImGui_ImplSDL2_NewFrame(m_window);
 	ImGui::NewFrame();
-	ImGui::ShowDemoWindow();
+	//ImGui::ShowDemoWindow();
+	Exercise1();
+	Exercise2();
 	ImGui::Render();
 	ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
 
@@ -91,3 +93,52 @@ void dae::Renderer::RenderTexture(const Texture2D& texture, const float x, const
 }
 
 inline SDL_Renderer* dae::Renderer::GetSDLRenderer() const { return m_renderer; }
+
+void dae::Renderer::Exercise1() const
+{
+	bool my_tool_active{};
+	static bool clickedButton{};
+	ImGui::Begin("Exercise1", &my_tool_active, ImGuiWindowFlags_AlwaysAutoResize);
+
+	static int i0 = 10;
+	ImGui::InputInt("# Samples", &i0);
+	if(ImGui::Button("Trash the Cache"))
+	{
+		clickedButton = true;
+	}
+
+	if(clickedButton)
+	{
+		ImGui::Text("Wait for it...");
+	}
+
+	ImGui::End();
+}
+
+void dae::Renderer::Exercise2() const
+{
+	bool my_tool_active;
+	static bool clickedButtonNormal{};
+	static bool clickedButtonAlt{};
+	ImGui::Begin("Exercise2", &my_tool_active, ImGuiWindowFlags_AlwaysAutoResize);
+
+	static int i0 = 100;
+	ImGui::InputInt("# Samples", &i0);
+	if(ImGui::Button("Trash the Cache with GameObject3D"))
+	{
+		clickedButtonNormal = true;
+	}
+	if (clickedButtonNormal)
+	{
+		ImGui::Text("Wait for it...");
+	}
+	if(ImGui::Button("Trash the Cache with GameObject3DAlt"))
+	{
+		clickedButtonAlt = true;
+	}
+	if (clickedButtonAlt)
+	{
+		ImGui::Text("Wait for it...");
+	}
+	ImGui::End();
+}
