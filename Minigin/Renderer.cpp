@@ -1,11 +1,11 @@
 #include <stdexcept>
 #include "Renderer.h"
-
-#include "imgui.h"
-#include "imgui_impl_sdl.h"
-#include "imgui_impl_opengl2.h"
 #include "SceneManager.h"
 #include "Texture2D.h"
+
+#include <imgui.h>
+#include <backends/imgui_impl_opengl2.h>
+#include <backends/imgui_impl_sdl2.h>
 
 int GetOpenGLDriverIndex()
 {
@@ -25,15 +25,32 @@ void dae::Renderer::Init(SDL_Window* window)
 {
 	m_window = window;
 	m_renderer = SDL_CreateRenderer(window, GetOpenGLDriverIndex(), SDL_RENDERER_ACCELERATED);
-	if (m_renderer == nullptr) 
+	if (m_renderer == nullptr)
 	{
 		throw std::runtime_error(std::string("SDL_CreateRenderer Error: ") + SDL_GetError());
 	}
 
 
-	//ImGui
+	// Init IMGUI
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
+
+	//dockable imgui
+	//ImGuiIO& io = ImGui::GetIO(); (void)io;
+	//io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+	//io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
+
+	//ImGui::StyleColorsDark();
+
+	//ImGuiStyle& style = ImGui::GetStyle();
+	//if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+	//{
+	//	style.WindowRounding = 0.0f;
+	//	style.Colors[ImGuiCol_WindowBg].w = 1.0f;
+	//}
+
 	ImGui_ImplSDL2_InitForOpenGL(window, SDL_GL_GetCurrentContext());
 	ImGui_ImplOpenGL2_Init();
 }
@@ -45,12 +62,14 @@ void dae::Renderer::Render() const
 	SDL_RenderClear(m_renderer);
 
 	SceneManager::GetInstance().Render();
+}
 
+void dae::Renderer::RenderImGui() const
+{
 	//ImGui
 	ImGui_ImplOpenGL2_NewFrame();
 	ImGui_ImplSDL2_NewFrame(m_window);
 	ImGui::NewFrame();
-	//ImGui::ShowDemoWindow();
 	Exercise1();
 	Exercise2();
 	ImGui::Render();
@@ -61,11 +80,12 @@ void dae::Renderer::Render() const
 
 void dae::Renderer::Destroy()
 {
-	//ImGui
+	// ImGui
 	ImGui_ImplOpenGL2_Shutdown();
 	ImGui_ImplSDL2_Shutdown();
 	ImGui::DestroyContext();
 
+	// Renderer
 	if (m_renderer != nullptr)
 	{
 		SDL_DestroyRenderer(m_renderer);
@@ -102,12 +122,12 @@ void dae::Renderer::Exercise1() const
 
 	static int i0 = 10;
 	ImGui::InputInt("# Samples", &i0);
-	if(ImGui::Button("Trash the Cache"))
+	if (ImGui::Button("Trash the Cache"))
 	{
 		clickedButton = true;
 	}
 
-	if(clickedButton)
+	if (clickedButton)
 	{
 		ImGui::Text("Wait for it...");
 	}
@@ -124,7 +144,7 @@ void dae::Renderer::Exercise2() const
 
 	static int i0 = 100;
 	ImGui::InputInt("# Samples", &i0);
-	if(ImGui::Button("Trash the Cache with GameObject3D"))
+	if (ImGui::Button("Trash the Cache with GameObject3D"))
 	{
 		clickedButtonNormal = true;
 	}
@@ -132,7 +152,7 @@ void dae::Renderer::Exercise2() const
 	{
 		ImGui::Text("Wait for it...");
 	}
-	if(ImGui::Button("Trash the Cache with GameObject3DAlt"))
+	if (ImGui::Button("Trash the Cache with GameObject3DAlt"))
 	{
 		clickedButtonAlt = true;
 	}
