@@ -19,6 +19,9 @@
     <Filter Include="Engine Files\ImGui">
       <UniqueIdentifier>{0b609393-0b48-40dc-8152-205996406fc5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game Files\TrashTheCache">
+      <UniqueIdentifier>{b1ffebe0-91bb-4c3b-a1a7-5a07bfdf82ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -71,6 +74,9 @@
     </ClInclude>
     <ClInclude Include="Minigin.h">
       <Filter>Game Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TrashTheCache.h">
+      <Filter>Game Files\TrashTheCache</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +154,9 @@
     </ClCompile>
     <ClCompile Include="Minigin.cpp">
       <Filter>Game Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TrashTheCache.cpp">
+      <Filter>Game Files\TrashTheCache</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

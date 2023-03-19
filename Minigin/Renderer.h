@@ -2,6 +2,8 @@
 #include <SDL.h>
 #include "Singleton.h"
 
+class TrashTheCache;
+
 namespace dae
 {
 	class Texture2D;
@@ -30,6 +32,7 @@ namespace dae
 		private:
 			void Exercise1() const;
 			void Exercise2() const;
+			TrashTheCache* m_pTrashTheCache{};
 	};
 }
 
