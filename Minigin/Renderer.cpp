@@ -51,10 +51,8 @@ void dae::Renderer::Render() const
 	SDL_RenderClear(m_renderer);
 
 	SceneManager::GetInstance().Render();
-}
 
-void dae::Renderer::RenderImGui() const
-{
+
 	//ImGui
 	ImGui_ImplOpenGL2_NewFrame();
 	ImGui_ImplSDL2_NewFrame(m_window);
