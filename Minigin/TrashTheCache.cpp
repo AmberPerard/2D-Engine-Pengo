@@ -10,7 +10,7 @@ void TrashTheCache::FirstExercise(int sampleSize)
 	m_Exercise1YData.clear();
 
 	int length = 1000000;
-	auto arry = new int[length];
+	std::vector<int> arry(length,0);
 	int stepsize;
 
 	// To store sample data
@@ -44,7 +44,6 @@ void TrashTheCache::FirstExercise(int sampleSize)
 		m_Exercise1XData.push_back(static_cast<float>(data.first));
 		m_Exercise1YData.push_back(static_cast<float>(average));
 	}
-	delete arry;
 
 }
 
@@ -55,8 +54,7 @@ void TrashTheCache::SecondExercise(int sampleSize)
 	m_Exercise2YData.clear();
 
 	const int length = 1000000;
-	//auto arry = new GameObject3DALT[length]();
-	auto arry = new GameObject3D[length]();
+	std::vector<GameObject3D> arry(length);
 
 	int stepsize;
 
@@ -93,7 +91,6 @@ void TrashTheCache::SecondExercise(int sampleSize)
 		m_Exercise2XData.push_back(static_cast<float>(data.first));
 		m_Exercise2YData.push_back(static_cast<float>(average));
 	}
-	delete arry;
 }
 
 void TrashTheCache::SecondExerciseALT(int sampleSize)
@@ -102,11 +99,9 @@ void TrashTheCache::SecondExerciseALT(int sampleSize)
 	m_Exercise2AltYData.clear();
 
 	const int length = 1000000;
-	auto arry = new GameObject3DALT[length]();
-	//auto arry = new GameObject3D[length]();
+	std::vector<GameObject3DALT> arry(length);
 
-
-		// To store sample data
+	// To store sample data
 	std::map<int, std::vector<float>> sampleData{};
 	int stepsize;
 	for (int index{ 0 }; index < sampleSize; index++)
@@ -140,5 +135,4 @@ void TrashTheCache::SecondExerciseALT(int sampleSize)
 		m_Exercise2AltXData.push_back(static_cast<float>(data.first));
 		m_Exercise2AltYData.push_back(static_cast<float>(average));
 	}
-	delete arry;
 }

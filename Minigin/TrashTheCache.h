@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include <vector>
 
 class TrashTheCache
@@ -23,8 +24,8 @@ public:
 	class GameObject3DALT
 	{
 	public:
-		Transform* transform;
-		int ID;
+		std::unique_ptr<Transform> transform{};
+		int ID{};
 	};
 
 	void FirstExercise(int sampleSize);

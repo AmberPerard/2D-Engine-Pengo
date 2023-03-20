@@ -59,8 +59,12 @@ void dae::Renderer::RenderImGui() const
 	ImGui_ImplOpenGL2_NewFrame();
 	ImGui_ImplSDL2_NewFrame(m_window);
 	ImGui::NewFrame();
+
+	//this should loop over the scene
 	Exercise1();
 	Exercise2();
+	//
+
 	ImGui::Render();
 	ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
 
@@ -107,6 +111,7 @@ void dae::Renderer::RenderTexture(const Texture2D& texture, const float x, const
 
 inline SDL_Renderer* dae::Renderer::GetSDLRenderer() const { return m_renderer; }
 
+//move to component
 void dae::Renderer::Exercise1() const
 {
 	bool my_tool_active{};
@@ -151,6 +156,7 @@ void dae::Renderer::Exercise1() const
 	ImGui::End();
 }
 
+//move the component
 void dae::Renderer::Exercise2() const
 {
 	bool my_tool_active;
