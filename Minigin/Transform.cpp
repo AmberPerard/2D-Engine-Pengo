@@ -16,6 +16,10 @@ void dae::Transform::Render()
 {
 }
 
+void dae::Transform::RenderUI()
+{
+}
+
 void dae::Transform::UpdateWorldPos()
 {
 	if (m_isDirty)

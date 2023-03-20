@@ -19,6 +19,7 @@ namespace dae
 
 		void Update();
 		void Render() const;
+		void RenderUI() const;
 		
 		// Scenegraph
 		GameObject* GetParent() const { return m_Parent; }

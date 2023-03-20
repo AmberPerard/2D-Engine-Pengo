@@ -20,6 +20,7 @@ namespace dae
 
 		void Update() override;
 		void Render() override;
+		void RenderUI() override;
 
 		void SetTexture(const std::string& filename);
 		void SetTexture(std::shared_ptr<Texture2D> texture);

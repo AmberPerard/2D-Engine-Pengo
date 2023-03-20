@@ -15,6 +15,7 @@ namespace dae
 
 		virtual void Update() = 0;
 		virtual void Render() = 0;
+		virtual void RenderUI() = 0;
 
 		void Delete() { m_MarkedForDeletion = true; }
 		bool IsMarkedForDeletion() const { return m_MarkedForDeletion; }

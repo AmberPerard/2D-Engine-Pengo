@@ -18,6 +18,7 @@ namespace dae
 
 		void Update() override;
 		void Render() override;
+		void RenderUI() override;
 
 		float getFPS() const { return m_fps; }
 	private:

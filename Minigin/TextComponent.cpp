@@ -43,6 +43,10 @@ void dae::TextComponent::Render()
 {
 }
 
+void dae::TextComponent::RenderUI()
+{
+}
+
 void dae::TextComponent::SetText(const std::string& text)
 {
 	m_text = text;

@@ -19,8 +19,11 @@
     <Filter Include="Engine Files\ImGui">
       <UniqueIdentifier>{0b609393-0b48-40dc-8152-205996406fc5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game Files\TrashTheCache">
+    <Filter Include="Game Files\week04">
       <UniqueIdentifier>{b1ffebe0-91bb-4c3b-a1a7-5a07bfdf82ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Files\Week02">
+      <UniqueIdentifier>{39a6e6c1-e99e-4d04-8d67-0974a6327d27}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -66,17 +69,17 @@
     <ClInclude Include="RenderComponent.h">
       <Filter>Engine Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="RotatorComponent.h">
-      <Filter>Engine Files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>Engine Files</Filter>
     </ClInclude>
     <ClInclude Include="Minigin.h">
       <Filter>Game Files</Filter>
     </ClInclude>
-    <ClInclude Include="TrashTheCache.h">
-      <Filter>Game Files\TrashTheCache</Filter>
+    <ClInclude Include="TTCComponent.h">
+      <Filter>Game Files\week04</Filter>
+    </ClInclude>
+    <ClInclude Include="RotatorComponent.h">
+      <Filter>Game Files\Week02</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -93,9 +96,6 @@
       <Filter>Engine Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="RenderComponent.cpp">
-      <Filter>Engine Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="RotatorComponent.cpp">
       <Filter>Engine Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="..\3rdParty\imgui\imgui.cpp">
@@ -155,8 +155,11 @@
     <ClCompile Include="Minigin.cpp">
       <Filter>Game Files</Filter>
     </ClCompile>
-    <ClCompile Include="TrashTheCache.cpp">
-      <Filter>Game Files\TrashTheCache</Filter>
+    <ClCompile Include="TTCComponent.cpp">
+      <Filter>Game Files\week04</Filter>
+    </ClCompile>
+    <ClCompile Include="RotatorComponent.cpp">
+      <Filter>Game Files\Week02</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

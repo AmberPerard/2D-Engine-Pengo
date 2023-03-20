@@ -50,6 +50,19 @@ void dae::GameObject::Render() const
 	}
 }
 
+void dae::GameObject::RenderUI() const
+{
+	for (const auto& child : m_pChildren)
+	{
+		child->RenderUI();
+	}
+
+	for (const auto& comp : m_pComponents)
+	{
+		comp->RenderUI();
+	}
+}
+
 void dae::GameObject::SetParent(std::shared_ptr<GameObject> parent, bool keepWorldPosition)
 {
 	if(parent)

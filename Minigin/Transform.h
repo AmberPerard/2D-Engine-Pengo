@@ -25,6 +25,7 @@ namespace dae
 
 		void Update() override;
 		void Render() override;
+		void RenderUI() override;
 	private:
 		void UpdateWorldPos();
 		glm::vec3 m_localPosition{};

@@ -21,6 +21,8 @@ namespace dae
 
 		void Update() override;
 		void Render() override;
+		void RenderUI() override;
+
 		std::shared_ptr<Texture2D> GetTexture() { return m_textTexture; }
 		void SetText(const std::string& text);
 		void SetFont(std::shared_ptr<Font> font);
