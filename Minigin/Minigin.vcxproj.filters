@@ -25,6 +25,9 @@
     <Filter Include="Game Files\Week02">
       <UniqueIdentifier>{39a6e6c1-e99e-4d04-8d67-0974a6327d27}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine Files\Input">
+      <UniqueIdentifier>{9f663df4-0b4f-4e27-9223-2b54a5ae491d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -37,9 +40,6 @@
       <Filter>Engine Files</Filter>
     </ClInclude>
     <ClInclude Include="Texture2D.h">
-      <Filter>Engine Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.h">
       <Filter>Engine Files</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
@@ -81,8 +81,14 @@
     <ClInclude Include="RotatorComponent.h">
       <Filter>Game Files\Week02</Filter>
     </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Engine Files\Input</Filter>
+    </ClInclude>
     <ClInclude Include="Command.h">
-      <Filter>Engine Files</Filter>
+      <Filter>Engine Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="XController.h">
+      <Filter>Engine Files\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -131,9 +137,6 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>Engine Files</Filter>
     </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Engine Files</Filter>
-    </ClCompile>
     <ClCompile Include="Renderer.cpp">
       <Filter>Engine Files</Filter>
     </ClCompile>
@@ -164,8 +167,14 @@
     <ClCompile Include="RotatorComponent.cpp">
       <Filter>Game Files\Week02</Filter>
     </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Engine Files\Input</Filter>
+    </ClCompile>
     <ClCompile Include="Command.cpp">
-      <Filter>Engine Files</Filter>
+      <Filter>Engine Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="XController.cpp">
+      <Filter>Engine Files\Input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

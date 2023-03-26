@@ -1,64 +1,82 @@
-#include <Windows.h>
+
 #include <SDL.h>
 #include "InputManager.h"
 #include <iostream>
 #include <SDL_syswm.h>
 #include <backends/imgui_impl_sdl2.h>
 
-#pragma comment(lib, "xinput.lib")
-
 bool dae::InputManager::ProcessInput()
 {
-	CopyMemory(&m_PreviousState, &m_CurrentState, sizeof(XINPUT_STATE));
-	ZeroMemory(&m_CurrentState, sizeof(XINPUT_STATE));
-	XInputGetState(0, &m_CurrentState);
+	// Check controller keys
+	UpdateConsoleInput();
 
-	auto buttonChanges = m_CurrentState.Gamepad.wButtons ^ m_PreviousState.Gamepad.wButtons;
-	m_ButtonsPressedThisFrame = buttonChanges & m_CurrentState.Gamepad.wButtons;
-	m_ButtonsReleasedThisGame = buttonChanges & (~m_CurrentState.Gamepad.wButtons);
-	//SDL_Event e;
-	//while (SDL_PollEvent(&e)) {
-	//	if (e.type == SDL_QUIT) {
-	//		return false;
-	//	}
-	//	if (e.type == SDL_KEYDOWN) {
-	//		
-	//	}
-	//	if (e.type == SDL_MOUSEBUTTONDOWN) {
-	//		
-	//	}
-	//	// etc...
+	SDL_Event e;
+	while (SDL_PollEvent(&e)) {
+		if (e.type == SDL_QUIT) {
+			return false;
+		}
+		if (e.type == SDL_KEYDOWN) {
 
-	//	//process event for IMGUI
-	//	ImGui_ImplSDL2_ProcessEvent(&e);
-	//}
-	// Simply get the state of the controller from XInput.
-	DWORD dwResult = XInputGetState(0, &m_CurrentState);
+		}
+		if (e.type == SDL_MOUSEBUTTONDOWN) {
 
-	if (dwResult == ERROR_SUCCESS)
-	{
-		std::cout << "controller is connected";
-		// Controller is connected
+		}
+		// etc...
+
+		//process event for IMGUI
+		ImGui_ImplSDL2_ProcessEvent(&e);
 	}
-	else
-	{
-		// Controller is not connected
-	}
-
 	return true;
 }
 
-bool dae::InputManager::IsButtonDownThisFrame(unsigned button) const
+void dae::InputManager::UpdateConsoleInput()
 {
-	return m_ButtonsPressedThisFrame & button;
+	for (auto& controller : m_Controllers)
+	{
+		controller->Update();
+		for (auto& axisCommands : m_ConsoleAxis)
+		{
+			axisCommands.second->Execute();
+		}
+
+		for (auto& command : m_ConsoleCommands)
+		{
+			switch (command.first.first)
+			{
+			case State::Press:
+				if (controller->IsButtonDownThisFrame(command.first.second))
+				{
+					command.second->Execute();
+				}
+				break;
+
+			case State::Hold:
+				if (controller->IsPressed(command.first.second))
+				{
+					command.second->Execute();
+				}
+				break;
+
+			case State::Release:
+				if (controller->IsButtonUpThisFrame(command.first.second))
+				{
+					command.second->Execute();
+				}
+				break;
+			}
+		}
+
+	}
 }
 
-bool dae::InputManager::IsButtonUpThisFrame(unsigned button) const
+void dae::InputManager::AddController(int id)
 {
-	return m_ButtonsReleasedThisGame & button;
+	m_Controllers.push_back(std::make_unique<XController>(id));
 }
 
-bool dae::InputManager::IsPressed(unsigned button) const
+dae::XController* dae::InputManager::GetController(int id) const
 {
-	return m_CurrentState.Gamepad.wButtons & button;
+	//not good code i know that but i ran out of time sorry
+	return m_Controllers.at(id).get();
 }
+
