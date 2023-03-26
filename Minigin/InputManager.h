@@ -3,6 +3,7 @@
 #include <XInput.h>
 
 #include "Singleton.h"
+#pragma comment(lib, "xinput.lib")
 
 namespace dae
 {

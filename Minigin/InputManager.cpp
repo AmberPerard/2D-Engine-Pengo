@@ -1,10 +1,11 @@
+#include <Windows.h>
 #include <SDL.h>
 #include "InputManager.h"
-
 #include <iostream>
 #include <SDL_syswm.h>
-
 #include <backends/imgui_impl_sdl2.h>
+
+#pragma comment(lib, "xinput.lib")
 
 bool dae::InputManager::ProcessInput()
 {
