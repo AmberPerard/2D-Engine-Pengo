@@ -25,10 +25,11 @@ namespace dae
 	class Move : public Command
 	{
 	public:
-		Move(std::shared_ptr<GameObject> pActor, float speed, float acceleration = 1.f);
+		Move(std::shared_ptr<GameObject> pActor, float speed, glm::vec2 dir, float acceleration = 1.f);
 		void Execute() override;
 	private:
 		std::shared_ptr<GameObject> m_pActor{};
+		glm::vec2 m_Dir{};
 		float m_Speed{};
 		float m_Acceleration{}; 
 	};

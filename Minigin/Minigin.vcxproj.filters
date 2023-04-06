@@ -87,9 +87,6 @@
     <ClInclude Include="XController.h">
       <Filter>Engine Files\Input</Filter>
     </ClInclude>
-    <ClInclude Include="ControllerComponent.h">
-      <Filter>Engine Files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="ResourceManager.h">
       <Filter>Engine Files\Managers</Filter>
     </ClInclude>
@@ -175,9 +172,6 @@
     </ClCompile>
     <ClCompile Include="XController.cpp">
       <Filter>Engine Files\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="ControllerComponent.cpp">
-      <Filter>Engine Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Engine Files\Managers</Filter>
