@@ -3,10 +3,14 @@
 #include <glm/glm.hpp>
 #include "XController.h"
 
+#include <iostream>
+
 using namespace dae;
 
 class XController::XControllerImpl
 {
+private:
+	bool m_IsConnectedPreviousframe{ false };
 
 	XINPUT_STATE previousState{};
 	XINPUT_STATE currentState{};
@@ -27,7 +31,19 @@ public:
 	{
 		CopyMemory(&previousState, &currentState, sizeof(XINPUT_STATE));
 		ZeroMemory(&currentState, sizeof(XINPUT_STATE));
-		XInputGetState(0, &currentState);
+
+		DWORD dwResult;
+		dwResult = XInputGetState(controllerIndex, &currentState);
+
+		bool connected{ dwResult == ERROR_SUCCESS };
+		
+		if (m_IsConnectedPreviousframe != connected)
+		{
+			if(connected) std::cout << "Controller "  << controllerIndex << " connected" << std::endl;
+						else std::cout << "Controller " << controllerIndex << " disconnected" << std::endl;
+		}
+
+		m_IsConnectedPreviousframe = connected;
 
 		auto buttonChanges = currentState.Gamepad.wButtons ^ previousState.Gamepad.wButtons;
 		buttonsPressedThisFrame = buttonChanges & currentState.Gamepad.wButtons;

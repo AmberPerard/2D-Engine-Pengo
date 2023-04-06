@@ -28,12 +28,12 @@
     <Filter Include="Engine Files\Input">
       <UniqueIdentifier>{9f663df4-0b4f-4e27-9223-2b54a5ae491d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine Files\Managers">
+      <UniqueIdentifier>{0383c05c-39b8-4f55-aa36-c3dafc949fab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
-      <Filter>Engine Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceManager.h">
       <Filter>Engine Files</Filter>
     </ClInclude>
     <ClInclude Include="Renderer.h">
@@ -43,9 +43,6 @@
       <Filter>Engine Files</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
-      <Filter>Engine Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
       <Filter>Engine Files</Filter>
     </ClInclude>
     <ClInclude Include="Font.h">
@@ -89,6 +86,15 @@
     </ClInclude>
     <ClInclude Include="XController.h">
       <Filter>Engine Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="ControllerComponent.h">
+      <Filter>Engine Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Engine Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Engine Files\Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -140,13 +146,7 @@
     <ClCompile Include="Renderer.cpp">
       <Filter>Engine Files</Filter>
     </ClCompile>
-    <ClCompile Include="ResourceManager.cpp">
-      <Filter>Engine Files</Filter>
-    </ClCompile>
     <ClCompile Include="Scene.cpp">
-      <Filter>Engine Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
       <Filter>Engine Files</Filter>
     </ClCompile>
     <ClCompile Include="Texture2D.cpp">
@@ -175,6 +175,15 @@
     </ClCompile>
     <ClCompile Include="XController.cpp">
       <Filter>Engine Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="ControllerComponent.cpp">
+      <Filter>Engine Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Engine Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Engine Files\Managers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

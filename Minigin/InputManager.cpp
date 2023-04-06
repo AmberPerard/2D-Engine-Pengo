@@ -29,6 +29,18 @@ bool dae::InputManager::ProcessInput()
 	return true;
 }
 
+void dae::InputManager::CreateControllerCommand(XController::ControllerButton button, State state, std::unique_ptr<Command> command)
+{
+	ControllerKey keyThing = std::pair{ state,button };
+	m_ConsoleCommands.insert(std::pair{ keyThing, std::move(command) });
+}
+
+void dae::InputManager::CreateControllerAxis(XController::ControllerButton button, State state, std::unique_ptr<Command> command)
+{
+	ControllerKey keyThing = std::pair{ state,button };
+	m_ConsoleAxis.insert(std::pair{ keyThing, std::move(command) });
+}
+
 void dae::InputManager::UpdateConsoleInput()
 {
 	for (auto& controller : m_Controllers)
@@ -69,9 +81,10 @@ void dae::InputManager::UpdateConsoleInput()
 	}
 }
 
-void dae::InputManager::AddController(int id)
+int dae::InputManager::AddController()
 {
-	m_Controllers.push_back(std::make_unique<XController>(id));
+	m_Controllers.push_back(std::make_unique<XController>((int)m_Controllers.size()));
+	return (int)m_Controllers.size() - 1;
 }
 
 dae::XController* dae::InputManager::GetController(int id) const

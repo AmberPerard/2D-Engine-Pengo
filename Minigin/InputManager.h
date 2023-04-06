@@ -25,11 +25,9 @@ namespace dae
 		~InputManager() = default;
 		bool ProcessInput();
 
-		template<typename T>
-		void CreateControllerCommand(XController::ControllerButton button, State state, std::shared_ptr<GameObject> component);
-		template<typename T>
-		void CreateControllerAxis(XController::ControllerButton button, State state, std::shared_ptr<GameObject> component);
-		void AddController(int id);
+		void CreateControllerCommand(XController::ControllerButton button, State state, std::unique_ptr<Command> command);
+		void CreateControllerAxis(XController::ControllerButton button, State state, std::unique_ptr<Command> command);
+		int AddController();
 		XController* GetController(int id) const;
 
 	private:
@@ -42,22 +40,4 @@ namespace dae
 		ControllerCommandsMap m_ConsoleAxis{};
 		std::vector<std::unique_ptr<XController>> m_Controllers{};
 	};
-
-	template <typename T>
-	void InputManager::CreateControllerCommand(XController::ControllerButton button, State state, std::shared_ptr<GameObject> component)
-	{
-		std::unique_ptr<T> command = std::make_unique<T>(component);
-		ControllerKey keyThing = std::pair{ state,button };
-
-		m_ConsoleCommands.insert(std::pair{ keyThing, std::move(command) });
-	}
-
-	template <typename T>
-	void InputManager::CreateControllerAxis(XController::ControllerButton button, State state, std::shared_ptr<GameObject> component)
-	{
-		std::unique_ptr<T> command = std::make_unique<T>(component);
-		ControllerKey keyThing = std::pair{ state,button };
-
-		m_ConsoleAxis.insert(std::pair{ keyThing, std::move(command) });
-	}
 }

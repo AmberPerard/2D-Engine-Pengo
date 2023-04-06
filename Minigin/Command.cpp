@@ -2,24 +2,27 @@
 
 #include <iostream>
 
+#include "ControllerComponent.h"
 #include "GameObject.h"
 #include "InputManager.h"
 
-dae::Command::Command(std::shared_ptr<GameObject> object)
-	:object(object)
+dae::Command::Command()
 {
 }
 
-dae::Move::Move(std::shared_ptr<GameObject> object)
-	:Command(object)
+dae::Move::Move(std::shared_ptr<GameObject> pActor, float speed, float acceleration)
+	: m_pActor(pActor),
+	m_Speed(speed),
+	m_Acceleration(acceleration)
 {
 }
 
 void dae::Move::Execute()
 {
-	glm::vec2 moveInput = InputManager::GetInstance().GetController(0)->GetLeftThumbStick();
-	glm::vec3 actorPos = GetObject()->GetTransform()->GetLocalPosition();
+	const int controllerId = m_pActor->GetComponent<ControllerComponent>()->GetContollerID();
+	glm::vec2 moveInput = InputManager::GetInstance().GetController(controllerId)->GetLeftThumbStick();
+	glm::vec3 actorPos = m_pActor->GetTransform()->GetLocalPosition();
 	float actorPosX = actorPos.x + moveInput.x;
 	float actorPosY = actorPos.y + moveInput.y;
-	GetObject()->GetTransform()->SetPosition(actorPosX, actorPosY);
+	m_pActor->GetTransform()->SetPosition(actorPosX, actorPosY);
 }
