@@ -31,6 +31,9 @@
     <Filter Include="Engine Files\Managers">
       <UniqueIdentifier>{0383c05c-39b8-4f55-aa36-c3dafc949fab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine Files\Events">
+      <UniqueIdentifier>{bfef654e-3579-4694-b096-e6711ad563e1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -92,6 +95,18 @@
     </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>Engine Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>Engine Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Subject.h">
+      <Filter>Engine Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="LivesDisplayComponent.h">
+      <Filter>Engine Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerComponent.h">
+      <Filter>Engine Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +193,18 @@
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>Engine Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Observer.cpp">
+      <Filter>Engine Files\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Subject.cpp">
+      <Filter>Engine Files\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="LivesDisplayComponent.cpp">
+      <Filter>Engine Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerComponent.cpp">
+      <Filter>Engine Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
