@@ -28,6 +28,7 @@ namespace dae
 
 		//components
 		template <typename T> T* AddComponent();
+		template <typename T> void AddComponent(std::unique_ptr<T> component);
 		template <typename T> T* GetComponent() const;
 		template <typename T> void RemoveComponent();
 		template <typename T> void RemoveComponent(T* comp);
@@ -49,11 +50,18 @@ namespace dae
 	template <typename T>
 	T* GameObject::AddComponent()
 	{
-		static_assert(std::is_base_of<BaseComponent, T>::value, "Provided template argument is not a component");
+		static_assert(std::is_base_of_v<BaseComponent, T>, "Provided template argument is not a component");
 		auto comp = std::make_unique<T>(this);
 		T* returnPtr = comp.get();
 		m_pComponents.push_back(std::move(comp));
 		return returnPtr;
+	}
+
+	template <typename T>
+    void GameObject::AddComponent(std::unique_ptr<T> component)
+	{
+		static_assert(std::is_base_of_v<BaseComponent, T>, "Provided template argument is not a component");
+		m_pComponents.push_back(std::move(component));
 	}
 
 	template <typename T>

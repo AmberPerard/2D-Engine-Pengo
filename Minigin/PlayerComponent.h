@@ -2,15 +2,16 @@
 #include <memory>
 
 #include "BaseComponent.h"
+#include "Subject.h"
 
 namespace dae
 {
-	class Subject;
+	class LivesDisplayComponent;
 
-	class PlayerComponent final : public dae::BaseComponent
+	class PlayerComponent final : public BaseComponent
 	{
 	public:
-		PlayerComponent(GameObject* gameObject, GameObject* livesDisplay = nullptr);
+		PlayerComponent(GameObject* gameObject, LivesDisplayComponent* livesDisplay = nullptr);
 		~PlayerComponent() override = default;
 		PlayerComponent(const PlayerComponent& other) = delete;
 		PlayerComponent(PlayerComponent&& other) noexcept = delete;
@@ -21,14 +22,15 @@ namespace dae
 		void Render() override;
 		void RenderUI() override;
 
-		int GetLives() const { return m_nrOfLives; };
+		int GetLives() const { return m_nrOfLives; }
+		void AddObserver(Observer* observer) ;
 		void Start();
 		void Die();
 	private:
 		int m_nrOfLives{ 3 };
-		int m_score{ 0 };
+		int m_Score{ 0 };
 
-		//std::unique_ptr<Subject> m_PlayerSubject;
+		std::unique_ptr<Subject> m_PlayerSubject;
 
 	};
 }

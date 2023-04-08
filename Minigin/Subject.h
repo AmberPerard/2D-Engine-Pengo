@@ -2,22 +2,22 @@
 #include <memory>
 #include <vector>
 
+#include "Observer.h"
+
 namespace dae
 {
 	class GameObject;
 	class Observer;
-	struct Event;
 
 	class Subject
 	{
 	public:
 		virtual ~Subject() = default;
-		virtual void AddObserver(std::shared_ptr<Observer> observer);
-		virtual void RemoveObserver(std::shared_ptr<Observer> observer);
-	protected:
-		virtual void Notify(Event event, GameObject* actor);
+		virtual void AddObserver(Observer* observer);
+		virtual void RemoveObserver(Observer* observer);
+		virtual void Notify(EventType event, GameObject* actor);
 	private:
-		std::vector<std::shared_ptr<Observer>> m_Observers;
+		std::vector<Observer*> m_Observers;
 	};
 
 }

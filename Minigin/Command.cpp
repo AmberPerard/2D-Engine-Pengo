@@ -3,6 +3,7 @@
 #include <iostream>
 #include "GameObject.h"
 #include "InputManager.h"
+#include "PlayerComponent.h"
 #include "Time.h"
 
 dae::Command::Command()
@@ -23,4 +24,14 @@ void dae::Move::Execute()
 	float actorPosX = actorPos.x + (m_Dir.x * Time::GetInstance().GetDeltaTime() * m_Speed);
 	float actorPosY = actorPos.y + (m_Dir.y * Time::GetInstance().GetDeltaTime() * m_Speed);
 	m_pActor->GetTransform()->SetPosition(actorPosX, actorPosY);
+}
+
+dae::Kill::Kill(std::shared_ptr<GameObject> pActor)
+	:m_pActor(pActor)
+{
+}
+
+void dae::Kill::Execute()
+{
+	m_pActor->GetComponent<dae::PlayerComponent>()->Die();
 }

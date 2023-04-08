@@ -11,18 +11,12 @@ namespace dae
 		PLAYED_DIED,
 		PLAYER_GAINED_SCORE
 
-	};
-
-	struct Event {
-
-		EventType m_type;
-
-	};
+	};;
 
 	class Observer
 	{
 	public:
 		virtual ~Observer() = default;
-		virtual void OnNotify(Event event, GameObject* actor) = 0;
+		virtual void OnNotify(EventType event, GameObject* actor) = 0;
 	};
 }

@@ -6,8 +6,9 @@
 #include "Observer.h"
 
 dae::LivesDisplayComponent::LivesDisplayComponent(GameObject* gameObject)
-	:BaseComponent(gameObject)
+	:BaseComponent(gameObject),m_text("Lives: 3")
 {
+	pTextComponent = gameObject->GetComponent<TextComponent>();
 }
 
 void dae::LivesDisplayComponent::Update()
@@ -22,9 +23,9 @@ void dae::LivesDisplayComponent::RenderUI()
 {
 }
 
-void dae::LivesDisplayComponent::OnNotify(Event event, GameObject* actor)
+void dae::LivesDisplayComponent::OnNotify(EventType event, GameObject* actor)
 {
-	switch (event.m_type)
+	switch (event)
 	{
 		case PLAYED_DIED:
 		m_text = "Lives: " + std::to_string(actor->GetComponent<PlayerComponent>()->GetLives());

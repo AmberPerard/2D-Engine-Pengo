@@ -79,6 +79,8 @@ void dae::InputManager::UpdateKeyboardInput()
 				command.second->Execute();
 			}
 			break;
+
+			//TODO: fix this, this does not work on release this just does
 		case State::Release:
 			if (SDL_GetKeyboardState(nullptr)[SDL_GetScancodeFromKey(command.first.second)])
 			{

@@ -34,5 +34,14 @@ namespace dae
 		float m_Acceleration{}; 
 	};
 
+	class Kill : public Command
+	{
+	public:
+		Kill(std::shared_ptr<GameObject> pActor);
+		void Execute() override;
+	private:
+		std::shared_ptr<GameObject> m_pActor{};
+	};
+
 }
 #pragma once
