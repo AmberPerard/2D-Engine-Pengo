@@ -1,6 +1,6 @@
 #include "LivesDisplayComponent.h"
 
-#include "PlayerComponent.h"
+#include "CharacterComponent.h"
 #include "TextComponent.h"
 #include "GameObject.h"
 #include "Observer.h"
