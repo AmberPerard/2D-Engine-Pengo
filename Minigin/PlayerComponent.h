@@ -2,13 +2,14 @@
 #include <memory>
 
 #include "BaseComponent.h"
+#include "CharacterComponent.h"
 #include "Subject.h"
 
 namespace dae
 {
 	class LivesDisplayComponent;
 
-	class PlayerComponent final : public BaseComponent
+	class PlayerComponent final : public CharacterComponent
 	{
 	public:
 		PlayerComponent(GameObject* gameObject, LivesDisplayComponent* livesDisplay = nullptr);
@@ -22,15 +23,8 @@ namespace dae
 		void Render() override;
 		void RenderUI() override;
 
-		int GetLives() const { return m_nrOfLives; }
-		void AddObserver(Observer* observer) ;
-		void Start();
-		void Die();
+		void Die() override;
 	private:
-		int m_nrOfLives{ 3 };
-		int m_Score{ 0 };
-
-		std::unique_ptr<Subject> m_PlayerSubject;
 
 	};
 }

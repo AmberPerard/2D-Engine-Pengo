@@ -22,7 +22,7 @@ namespace dae
 		virtual void Execute() = 0;
 	};
 
-	class Move : public Command
+	class Move final : public Command
 	{
 	public:
 		Move(std::shared_ptr<GameObject> pActor, float speed, glm::vec2 dir, float acceleration = 1.f);
@@ -34,10 +34,28 @@ namespace dae
 		float m_Acceleration{}; 
 	};
 
-	class Kill : public Command
+	class Kill final : public Command
 	{
 	public:
 		Kill(std::shared_ptr<GameObject> pActor);
+		void Execute() override;
+	private:
+		std::shared_ptr<GameObject> m_pActor{};
+	};
+
+	class HitEnemy final : public Command
+	{
+	public:
+		HitEnemy(std::shared_ptr<GameObject> pActor);
+		void Execute() override;
+	private:
+		std::shared_ptr<GameObject> m_pActor{};
+	};
+
+	class CrushEnemy final : public Command
+	{
+	public:
+		CrushEnemy(std::shared_ptr<GameObject> pActor);
 		void Execute() override;
 	private:
 		std::shared_ptr<GameObject> m_pActor{};
