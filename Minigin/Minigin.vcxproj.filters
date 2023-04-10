@@ -108,6 +108,9 @@
     <ClInclude Include="PlayerComponent.h">
       <Filter>Engine Files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Keyboard.h">
+      <Filter>Engine Files\Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseComponent.cpp">
@@ -205,6 +208,9 @@
     </ClCompile>
     <ClCompile Include="PlayerComponent.cpp">
       <Filter>Engine Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Keyboard.cpp">
+      <Filter>Engine Files\Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

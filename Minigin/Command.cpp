@@ -1,6 +1,4 @@
 #include "Command.h"
-
-#include <iostream>
 #include "GameObject.h"
 #include "InputManager.h"
 #include "PlayerComponent.h"

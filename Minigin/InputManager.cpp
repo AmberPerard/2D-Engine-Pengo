@@ -1,21 +1,23 @@
-
 #include "InputManager.h"
 #include <backends/imgui_impl_sdl2.h>
 
 bool dae::InputManager::ProcessInput()
 {
-	// Check controller keys
-	UpdateConsoleInput();
-	UpdateKeyboardInput();
 
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
 		if (e.type == SDL_QUIT) {
 			return false;
 		}
+
 		//process event for IMGUI
 		ImGui_ImplSDL2_ProcessEvent(&e);
 	}
+	// Check controller keys
+	UpdateConsoleInput();
+
+	// Check keyboard keys
+	UpdateKeyboardInput();
 	return true;
 }
 
@@ -63,26 +65,26 @@ void dae::InputManager::UpdateConsoleInput()
 
 void dae::InputManager::UpdateKeyboardInput()
 {
+	// Initialize previous keyboard state
+	m_Keyboard->Update();
 	for (auto& command : m_KeyboardCommands)
 	{
 		switch (command.first.first)
 		{
 		case State::Press:
-			if (SDL_GetKeyboardState(nullptr)[SDL_GetScancodeFromKey(command.first.second)])
+			if (m_Keyboard->IsButtonPressedThisFrame(command.first.second))
+			{
+				command.second->Execute();
+			}
+			break;
+		case State::Release:
+			if (m_Keyboard->IsButtonReleasedThisFrame(command.first.second))
 			{
 				command.second->Execute();
 			}
 			break;
 		case State::Hold:
-			if (SDL_GetKeyboardState(nullptr)[SDL_GetScancodeFromKey(command.first.second)])
-			{
-				command.second->Execute();
-			}
-			break;
-
-			//TODO: fix this, this does not work on release this just does
-		case State::Release:
-			if (SDL_GetKeyboardState(nullptr)[SDL_GetScancodeFromKey(command.first.second)])
+			if (m_Keyboard->IsPressed(command.first.second))
 			{
 				command.second->Execute();
 			}
@@ -105,7 +107,7 @@ dae::XController* dae::InputManager::GetController(int id) const
 
 void dae::InputManager::CreateKeyboardCommand(SDL_KeyCode button, State state, std::unique_ptr<Command> command)
 {
-	KeyboardKey keyThing = std::pair{ state,button };
+	KeyboardKey keyThing = std::pair{ state,SDL_GetScancodeFromKey(button) };
 	m_KeyboardCommands.insert(std::pair{ keyThing, std::move(command) });
 }
 
