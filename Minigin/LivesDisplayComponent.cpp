@@ -28,7 +28,7 @@ void dae::LivesDisplayComponent::OnNotify(EventType event, GameObject* actor)
 	switch (event)
 	{
 		case PLAYER_DIED:
-		m_text = "Lives: " + std::to_string(actor->GetComponent<PlayerComponent>()->GetLives());
+		m_text = "Lives: " + std::to_string(actor->GetComponent<CharacterComponent>()->GetLives());
 		pTextComponent->SetText(m_text);
 		break;
 	default: ;
