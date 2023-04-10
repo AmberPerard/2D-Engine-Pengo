@@ -30,7 +30,9 @@ namespace dae
 
 		void AddObserver(dae::Observer* observer);
 		void Start();
-		virtual void Die() = 0;
+		void Die();
+		void GetCrushed();
+		void GetHit();
 		std::unique_ptr<dae::Subject> m_CharacterSubject;
 
 	private:

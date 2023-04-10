@@ -185,7 +185,6 @@
     <ClInclude Include="BaseComponent.h" />
     <ClInclude Include="CharacterComponent.h" />
     <ClInclude Include="Command.h" />
-    <ClInclude Include="EnemyComponent.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="FPSComponent.h" />
     <ClInclude Include="GameObject.h" />
@@ -194,7 +193,6 @@
     <ClInclude Include="LivesDisplayComponent.h" />
     <ClInclude Include="Minigin.h" />
     <ClInclude Include="Observer.h" />
-    <ClInclude Include="PlayerComponent.h" />
     <ClInclude Include="RenderComponent.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ResourceManager.h" />
@@ -223,7 +221,6 @@
     <ClCompile Include="BaseComponent.cpp" />
     <ClCompile Include="CharacterComponent.cpp" />
     <ClCompile Include="Command.cpp" />
-    <ClCompile Include="EnemyComponent.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="FPSComponent.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -233,7 +230,6 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Minigin.cpp" />
     <ClCompile Include="Observer.cpp" />
-    <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="RenderComponent.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />

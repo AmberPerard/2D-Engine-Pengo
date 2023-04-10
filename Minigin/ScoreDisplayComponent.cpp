@@ -1,7 +1,6 @@
 #include "ScoreDisplayComponent.h"
 
-#include "EnemyComponent.h"
-#include "PlayerComponent.h"
+#include "CharacterComponent.h"
 #include "TextComponent.h"
 #include "GameObject.h"
 #include "Observer.h"
@@ -26,39 +25,31 @@ void dae::ScoreDisplayComponent::RenderUI()
 
 void dae::ScoreDisplayComponent::OnNotify(EventType event, GameObject* actor)
 {
-	const auto owner = GetOwner()->GetComponent<CharacterComponent>();
-	const auto otherActor = actor->GetComponent<CharacterComponent>();
-	bool isPlayer = (actor->GetComponent<PlayerComponent>() != nullptr);
-	bool isEnemy = (actor->GetComponent<EnemyComponent>() != nullptr);
-
+	const auto actorCharacterComp = actor->GetComponent<CharacterComponent>();
+	int newScore{ };
 	switch (event)
 	{
 	case PLAYER_DIED:
-		if (isEnemy)
-		{
-			int newScore = otherActor->GetScore() + m_HighScore;
+
+			newScore = actorCharacterComp->GetScore() + m_HighScore;
 			m_text = "Score: " + std::to_string(newScore);
-			owner->SetScore(newScore);
+			actorCharacterComp->SetScore(newScore);
 			pTextComponent->SetText(m_text);
-		}
+
 		break;
 	case ENEMY_CRUSHED:
-		if (isPlayer)
-		{
-			int newScore = otherActor->GetScore() + m_HighScore;
+
+			newScore = actorCharacterComp->GetScore() + m_HighScore;
 			m_text = "Score: " + std::to_string(newScore);
-			owner->SetScore(newScore);
+			actorCharacterComp->SetScore(newScore);
 			pTextComponent->SetText(m_text);
-		}
+
 		break;
 	case ENEMY_HIT:
-		if (isPlayer)
-		{
-			int newScore = otherActor->GetScore() + m_LowScore;
+			newScore = actorCharacterComp->GetScore() + m_LowScore;
 			m_text = "Score: " + std::to_string(newScore);
-			owner->SetScore(newScore);
+			actorCharacterComp->SetScore(newScore);
 			pTextComponent->SetText(m_text);
-		}
 		break;
 	default:;
 	}

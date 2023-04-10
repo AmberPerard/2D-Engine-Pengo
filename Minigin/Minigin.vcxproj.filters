@@ -105,14 +105,8 @@
     <ClInclude Include="LivesDisplayComponent.h">
       <Filter>Engine Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerComponent.h">
-      <Filter>Engine Files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Keyboard.h">
       <Filter>Engine Files\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyComponent.h">
-      <Filter>Engine Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="ScoreDisplayComponent.h">
       <Filter>Engine Files\Components</Filter>
@@ -215,16 +209,10 @@
     <ClCompile Include="LivesDisplayComponent.cpp">
       <Filter>Engine Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerComponent.cpp">
-      <Filter>Engine Files\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Keyboard.cpp">
       <Filter>Engine Files\Input</Filter>
     </ClCompile>
     <ClCompile Include="ScoreDisplayComponent.cpp">
-      <Filter>Engine Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyComponent.cpp">
       <Filter>Engine Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="CharacterComponent.cpp">

@@ -1,9 +1,10 @@
 #include "Command.h"
 #include "GameObject.h"
 #include "InputManager.h"
-#include "PlayerComponent.h"
-#include "EnemyComponent.h"
 #include "Time.h"
+#include <iostream>
+
+#include "CharacterComponent.h"
 
 dae::Command::Command()
 {
@@ -32,7 +33,7 @@ dae::Kill::Kill(std::shared_ptr<GameObject> pActor)
 
 void dae::Kill::Execute()
 {
-	m_pActor->GetComponent<dae::PlayerComponent>()->Die();
+	m_pActor->GetComponent<dae::CharacterComponent>()->Die();
 }
 
 dae::CrushEnemy::CrushEnemy(std::shared_ptr<GameObject> pActor)
@@ -42,7 +43,7 @@ dae::CrushEnemy::CrushEnemy(std::shared_ptr<GameObject> pActor)
 
 void dae::CrushEnemy::Execute()
 {
-	m_pActor->GetComponent<dae::EnemyComponent>()->GetCrushed();
+	m_pActor->GetComponent<dae::CharacterComponent>()->GetCrushed();
 }
 
 dae::HitEnemy::HitEnemy(std::shared_ptr<GameObject> pActor)
@@ -54,5 +55,5 @@ dae::HitEnemy::HitEnemy(std::shared_ptr<GameObject> pActor)
 
 void dae::HitEnemy::Execute()
 {
-	m_pActor->GetComponent<dae::EnemyComponent>()->GetHit();
+	m_pActor->GetComponent<dae::CharacterComponent>()->GetHit();
 }

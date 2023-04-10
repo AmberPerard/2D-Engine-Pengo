@@ -25,6 +25,35 @@ void dae::CharacterComponent::RenderUI()
 {
 }
 
+void dae::CharacterComponent::Die()
+{
+	int lives = GetLives();
+	SetLives(--lives);
+	m_CharacterSubject->Notify(PLAYER_DIED, this->GetOwner());
+	if (GetLives() < 0)
+	{
+		m_CharacterSubject->Notify(PLAYER_LOST, this->GetOwner());
+	}
+}
+
+void dae::CharacterComponent::GetCrushed()
+{
+	m_CharacterSubject->Notify(ENEMY_CRUSHED, this->GetOwner());
+	if (GetLives() <= 0)
+	{
+		Die();
+	}
+}
+
+void dae::CharacterComponent::GetHit()
+{
+	m_CharacterSubject->Notify(ENEMY_HIT, this->GetOwner());
+	if (GetLives() <= 0)
+	{
+		Die();
+	}
+}
+
 void dae::CharacterComponent::AddObserver(dae::Observer* observer)
 {
 	m_CharacterSubject->AddObserver(observer);
