@@ -7,6 +7,7 @@
 #include "Minigin.h"
 
 #include <chrono>
+#include <steam_api_common.h>
 
 #include "InputManager.h"
 #include "SceneManager.h"
@@ -57,8 +58,8 @@ dae::Minigin::Minigin(const std::string& dataPath)
 		"Programming 4 assignment",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
-		640,
-		480,
+		1280,
+		720,
 		SDL_WINDOW_OPENGL
 	);
 	if (g_window == nullptr)
@@ -111,7 +112,7 @@ void dae::Minigin::Run(const std::function<void()>& load)
 		//	sceneManager.FixedUpdate(MsPerFrame);
 		//	lag -= MsperFrame;
 		//}
-
+		SteamAPI_RunCallbacks();
 		sceneManager.Update();
 		renderer.Render();
 
