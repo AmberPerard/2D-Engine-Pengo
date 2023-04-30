@@ -15,7 +15,7 @@ namespace dae
 		virtual ~Subject() = default;
 		virtual void AddObserver(Observer* observer);
 		virtual void RemoveObserver(Observer* observer);
-		virtual void Notify(EventType event, GameObject* actor);
+		virtual void Notify(int event, GameObject* actor);
 	private:
 		std::vector<Observer*> m_Observers;
 	};

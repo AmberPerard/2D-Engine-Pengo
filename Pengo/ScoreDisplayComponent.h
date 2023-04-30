@@ -21,7 +21,7 @@ public:
 	void Render() override;
 	void RenderUI() override;
 
-	void OnNotify(EventType event, GameObject* actor) override;
+	void OnNotify(int event, GameObject* actor) override;
 	void SetScores(int lowScore, int Highscore = 400);
 
 private:

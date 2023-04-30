@@ -1,7 +1,7 @@
 #pragma once
 #include "Singleton.h"
 
-class Time final : public dae::Singleton<Time>
+class GameTime final : public dae::Singleton<GameTime>
 {
 public:
 	float GetDeltaTime() const { return m_deltaTime; }

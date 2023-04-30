@@ -51,7 +51,7 @@
     <ClInclude Include="Font.h">
       <Filter>Engine Files</Filter>
     </ClInclude>
-    <ClInclude Include="Time.h">
+    <ClInclude Include="GameTime.h">
       <Filter>Engine Files</Filter>
     </ClInclude>
     <ClInclude Include="FPSComponent.h">
@@ -75,12 +75,6 @@
     <ClInclude Include="Minigin.h">
       <Filter>Game Files</Filter>
     </ClInclude>
-    <ClInclude Include="TTCComponent.h">
-      <Filter>Game Files\week04</Filter>
-    </ClInclude>
-    <ClInclude Include="RotatorComponent.h">
-      <Filter>Game Files\Week02</Filter>
-    </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Engine Files\Input</Filter>
     </ClInclude>
@@ -102,17 +96,8 @@
     <ClInclude Include="Subject.h">
       <Filter>Engine Files\Events</Filter>
     </ClInclude>
-    <ClInclude Include="LivesDisplayComponent.h">
-      <Filter>Engine Files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Keyboard.h">
       <Filter>Engine Files\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreDisplayComponent.h">
-      <Filter>Engine Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="CharacterComponent.h">
-      <Filter>Engine Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -170,7 +155,7 @@
     <ClCompile Include="Texture2D.cpp">
       <Filter>Engine Files</Filter>
     </ClCompile>
-    <ClCompile Include="Time.cpp">
+    <ClCompile Include="GameTime.cpp">
       <Filter>Engine Files</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
@@ -178,12 +163,6 @@
     </ClCompile>
     <ClCompile Include="Minigin.cpp">
       <Filter>Game Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TTCComponent.cpp">
-      <Filter>Game Files\week04</Filter>
-    </ClCompile>
-    <ClCompile Include="RotatorComponent.cpp">
-      <Filter>Game Files\Week02</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Engine Files\Input</Filter>
@@ -206,17 +185,8 @@
     <ClCompile Include="Subject.cpp">
       <Filter>Engine Files\Events</Filter>
     </ClCompile>
-    <ClCompile Include="LivesDisplayComponent.cpp">
-      <Filter>Engine Files\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Keyboard.cpp">
       <Filter>Engine Files\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="ScoreDisplayComponent.cpp">
-      <Filter>Engine Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="CharacterComponent.cpp">
-      <Filter>Engine Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

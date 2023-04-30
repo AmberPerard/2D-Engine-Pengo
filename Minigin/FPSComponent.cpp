@@ -2,7 +2,7 @@
 
 #include "GameObject.h"
 #include "TextComponent.h"
-#include "Time.h"
+#include "GameTime.h"
 
 dae::FPSComponent::FPSComponent(GameObject* gameObject)
 	:BaseComponent(gameObject)
@@ -12,7 +12,7 @@ dae::FPSComponent::FPSComponent(GameObject* gameObject)
 
 void dae::FPSComponent::Update()
 {
-	m_fps = 1 / Time::GetInstance().GetDeltaTime();
+	m_fps = 1 / GameTime::GetInstance().GetDeltaTime();
 	if (m_pTextComponent)
 	{
 		m_pTextComponent->SetText(std::to_string(int(m_fps)) + " FPS");

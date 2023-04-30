@@ -1,6 +1,7 @@
 #include "LivesDisplayComponent.h"
 
 #include "CharacterComponent.h"
+#include "EventTypes.h"
 #include "TextComponent.h"
 #include "GameObject.h"
 #include "Observer.h"
@@ -23,7 +24,7 @@ void dae::LivesDisplayComponent::RenderUI()
 {
 }
 
-void dae::LivesDisplayComponent::OnNotify(EventType event, GameObject* actor)
+void dae::LivesDisplayComponent::OnNotify(int event, GameObject* actor)
 {
 	switch (event)
 	{

@@ -12,7 +12,7 @@
 #include "SceneManager.h"
 #include "Renderer.h"
 #include "ResourceManager.h"
-#include "Time.h"
+#include "GameTime.h"
 
 SDL_Window* g_window{};
 
@@ -100,7 +100,7 @@ void dae::Minigin::Run(const std::function<void()>& load)
 		const auto currentTime = std::chrono::high_resolution_clock::now();
 		const float deltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
 		//uses a singleton for deltatime
-		Time::GetInstance().SetDeltaTime(deltaTime);
+		GameTime::GetInstance().SetDeltaTime(deltaTime);
 		doContinue = input.ProcessInput();
 
 		//if you add physics than you can need to fixedUpdate this game loop

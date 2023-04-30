@@ -22,7 +22,7 @@ namespace dae
 		void Render() override;
 		void RenderUI() override;
 
-		void OnNotify(EventType event, GameObject* actor) override;
+		void OnNotify(int event, GameObject* actor) override;
 
 	private:
 		TextComponent* pTextComponent;

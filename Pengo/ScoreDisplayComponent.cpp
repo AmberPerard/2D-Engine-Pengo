@@ -1,6 +1,7 @@
 #include "ScoreDisplayComponent.h"
 
 #include "CharacterComponent.h"
+#include "EventTypes.h"
 #include "TextComponent.h"
 #include "GameObject.h"
 #include "Observer.h"
@@ -23,7 +24,7 @@ void dae::ScoreDisplayComponent::RenderUI()
 {
 }
 
-void dae::ScoreDisplayComponent::OnNotify(EventType event, GameObject* actor)
+void dae::ScoreDisplayComponent::OnNotify(int event, GameObject* actor)
 {
 	const auto actorCharacterComp = actor->GetComponent<CharacterComponent>();
 	int newScore{ };
