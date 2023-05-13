@@ -8,21 +8,23 @@
 #include "GameCommands.h"
 #include "GameObject.h"
 #include "InputManager.h"
-#include "LivesDisplayComponent.h"
 #include "Minigin.h"
+#include "PengoSounds.h"
 #include "RenderComponent.h"
 #include "ResourceManager.h"
 #include "Scene.h"
 #include "SceneManager.h"
-#include "ScoreDisplayComponent.h"
+#include "SDLSoundSystem.h"
+#include "ServiceManager.h"
+#include "SoundLoggerSystem.h"
 #include "TextComponent.h"
 
-void LoadWeek5(dae::Scene& scene);
+void LoadPengoLevel1(dae::Scene& scene);
 
 void load()
 {
 	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
-	LoadWeek5(scene);
+	LoadPengoLevel1(scene);
 
 }
 
@@ -32,9 +34,19 @@ int main(int, char* []) {
 	return 0;
 }
 
-void LoadWeek5(dae::Scene& scene)
+void LoadPengoLevel1(dae::Scene& scene)
 {
-	auto font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 20);
+#if _DEBUG
+	dae::ServiceManager::register_sound_system(
+		std::make_unique<dae::SoundLoggerSystem>(std::make_unique<dae::SDLSoundSystem>()));
+#else
+	servicelocator::register_sound_system(td::make_unique<dae::SDLSoundSystem>());
+#endif
+
+	auto& ss = dae::ServiceManager::get_sound_system();
+	ss.AddSoundMusic(PengoSounds[MAIN_SONG], MAIN_SONG);
+	ss.AddSoundEffect(PengoSounds[PUNCH_BLOCK], PUNCH_BLOCK);
+
 
 	auto background = std::make_shared<dae::GameObject>();
 	background->AddComponent<dae::RenderComponent>()->SetTexture("PengoBackGround.png");
@@ -91,8 +103,7 @@ void LoadWeek5(dae::Scene& scene)
 	dae::InputManager::GetInstance().CreateControllerCommand(dae::XController::ControllerButton::Right, dae::State::Hold,
 		std::make_unique<Move>(player2, 100.f, glm::vec2{ 1,0 })
 	);
-	dae::InputManager::GetInstance().CreateControllerCommand(dae::XController::ControllerButton::ButtonB, dae::State::Release,
-		std::make_unique<Kill>(player2)
-	);
 
+	ss.Play(MAIN_SONG, 60); // play music
+	ss.Play(PUNCH_BLOCK, 60); // play music
 }

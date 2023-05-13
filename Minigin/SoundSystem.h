@@ -17,6 +17,7 @@ namespace dae
 		virtual void UnpauseSound() = 0;
 		virtual void IncreaseVolume() = 0;
 		virtual void DecreaseVolume() = 0;
-		virtual void AddSound(const std::string& filename) = 0;
+		virtual void AddSoundMusic(const std::string& filename, sound_id id) = 0;
+		virtual void AddSoundEffect(const std::string& filename, sound_id id) = 0;
 	};
 }

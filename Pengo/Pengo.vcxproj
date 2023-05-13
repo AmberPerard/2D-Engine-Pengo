@@ -162,7 +162,6 @@
     <ClCompile Include="CharacterComponent.cpp" />
     <ClCompile Include="GameCommands.cpp" />
     <ClCompile Include="LivesDisplayComponent.cpp" />
-    <ClCompile Include="Minigin.cpp" />
     <ClCompile Include="Pengo.cpp" />
     <ClCompile Include="PengoLevelLoader.cpp" />
     <ClCompile Include="ScoreDisplayComponent.cpp" />
@@ -172,8 +171,8 @@
     <ClInclude Include="EventTypes.h" />
     <ClInclude Include="GameCommands.h" />
     <ClInclude Include="LivesDisplayComponent.h" />
-    <ClInclude Include="Minigin.h" />
     <ClInclude Include="PengoLevelLoader.h" />
+    <ClInclude Include="PengoSounds.h" />
     <ClInclude Include="ScoreDisplayComponent.h" />
   </ItemGroup>
   <ItemGroup>

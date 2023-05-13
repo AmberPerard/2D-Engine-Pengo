@@ -44,8 +44,14 @@ void dae::SoundLoggerSystem::DecreaseVolume()
 	std::cout << "decrease the volume of current playing sound" << std::endl;
 }
 
-void dae::SoundLoggerSystem::AddSound(const std::string& filename)
+void dae::SoundLoggerSystem::AddSoundMusic(const std::string& filename, sound_id id)
 {
-	_real_ss->AddSound(filename);
-	std::cout << "Added the sound with filename: " << filename << std::endl;
+	_real_ss->AddSoundMusic(filename,id);
+	std::cout << "Added the sound with filename as music: " << filename << std::endl;
+}
+
+void dae::SoundLoggerSystem::AddSoundEffect(const std::string& filename, sound_id id)
+{
+	_real_ss->AddSoundEffect(filename,id);
+	std::cout << "Added the sound with filename as soundEffect: " << filename << std::endl;
 }

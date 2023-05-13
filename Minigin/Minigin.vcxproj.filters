@@ -113,6 +113,9 @@
     <ClInclude Include="SoundLoggerSystem.h">
       <Filter>Engine Files\Sound</Filter>
     </ClInclude>
+    <ClInclude Include="Minigin.h">
+      <Filter>Engine Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseComponent.cpp">
@@ -208,6 +211,7 @@
     <ClCompile Include="SoundLoggerSystem.cpp">
       <Filter>Engine Files\Sound</Filter>
     </ClCompile>
+    <ClCompile Include="Minigin.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

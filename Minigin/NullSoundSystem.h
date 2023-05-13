@@ -6,7 +6,7 @@ namespace dae
 	class NullSoundSystem final : public SoundSystem
 	{
 	public:
-		NullSoundSystem();
+		NullSoundSystem() = default;
 		~NullSoundSystem() = default;
 		NullSoundSystem(const NullSoundSystem&) = delete;
 		NullSoundSystem(NullSoundSystem&&) = delete;
@@ -19,6 +19,7 @@ namespace dae
 		void UnpauseSound() override;
 		void IncreaseVolume() override;
 		void DecreaseVolume() override;
-		void AddSound(const std::string& filename) override;
+		void AddSoundEffect(const std::string& filename, sound_id id) override;
+		void AddSoundMusic(const std::string& filename, sound_id id) override;
 	};
 }

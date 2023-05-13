@@ -19,6 +19,9 @@
     <Filter Include="Level">
       <UniqueIdentifier>{efd31084-a97a-47ca-8b16-aaf930adc914}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{2448d013-1110-4f69-989c-7ff2eeb905d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LivesDisplayComponent.cpp">
@@ -32,9 +35,6 @@
     </ClCompile>
     <ClCompile Include="GameCommands.cpp">
       <Filter>inputs</Filter>
-    </ClCompile>
-    <ClCompile Include="Minigin.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Pengo.cpp">
       <Filter>Source Files</Filter>
@@ -59,11 +59,11 @@
     <ClInclude Include="EventTypes.h">
       <Filter>Events</Filter>
     </ClInclude>
-    <ClInclude Include="Minigin.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="PengoLevelLoader.h">
       <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="PengoSounds.h">
+      <Filter>Sound</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

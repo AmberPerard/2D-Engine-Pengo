@@ -24,6 +24,10 @@ void dae::NullSoundSystem::DecreaseVolume()
 {
 }
 
-void dae::NullSoundSystem::AddSound(const std::string& /*filename*/)
+void dae::NullSoundSystem::AddSoundEffect(const std::string& /*filename*/, sound_id /*id*/)
+{
+}
+
+void dae::NullSoundSystem::AddSoundMusic(const std::string& /*filename*/, sound_id /*id*/)
 {
 }
