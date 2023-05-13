@@ -1,5 +1,4 @@
 #include "SDLSoundSystem.h"
-
 #include <iostream>
 
 
@@ -17,13 +16,16 @@ dae::SDLSoundSystem::SDLSoundSystem()
 
 dae::SDLSoundSystem::~SDLSoundSystem()
 {
+	m_isRunning = false;
 	for (auto music : m_SoundMusic)
 	{
 		Mix_FreeMusic(music.second);
+		music.second = nullptr; // Set the pointer to nullptr after freeing the memory
 	}
 	for (auto soundEffect : m_SoundEffects)
 	{
 		Mix_FreeChunk(soundEffect.second);
+		soundEffect.second = nullptr; // Set the pointer to nullptr after freeing the memory
 	}
 	Mix_CloseAudio();
 	Mix_Quit();
@@ -44,37 +46,42 @@ void dae::SDLSoundSystem::Update()
 			{
 				const auto& message = m_SoundQueue.front();
 				m_SoundQueue.pop();
-				for (const auto& sound : m_SoundEffects)
+
+				switch (message.soundType)
+				{
+				case Music:
 				{
 					Mix_VolumeMusic((int)message.volume);
-					if (sound.first == message.id)
+					if (m_SoundMusic[message.id] == nullptr)
 					{
-						Mix_PlayChannel(-1, sound.second, 0);
+						Mix_Music* musicEffect = Mix_LoadMUS(m_SoundsToLoad[message.id].c_str());
+						m_SoundMusic[message.id] = musicEffect;
 					}
+					Mix_PlayMusic(m_SoundMusic[message.id], 0);
+					break;
 				}
-
-				for (const auto& sound : m_SoundMusic)
+				case Effect:
 				{
-					if (sound.first == message.id)
+					Mix_Volume(-1, (int)message.volume);
+					if (m_SoundEffects[message.id] == nullptr)
 					{
-						Mix_VolumeMusic((int)message.volume);
-						if (Mix_PlayMusic(sound.second, 0) < 0)
-						{
-							std::cout << "Failed to play sound! SDL_mixer Error: " << Mix_GetError() << std::endl;
-						}
+						Mix_Chunk* soundEffect = Mix_LoadWAV(m_SoundsToLoad[message.id].c_str());
+						m_SoundEffects[message.id] = soundEffect;
 					}
+					Mix_PlayChannel(-1, m_SoundEffects[message.id], 0);
+					break;
+				}
 				}
 			}
 		}
 	}
 }
 
-void dae::SDLSoundSystem::Play(const sound_id id, const float volume)
+void dae::SDLSoundSystem::Play(const sound_id id, const float volume, SoundType soundType)
 {
 	std::lock_guard lock(m_audioEventMutex);
-	m_SoundQueue.push(SoundMessage{ id, volume });
+	m_SoundQueue.push(SoundMessage{ id, volume,soundType });
 	m_SoundCV.notify_all();
-
 }
 
 void dae::SDLSoundSystem::PauseSound()
@@ -96,21 +103,11 @@ void dae::SDLSoundSystem::DecreaseVolume()
 void dae::SDLSoundSystem::AddSoundEffect(const std::string& filename, sound_id id)
 {
 	std::lock_guard lock(m_audioEventMutex);
-	Mix_Chunk* soundEffect = Mix_LoadWAV(filename.c_str());
-	if (!soundEffect) {
-		std::cout << "Sound effect could not be created, Error: " << Mix_GetError() << std::endl;
-		return;
-	}
-	m_SoundEffects.push_back(std::make_pair(id, soundEffect));
+	m_SoundsToLoad[id] = filename;
 }
 
 void dae::SDLSoundSystem::AddSoundMusic(const std::string& filename, sound_id id)
 {
 	std::lock_guard lock(m_audioEventMutex);
-	Mix_Music* mixMusic = Mix_LoadMUS(filename.c_str());
-	if (!mixMusic) {
-		std::cout << "Music could not be created, Error: " << Mix_GetError() << std::endl;
-		return;
-	}
-	m_SoundMusic.push_back(std::make_pair(id, mixMusic));
+	m_SoundsToLoad[id] = filename;
 }

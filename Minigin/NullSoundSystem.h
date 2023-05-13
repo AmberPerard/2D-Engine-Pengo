@@ -14,7 +14,7 @@ namespace dae
 		NullSoundSystem& operator= (const NullSoundSystem&&) = delete;
 
 		void Update() override;
-		void Play(const sound_id id, const float volume) override;
+		void Play(const sound_id id, const float volume, SoundType soundType) override;
 		void PauseSound() override;
 		void UnpauseSound() override;
 		void IncreaseVolume() override;

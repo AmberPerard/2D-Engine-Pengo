@@ -3,20 +3,15 @@
 #include <queue>
 #include <SDL_mixer.h>
 #include <thread>
+#include <unordered_map>
 
 #include "SoundSystem.h"
 namespace dae
-{
-	enum Type
-	{
-		SoundEffect,
-		Music
-	};
-
-	struct SoundMessage
+{	struct SoundMessage
 	{
 		sound_id id;
 		float volume;
+		SoundType soundType;
 	};
 
 	class SDLSoundSystem final : public SoundSystem
@@ -30,7 +25,7 @@ namespace dae
 		SDLSoundSystem& operator= (const SDLSoundSystem&&) = delete;
 
 		void Update() override;
-		void Play(const sound_id id, const float volume) override;
+		void Play(const sound_id id, const float volume, SoundType soundType) override;
 		void PauseSound() override;
 		void UnpauseSound() override;
 		void IncreaseVolume() override;
@@ -46,13 +41,11 @@ namespace dae
 		std::mutex m_audioEventMutex;
 		std::queue<SoundMessage> m_SoundQueue{};
 
-		//pairs for the queue
-		using SoundEffect = std::pair<sound_id, Mix_Chunk*>;
-		using SoundMusic = std::pair<sound_id, Mix_Music*>;
-
 		//storage for the sounds & effects
-		std::vector<SoundEffect> m_SoundEffects{};
-		std::vector<SoundMusic> m_SoundMusic{};
+		std::unordered_map<sound_id, Mix_Chunk*> m_SoundEffects{};
+		std::unordered_map<sound_id, Mix_Music*> m_SoundMusic{};
+
+		std::unordered_map<sound_id, std::string> m_SoundsToLoad{};
 
 		bool m_isRunning = true;
 

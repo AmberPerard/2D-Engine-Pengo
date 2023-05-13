@@ -40,7 +40,7 @@ void LoadPengoLevel1(dae::Scene& scene)
 	dae::ServiceManager::register_sound_system(
 		std::make_unique<dae::SoundLoggerSystem>(std::make_unique<dae::SDLSoundSystem>()));
 #else
-	servicelocator::register_sound_system(td::make_unique<dae::SDLSoundSystem>());
+	dae::ServiceManager::register_sound_system(std::make_unique<dae::SDLSoundSystem>());
 #endif
 
 	auto& ss = dae::ServiceManager::get_sound_system();
@@ -104,6 +104,6 @@ void LoadPengoLevel1(dae::Scene& scene)
 		std::make_unique<Move>(player2, 100.f, glm::vec2{ 1,0 })
 	);
 
-	ss.Play(MAIN_SONG, 60); // play music
-	ss.Play(PUNCH_BLOCK, 60); // play music
+	ss.Play(MAIN_SONG, 60, dae::SoundType::Music); // play music
+	ss.Play(PUNCH_BLOCK, 60, dae::SoundType::Effect); // play music
 }

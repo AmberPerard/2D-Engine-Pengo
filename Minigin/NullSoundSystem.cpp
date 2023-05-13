@@ -4,7 +4,7 @@ void dae::NullSoundSystem::Update()
 {
 }
 
-void dae::NullSoundSystem::Play(const sound_id /*id*/, const float /* volume*/)
+void dae::NullSoundSystem::Play(const sound_id /*id*/, const float /* volume*/, SoundType /*soundType*/)
 {
 }
 

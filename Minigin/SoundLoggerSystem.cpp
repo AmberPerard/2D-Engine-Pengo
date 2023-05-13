@@ -14,9 +14,9 @@ void dae::SoundLoggerSystem::Update()
 	std::cout << "SoundLoggerSystem updated" << std::endl;
 }
 
-void dae::SoundLoggerSystem::Play(const sound_id id, const float volume)
+void dae::SoundLoggerSystem::Play(const sound_id id, const float volume, SoundType soundType)
 {
-	_real_ss->Play(id, volume);
+	_real_ss->Play(id, volume, soundType);
 	std::cout << "playing " << id << " at volume " << volume << std::endl;
 }
 
