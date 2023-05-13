@@ -247,7 +247,6 @@
     <ClCompile Include="SDLSoundSystem.cpp" />
     <ClCompile Include="ServiceManager.cpp" />
     <ClCompile Include="SoundLoggerSystem.cpp" />
-    <ClCompile Include="SoundSystem.cpp" />
     <ClCompile Include="Subject.cpp" />
     <ClCompile Include="TextComponent.cpp" />
     <ClCompile Include="Texture2D.cpp" />

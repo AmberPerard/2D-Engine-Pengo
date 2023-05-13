@@ -111,7 +111,7 @@
       <Filter>Engine Files\Sound</Filter>
     </ClInclude>
     <ClInclude Include="SoundLoggerSystem.h">
-      <Filter>Engine Files</Filter>
+      <Filter>Engine Files\Sound</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -199,14 +199,15 @@
     <ClCompile Include="ServiceManager.cpp">
       <Filter>Engine Files\ServiceManager</Filter>
     </ClCompile>
-    <ClCompile Include="SoundSystem.cpp">
-      <Filter>Engine Files\Sound</Filter>
-    </ClCompile>
     <ClCompile Include="NullSoundSystem.cpp">
       <Filter>Engine Files\Sound</Filter>
     </ClCompile>
-    <ClCompile Include="SDLSoundSystem.cpp" />
-    <ClCompile Include="SoundLoggerSystem.cpp" />
+    <ClCompile Include="SDLSoundSystem.cpp">
+      <Filter>Engine Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundLoggerSystem.cpp">
+      <Filter>Engine Files\Sound</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

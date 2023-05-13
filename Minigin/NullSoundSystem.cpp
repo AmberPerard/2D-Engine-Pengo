@@ -1,29 +1,29 @@
 #include "NullSoundSystem.h"
 
-void NullSoundSystem::Update()
+void dae::NullSoundSystem::Update()
 {
 }
 
-void NullSoundSystem::Play(const sound_id id, const float volume)
+void dae::NullSoundSystem::Play(const sound_id /*id*/, const float /* volume*/)
 {
 }
 
-void NullSoundSystem::PauseSound()
+void dae::NullSoundSystem::PauseSound()
 {
 }
 
-void NullSoundSystem::UnpauseSound()
+void dae::NullSoundSystem::UnpauseSound()
 {
 }
 
-void NullSoundSystem::IncreaseVolume()
+void dae::NullSoundSystem::IncreaseVolume()
 {
 }
 
-void NullSoundSystem::DecreaseVolume()
+void dae::NullSoundSystem::DecreaseVolume()
 {
 }
 
-void NullSoundSystem::AddSound(const std::string& filename)
+void dae::NullSoundSystem::AddSound(const std::string& /*filename*/)
 {
 }
