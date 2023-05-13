@@ -4,6 +4,7 @@
 #include "ResourceManager.h"
 #include "Transform.h"
 #include "GameObject.h"
+#include "Texture2D.h"
 
 dae::RenderComponent::RenderComponent(GameObject* gameObject)
 	:BaseComponent(gameObject)
@@ -22,7 +23,11 @@ void dae::RenderComponent::Render()
 		if (transform != nullptr)
 		{
 			const auto& pos = transform->GetWorldPosition();
-			Renderer::GetInstance().RenderTexture(*m_texture, pos.x, pos.y);
+			const auto& scale = transform->GetWorldScale();
+			const auto& textureSize =  m_texture->GetSize();
+			const float width = static_cast<float>(textureSize.x) * scale.x;
+			const float height= static_cast<float>(textureSize.y) * scale.y;
+			Renderer::GetInstance().RenderTexture(*m_texture, pos.x, pos.y,width,height);
 		}else
 		{
 			Renderer::GetInstance().RenderTexture(*m_texture, 0, 0);

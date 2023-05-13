@@ -10,6 +10,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pengo", "Pengo\Pengo.vcxpro
 		{41B0EC47-D48C-4B0F-951B-D98595FFAE0A} = {41B0EC47-D48C-4B0F-951B-D98595FFAE0A}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeeklyAssignments", "WeeklyAssignments\WeeklyAssignments.vcxproj", "{22C048CE-B998-4392-ABCB-87DD63199831}"
+	ProjectSection(ProjectDependencies) = postProject
+		{41B0EC47-D48C-4B0F-951B-D98595FFAE0A} = {41B0EC47-D48C-4B0F-951B-D98595FFAE0A}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -34,6 +39,14 @@ Global
 		{FF8EA314-6CC7-4FC6-9D58-A666C1E13268}.Release|x64.Build.0 = Release|x64
 		{FF8EA314-6CC7-4FC6-9D58-A666C1E13268}.Release|x86.ActiveCfg = Release|Win32
 		{FF8EA314-6CC7-4FC6-9D58-A666C1E13268}.Release|x86.Build.0 = Release|Win32
+		{22C048CE-B998-4392-ABCB-87DD63199831}.Debug|x64.ActiveCfg = Debug|x64
+		{22C048CE-B998-4392-ABCB-87DD63199831}.Debug|x64.Build.0 = Debug|x64
+		{22C048CE-B998-4392-ABCB-87DD63199831}.Debug|x86.ActiveCfg = Debug|Win32
+		{22C048CE-B998-4392-ABCB-87DD63199831}.Debug|x86.Build.0 = Debug|Win32
+		{22C048CE-B998-4392-ABCB-87DD63199831}.Release|x64.ActiveCfg = Release|x64
+		{22C048CE-B998-4392-ABCB-87DD63199831}.Release|x64.Build.0 = Release|x64
+		{22C048CE-B998-4392-ABCB-87DD63199831}.Release|x86.ActiveCfg = Release|Win32
+		{22C048CE-B998-4392-ABCB-87DD63199831}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

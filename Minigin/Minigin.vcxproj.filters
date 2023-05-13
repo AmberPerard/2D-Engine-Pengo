@@ -5,10 +5,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Game Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Engine Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
@@ -19,12 +15,6 @@
     <Filter Include="Engine Files\ImGui">
       <UniqueIdentifier>{0b609393-0b48-40dc-8152-205996406fc5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game Files\week04">
-      <UniqueIdentifier>{b1ffebe0-91bb-4c3b-a1a7-5a07bfdf82ca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game Files\Week02">
-      <UniqueIdentifier>{39a6e6c1-e99e-4d04-8d67-0974a6327d27}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine Files\Input">
       <UniqueIdentifier>{9f663df4-0b4f-4e27-9223-2b54a5ae491d}</UniqueIdentifier>
     </Filter>
@@ -33,6 +23,9 @@
     </Filter>
     <Filter Include="Engine Files\Events">
       <UniqueIdentifier>{bfef654e-3579-4694-b096-e6711ad563e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine Files\Helpers">
+      <UniqueIdentifier>{078f2e28-d8ae-4a98-977e-8abe04043ac7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -72,9 +65,6 @@
     <ClInclude Include="GameObject.h">
       <Filter>Engine Files</Filter>
     </ClInclude>
-    <ClInclude Include="Minigin.h">
-      <Filter>Game Files</Filter>
-    </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Engine Files\Input</Filter>
     </ClInclude>
@@ -98,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="Keyboard.h">
       <Filter>Engine Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonParser.h">
+      <Filter>Engine Files\Helpers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -157,12 +150,6 @@
     </ClCompile>
     <ClCompile Include="GameTime.cpp">
       <Filter>Engine Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>Game Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Minigin.cpp">
-      <Filter>Game Files</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Engine Files\Input</Filter>
