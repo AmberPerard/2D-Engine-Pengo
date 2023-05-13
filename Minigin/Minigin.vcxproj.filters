@@ -27,6 +27,12 @@
     <Filter Include="Engine Files\Helpers">
       <UniqueIdentifier>{078f2e28-d8ae-4a98-977e-8abe04043ac7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine Files\ServiceManager">
+      <UniqueIdentifier>{b8c9c924-e85e-404a-af59-040c1d880aaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine Files\Sound">
+      <UniqueIdentifier>{acd0a21a-6be6-408a-bd53-4fa6917b2508}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -91,6 +97,21 @@
     </ClInclude>
     <ClInclude Include="JsonParser.h">
       <Filter>Engine Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="ServiceManager.h">
+      <Filter>Engine Files\ServiceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundSystem.h">
+      <Filter>Engine Files\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="NullSoundSystem.h">
+      <Filter>Engine Files\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLSoundSystem.h">
+      <Filter>Engine Files\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundLoggerSystem.h">
+      <Filter>Engine Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +196,17 @@
     <ClCompile Include="Keyboard.cpp">
       <Filter>Engine Files\Input</Filter>
     </ClCompile>
+    <ClCompile Include="ServiceManager.cpp">
+      <Filter>Engine Files\ServiceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundSystem.cpp">
+      <Filter>Engine Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="NullSoundSystem.cpp">
+      <Filter>Engine Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLSoundSystem.cpp" />
+    <ClCompile Include="SoundLoggerSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
