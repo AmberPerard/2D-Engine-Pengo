@@ -22,6 +22,9 @@
     <Filter Include="Sound">
       <UniqueIdentifier>{2448d013-1110-4f69-989c-7ff2eeb905d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Prefabs">
+      <UniqueIdentifier>{b58024ad-d790-4cf4-84be-489f09b69f17}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LivesDisplayComponent.cpp">
@@ -41,6 +44,9 @@
     </ClCompile>
     <ClCompile Include="PengoLevelLoader.cpp">
       <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="PengoPlayer.cpp">
+      <Filter>Prefabs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -64,6 +70,9 @@
     </ClInclude>
     <ClInclude Include="PengoSounds.h">
       <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="PengoPlayer.h">
+      <Filter>Prefabs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

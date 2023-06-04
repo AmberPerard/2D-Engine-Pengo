@@ -1,9 +1,11 @@
 #pragma once
 #include <string>
-#include "SceneManager.h"
+
+#include "Scene.h"
 
 class PengoLevelLoader
 {
-	static void LoadLevel(const std::string& filePath, dae::SceneManager& scene);
+public:
+	static void LoadLevel(const std::string& filePath, dae::Scene& scene);
 };
 

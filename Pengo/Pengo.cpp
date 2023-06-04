@@ -9,6 +9,8 @@
 #include "GameObject.h"
 #include "InputManager.h"
 #include "Minigin.h"
+#include "PengoLevelLoader.h"
+#include "PengoPlayer.h"
 #include "PengoSounds.h"
 #include "RenderComponent.h"
 #include "ResourceManager.h"
@@ -53,6 +55,10 @@ void LoadPengoLevel1(dae::Scene& scene)
 	background->GetTransform()->SetPosition(20,20);
 	background->GetTransform()->SetScale(2);
 	scene.Add(background);
+
+	//Load Level 1
+	PengoLevelLoader::LoadLevel("../Data/Level1.json", scene);
+
 
 	//player 1
 	auto player1 = std::make_shared<dae::GameObject>();

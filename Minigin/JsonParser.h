@@ -3,40 +3,44 @@
 #include <rapidjson.h>
 #include <document.h>
 #include <filereadstream.h>
+#include <fstream>
 #include <string>
+#include <istreamwrapper.h>
 
 namespace dae
 {
-	rapidjson::Document ReadJsonFile(const std::string& filePath)
+	std::vector<int> ReadJsonFile(const std::string& filePath)
 	{
-		FILE* fp = nullptr;
+		using rapidjson::Document;
+		std::ifstream is{ filePath };
+		std::vector<int> positions;
 
-		fopen_s(&fp, filePath.c_str(), "r");
-		if (fp == nullptr)
-		{
-						std::cout << "Failed to open file: " << filePath << std::endl;
-			return nullptr;
+
+		if (!is.is_open()) {
+			std::cout << "Failed to open the file." << std::endl;
+			return positions;
 		}
 
-		std::string fileName = filePath;
-		rapidjson::Document jsonFile;
-		FILE* pFile = nullptr;
+		// Read the contents of the file into a string
+		std::string jsonString((std::istreambuf_iterator(is)), std::istreambuf_iterator<char>());
 
-		fopen_s(&pFile, fileName.c_str(), "rb");
+		// Parse the JSON string
+		Document document;
+		document.Parse(jsonString.c_str());
 
-		if (pFile != nullptr)
-		{
-			fseek(pFile, 0, SEEK_END);
-			const size_t size = ftell(pFile);
-			fseek(pFile, 0, SEEK_SET);
-			char* readBuffer = new char[size];
-			rapidjson::FileReadStream inputStream(pFile, readBuffer, sizeof(readBuffer));
-			jsonFile.ParseStream(inputStream);
-			delete[] readBuffer;
-			fclose(pFile);
+		is.close();
+
+		if (document.IsArray()) {
+			const rapidjson::Value& array = document[0]["BlockSpawns"];
+			if (array.IsArray()) {
+				for (rapidjson::SizeType i = 0; i < array.Size(); i++) {
+					int pos;
+					pos = array[i].GetInt();
+					positions.push_back(pos);
+				}
+			}
 		}
-
-		return jsonFile;
+		return positions;
 	}
 }
 
