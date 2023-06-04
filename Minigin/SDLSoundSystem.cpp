@@ -73,6 +73,7 @@ public:
 				{
 					const auto& message = m_SoundQueue.front();
 					m_SoundQueue.pop();
+					lock.unlock();
 
 					switch (message.soundType)
 					{
@@ -107,7 +108,7 @@ public:
 	{
 		std::lock_guard lock(m_audioEventMutex);
 		m_SoundQueue.push(SoundMessage{ id, volume,soundType });
-		m_SoundCV.notify_all();
+		m_SoundCV.notify_one();
 	}
 
 	void PauseSound()
