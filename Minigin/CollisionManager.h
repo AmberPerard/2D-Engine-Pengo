@@ -11,7 +11,7 @@ namespace dae
 		void Add(ColliderComponent* colliderComponent);
 		void Remove(ColliderComponent* colliderComponent);
 
-		void UpdateCollision();
+		void FixedUpdate();
 	private:
 		friend class Singleton<CollisionManager>;
 		CollisionManager() = default;

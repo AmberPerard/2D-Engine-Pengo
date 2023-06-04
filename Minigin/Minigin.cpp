@@ -8,6 +8,7 @@
 
 #include <chrono>
 
+#include "CollisionManager.h"
 #include "InputManager.h"
 #include "SceneManager.h"
 #include "Renderer.h"
@@ -94,6 +95,9 @@ void dae::Minigin::Run(const std::function<void()>& load)
 	const int frameRateCap{ 144 };
 	const int minMsPerFrame{ 1000 / frameRateCap };
 
+	const float MsPerFrame = 1.f / frameRateCap;
+	float lag = 0;
+
 	while (doContinue)
 	{
 		//this is the game loop with the delta time update
@@ -105,12 +109,12 @@ void dae::Minigin::Run(const std::function<void()>& load)
 
 		//if you add physics than you can need to fixedUpdate this game loop
 		//fixedUpdate need to be implemented at some point if needed, but looks something like this
-		//lag += deltaTime;
-		//while (lag >= MsPerFrame)
-		//{
-		//	sceneManager.FixedUpdate(MsPerFrame);
-		//	lag -= MsperFrame;
-		//}
+		lag += deltaTime;
+		if (lag >= MsPerFrame)
+		{
+			CollisionManager::GetInstance().FixedUpdate();
+			lag -= MsPerFrame;
+		}
 
 		sceneManager.Update();
 		renderer.Render();

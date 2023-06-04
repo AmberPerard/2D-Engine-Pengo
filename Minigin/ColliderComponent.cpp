@@ -1,10 +1,11 @@
 #include "ColliderComponent.h"
 
 #include "CollisionManager.h"
+#include "Renderer.h"
 
-dae::ColliderComponent::ColliderComponent(GameObject* pGameObject, glm::vec2 pos, glm::vec2 size)
+dae::ColliderComponent::ColliderComponent(GameObject* pGameObject)
 	:BaseComponent(pGameObject),
-	m_Size(size)
+	m_Size({0,0})
 
 {
 	CollisionManager::GetInstance().Add(this);
@@ -21,6 +22,10 @@ void dae::ColliderComponent::Update()
 
 void dae::ColliderComponent::Render()
 {
+	auto pos = this->GetOwner()->GetTransform()->GetWorldPosition();
+	auto rect = SDL_Rect{ int(pos.x),int(pos.y) , int(m_Size.x),int(m_Size.y) };
+	SDL_SetRenderDrawColor(Renderer::GetInstance().GetSDLRenderer(), 255, 255, 255, 0);
+	SDL_RenderDrawRect(Renderer::GetInstance().GetSDLRenderer(), &rect);
 }
 
 void dae::ColliderComponent::RenderUI()

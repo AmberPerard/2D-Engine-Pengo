@@ -9,7 +9,7 @@ namespace dae
 	{
 		typedef std::function<void(GameObject* otherGameObject)> CollisionCallback;
 	public:
-		ColliderComponent(GameObject* pGameObject, glm::vec2 pos, glm::vec2 size);
+		ColliderComponent(GameObject* pGameObject);
 		~ColliderComponent() override;
 		ColliderComponent(const ColliderComponent& other) = delete;
 		ColliderComponent(ColliderComponent&& other) = delete;
@@ -20,6 +20,7 @@ namespace dae
 		void Render() override;
 		void RenderUI() override;
 
+		void SetSize(glm::vec2 size) { m_Size = size; }
 		glm::vec3 GetOwnerPosition() const;
 		glm::vec2 GetSize() const { return m_Size; }
 		void OnCollision(ColliderComponent* other);

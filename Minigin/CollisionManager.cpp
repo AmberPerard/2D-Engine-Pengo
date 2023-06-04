@@ -20,7 +20,7 @@ void dae::CollisionManager::Remove(ColliderComponent* colliderComponent)
 	}
 }
 
-void dae::CollisionManager::UpdateCollision()
+void dae::CollisionManager::FixedUpdate()
 {
 	for (auto firstCollider : m_CollisionObjects)
 	{
@@ -30,28 +30,28 @@ void dae::CollisionManager::UpdateCollision()
 			{
 				continue;
 			}
-			CheckCollision(firstCollider, secondCollider);
-
+			if (CheckCollision(firstCollider, secondCollider))
+			{
+				firstCollider->OnCollision(secondCollider);
+				secondCollider->OnCollision(firstCollider);
+			}
 		}
 	}
 }
 
 bool dae::CollisionManager::CheckCollision(ColliderComponent* firstCollider, ColliderComponent* secondCollider)
 {
-	auto firstColliderPos = firstCollider->GetOwnerPosition();
-	auto firtColliderSize = firstCollider->GetSize();
-	auto secondColliderPos = secondCollider->GetOwnerPosition();
-	auto secondColliderSize = secondCollider->GetSize();
+	auto fPos = firstCollider->GetOwnerPosition();
+	auto fSize = firstCollider->GetSize();
+	auto sPos = secondCollider->GetOwnerPosition();
+	auto sSize = secondCollider->GetSize();
 
-	if ((firstColliderPos.x + firtColliderSize.x) < secondColliderPos.x || (secondColliderPos.x + secondColliderSize.x) < firstColliderPos.x)
+	if((fPos.x +fSize.x) >= sPos.x &&
+		fPos.x <= (sPos.x + sSize.x) &&
+		(fPos.y + fSize.y) >= sPos.y &&
+		fPos.y <= (sPos.y + sSize.y))
 	{
-		return false;
+				return true;
 	}
-
-	if (firstColliderPos.y > (secondColliderPos.y + secondColliderSize.y) || secondColliderPos.y > (firstColliderPos.y + firtColliderSize.y))
-	{
-		return false;
-	}
-
-	return true;
+	return false;
 }

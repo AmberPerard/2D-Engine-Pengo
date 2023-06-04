@@ -4,7 +4,10 @@
 #endif
 #endif
 
+#include <iostream>
+
 #include "CharacterComponent.h"
+#include "ColliderComponent.h"
 #include "GameCommands.h"
 #include "GameObject.h"
 #include "InputManager.h"
@@ -64,6 +67,8 @@ void LoadPengoLevel1(dae::Scene& scene)
 	auto player1 = std::make_shared<dae::GameObject>();
 	player1->AddComponent<dae::RenderComponent>()->SetTexture("a1.png");
 	player1->AddComponent<CharacterComponent>();
+	dae::ColliderComponent* collider = player1->AddComponent<dae::ColliderComponent>();
+	collider->SetSize(glm::vec2{ 32,32 });
 	player1->GetTransform()->SetPosition(50, 150);
 	player1->GetTransform()->SetScale(2);
 	scene.Add(player1);
@@ -113,3 +118,4 @@ void LoadPengoLevel1(dae::Scene& scene)
 	ss.Play(MAIN_SONG, 60, dae::SoundType::Music); // play music
 	ss.Play(PUNCH_BLOCK, 60, dae::SoundType::Effect); // play music
 }
+

@@ -1,6 +1,7 @@
 #include "PengoLevelLoader.h"
 #include <vector>
 
+#include "ColliderComponent.h"
 #include "GameObject.h"
 #include "JsonParser.h"
 #include "RenderComponent.h"
@@ -9,6 +10,8 @@ void PengoLevelLoader::LoadLevel(const std::string& filePath, dae::Scene& scene)
 {
 	std::vector<int> positions = dae::ReadJsonFile(filePath);
 	glm::vec2 blockDimensions{ 16,16 };
+	const float scale = 2;
+	blockDimensions *= scale;
 	for (int column = 0; column < 13; ++column)
 	{
 		for (int row = 0; row < 15; ++row)
@@ -19,9 +22,9 @@ void PengoLevelLoader::LoadLevel(const std::string& filePath, dae::Scene& scene)
 			}
 			auto block = std::make_shared<dae::GameObject>();
 			block->AddComponent<dae::RenderComponent>()->SetTexture("PengoBlock.png");
-
-			block->GetTransform()->SetPosition(36.f + (blockDimensions.x * 2.f * column) , 36.f + (blockDimensions.y * 2.f * row));
-			block->GetTransform()->SetScale(2.f);
+			block->AddComponent<dae::ColliderComponent>()->SetSize(blockDimensions);
+			block->GetTransform()->SetPosition(36.f + (blockDimensions.x  * column) , 36.f + (blockDimensions.y * row));
+			block->GetTransform()->SetScale(scale);
 			scene.Add(block);
 		}
 	}
