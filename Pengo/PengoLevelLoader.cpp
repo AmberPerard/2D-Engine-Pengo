@@ -19,8 +19,9 @@ void PengoLevelLoader::LoadLevel(const std::string& filePath, dae::Scene& scene)
 			}
 			auto block = std::make_shared<dae::GameObject>();
 			block->AddComponent<dae::RenderComponent>()->SetTexture("PengoBlock.png");
-			block->GetTransform()->SetPosition(36 + (blockDimensions.x * 2 * column) , 36 + (blockDimensions.y * 2 * row));
-			block->GetTransform()->SetScale(2);
+
+			block->GetTransform()->SetPosition(36.f + (blockDimensions.x * 2.f * column) , 36.f + (blockDimensions.y * 2.f * row));
+			block->GetTransform()->SetScale(2.f);
 			scene.Add(block);
 		}
 	}
