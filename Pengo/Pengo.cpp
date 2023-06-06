@@ -25,10 +25,12 @@
 #include "TextComponent.h"
 
 void LoadPengoLevel1(dae::Scene& scene);
+void CreatePlayer1(dae::Scene& scene);
+void CreatePlayer2(dae::Scene& scene);
 
 void load()
 {
-	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
+	auto& scene = dae::SceneManager::GetInstance().CreateScene("Game: Pengo - Amber Perard");
 	LoadPengoLevel1(scene);
 
 }
@@ -62,60 +64,66 @@ void LoadPengoLevel1(dae::Scene& scene)
 	//Load Level 1
 	PengoLevelLoader::LoadLevel("../Data/Level1.json", scene);
 
+	//controls
+	dae::InputManager::GetInstance().AddController();
+	CreatePlayer1(scene);
+	CreatePlayer2(scene);
 
+	ss.Play(MAIN_SONG, 60, dae::SoundType::Music); // play music
+	//ss.Play(PUNCH_BLOCK, 60, dae::SoundType::Effect); // play music
+}
+
+void CreatePlayer1(dae::Scene& scene)
+{
 	//player 1
 	auto player1 = std::make_shared<dae::GameObject>();
 	player1->AddComponent<dae::RenderComponent>()->SetTexture("a1.png");
 	player1->AddComponent<CharacterComponent>();
 	dae::ColliderComponent* collider = player1->AddComponent<dae::ColliderComponent>();
-	collider->SetSize(glm::vec2{ 32,32 });
+	collider->SetSize(glm::vec2{ 32, 32 });
 	player1->GetTransform()->SetPosition(50, 150);
 	player1->GetTransform()->SetScale(2);
 	scene.Add(player1);
 
+	// player 1
+	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_w, dae::State::Hold,
+		std::make_unique<Move>(player1, 200.f, glm::vec2{ 0, -1 })
+	);
+	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_s, dae::State::Hold,
+		std::make_unique<Move>(player1, 200.f, glm::vec2{ 0, 1 })
+	);
+	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_a, dae::State::Hold,
+		std::make_unique<Move>(player1, 200.f, glm::vec2{ -1, 0 })
+	);
+	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_d, dae::State::Hold,
+		std::make_unique<Move>(player1, 200.f, glm::vec2{ 1, 0 })
+	);
+}
 
+void CreatePlayer2(dae::Scene& scene)
+{
 	//player 2
 	auto player2 = std::make_shared<dae::GameObject>();
 	player2->AddComponent<dae::RenderComponent>()->SetTexture("a2.png");
 	player2->AddComponent<CharacterComponent>();
+	dae::ColliderComponent* collider2 = player2->AddComponent<dae::ColliderComponent>();
+	collider2->SetSize(glm::vec2{ 32, 32 });
 	player2->GetTransform()->SetPosition(320 + 20, 300 + 10);
 	player2->GetTransform()->SetScale(2);
 	scene.Add(player2);
 
-
-	//controls
-    dae::InputManager::GetInstance().AddController();
-
-	// player 1
-	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_w, dae::State::Hold,
-		std::make_unique<Move>(player1, 200.f, glm::vec2{ 0,-1 })
-	);
-	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_s, dae::State::Hold,
-		std::make_unique<Move>(player1, 200.f, glm::vec2{ 0,1 })
-	);
-	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_a, dae::State::Hold,
-		std::make_unique<Move>(player1,200.f, glm::vec2{ -1,0 })
-	);
-	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_d, dae::State::Hold,
-		std::make_unique<Move>(player1, 200.f, glm::vec2{ 1,0 })
-	);
-
-
 	// player 2
 	dae::InputManager::GetInstance().CreateControllerCommand(dae::XController::ControllerButton::Up, dae::State::Hold,
-		std::make_unique<Move>(player2, 100.f, glm::vec2{ 0,-1 })
-		);
+		std::make_unique<Move>(player2, 100.f, glm::vec2{ 0, -1 })
+	);
 	dae::InputManager::GetInstance().CreateControllerCommand(dae::XController::ControllerButton::Down, dae::State::Hold,
-		std::make_unique<Move>(player2, 100.f, glm::vec2{ 0,1 })
+		std::make_unique<Move>(player2, 100.f, glm::vec2{ 0, 1 })
 	);
 	dae::InputManager::GetInstance().CreateControllerCommand(dae::XController::ControllerButton::Left, dae::State::Hold,
-		std::make_unique<Move>(player2, 100.f, glm::vec2{ -1,0 })
+		std::make_unique<Move>(player2, 100.f, glm::vec2{ -1, 0 })
 	);
 	dae::InputManager::GetInstance().CreateControllerCommand(dae::XController::ControllerButton::Right, dae::State::Hold,
-		std::make_unique<Move>(player2, 100.f, glm::vec2{ 1,0 })
+		std::make_unique<Move>(player2, 100.f, glm::vec2{ 1, 0 })
 	);
-
-	ss.Play(MAIN_SONG, 60, dae::SoundType::Music); // play music
-	ss.Play(PUNCH_BLOCK, 60, dae::SoundType::Effect); // play music
 }
 

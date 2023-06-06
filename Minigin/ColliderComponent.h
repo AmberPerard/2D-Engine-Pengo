@@ -25,7 +25,11 @@ namespace dae
 		glm::vec2 GetSize() const { return m_Size; }
 		void OnCollision(ColliderComponent* other);
 		void SetCollisionCallback(CollisionCallback callback) { m_CollisionCallback = callback; }
+
+		void EnableDebug() { m_IsDebug = true; }
+		void DisableDebug() { m_IsDebug = false; }
 	private:
+		bool m_IsDebug{false};
 		glm::vec2 m_Size;
 		CollisionCallback m_CollisionCallback;
 	};
