@@ -7,8 +7,8 @@ namespace dae
 {
 	class ColliderComponent final : public BaseComponent
 	{
-		typedef std::function<void(GameObject* otherGameObject)> CollisionCallback;
 	public:
+		typedef std::function<void(GameObject* otherGameObject)> CollisionCallback;
 		ColliderComponent(GameObject* pGameObject);
 		~ColliderComponent() override;
 		ColliderComponent(const ColliderComponent& other) = delete;

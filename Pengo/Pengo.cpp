@@ -78,9 +78,10 @@ void CreatePlayer1(dae::Scene& scene)
 	//player 1
 	auto player1 = std::make_shared<dae::GameObject>();
 	player1->AddComponent<dae::RenderComponent>()->SetTexture("a1.png");
-	player1->AddComponent<CharacterComponent>();
 	dae::ColliderComponent* collider = player1->AddComponent<dae::ColliderComponent>();
+	player1->AddComponent<CharacterComponent>();
 	collider->SetSize(glm::vec2{ 32, 32 });
+	collider->EnableDebug();
 	player1->GetTransform()->SetPosition(50, 150);
 	player1->GetTransform()->SetScale(2);
 	scene.Add(player1);

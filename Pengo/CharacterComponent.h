@@ -24,6 +24,8 @@ public:
 	void Render() override;
 	void RenderUI() override;
 
+	void OnCollision(dae::GameObject* otherCollider);
+
 	int GetLives() const { return m_NrOfLives; }
 	void SetLives(int newLives) { m_NrOfLives = newLives; }
 	int GetScore() const { return m_Score; }

@@ -1,5 +1,8 @@
 #include "CharacterComponent.h"
 
+#include "BlockComponent.h"
+#include "ColliderComponent.h"
+#include "GameObject.h"
 #include "Helpers.h"
 #include "LivesDisplayComponent.h"
 #include "Subject.h"
@@ -12,6 +15,12 @@ CharacterComponent::CharacterComponent(dae::GameObject* gameObject, dae::LivesDi
 	{
 		m_CharacterSubject->AddObserver(livesDisplay);
 	}
+
+	if(GetOwner()->GetComponent<dae::ColliderComponent>())
+	{
+		dae::ColliderComponent::CollisionCallback callback = [&](dae::GameObject* hit) { this->OnCollision(hit); };
+		GetOwner()->GetComponent<dae::ColliderComponent>()->SetCollisionCallback(callback);
+	}
 }
 
 void CharacterComponent::Update()
@@ -20,6 +29,7 @@ void CharacterComponent::Update()
 
 void CharacterComponent::FixedUpdate()
 {
+
 }
 
 void CharacterComponent::Render()
@@ -28,6 +38,16 @@ void CharacterComponent::Render()
 
 void CharacterComponent::RenderUI()
 {
+}
+
+void CharacterComponent::OnCollision(dae::GameObject* otherCollider)
+{
+	if (otherCollider->GetComponent<BlockComponent>())
+	{
+		auto otherTransform = otherCollider->GetTransform();
+		auto transform = GetOwner()->GetTransform();
+		//transform->SetPosition(otherTransform->GetLocalPosition().x - 32, otherTransform->GetLocalPosition().y - 32);
+	}
 }
 
 void CharacterComponent::Die()
