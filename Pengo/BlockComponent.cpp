@@ -9,6 +9,10 @@ void BlockComponent::Update()
 {
 }
 
+void BlockComponent::FixedUpdate()
+{
+}
+
 void BlockComponent::Render()
 {
 }

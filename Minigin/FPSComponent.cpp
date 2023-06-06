@@ -19,6 +19,10 @@ void dae::FPSComponent::Update()
 	}
 }
 
+void dae::FPSComponent::FixedUpdate()
+{
+}
+
 void dae::FPSComponent::Render()
 {
 }

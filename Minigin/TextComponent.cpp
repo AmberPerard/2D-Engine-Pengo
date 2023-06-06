@@ -39,6 +39,10 @@ void dae::TextComponent::Update()
 	}
 }
 
+void dae::TextComponent::FixedUpdate()
+{
+}
+
 void dae::TextComponent::Render()
 {
 }

@@ -16,6 +16,10 @@ void dae::LivesDisplayComponent::Update()
 {
 }
 
+void dae::LivesDisplayComponent::FixedUpdate()
+{
+}
+
 void dae::LivesDisplayComponent::Render()
 {
 }

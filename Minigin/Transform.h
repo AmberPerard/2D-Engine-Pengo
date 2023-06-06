@@ -33,12 +33,14 @@ namespace dae
 		void SetDirtyScale() { m_isScaleDirty = true; }
 
 		void Update() override;
+		void FixedUpdate() override;
 		void Render() override;
 		void RenderUI() override;
 	private:
 		void UpdateWorldPos();
 		void UpdateWorldScale();
 
+	private:
 		glm::vec3 m_localScale{1};
 		glm::vec3 m_worldScale{1};
 		glm::vec3 m_localPosition{};

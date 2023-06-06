@@ -15,6 +15,10 @@ void dae::RenderComponent::Update()
 {
 }
 
+void dae::RenderComponent::FixedUpdate()
+{
+}
+
 void dae::RenderComponent::Render()
 {
 	if (m_texture != nullptr)

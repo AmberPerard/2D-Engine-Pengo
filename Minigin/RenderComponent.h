@@ -19,6 +19,7 @@ namespace dae
 		RenderComponent& operator=(RenderComponent&& other) = delete;
 
 		void Update() override;
+		void FixedUpdate() override;
 		void Render() override;
 		void RenderUI() override;
 

@@ -12,6 +12,10 @@ void dae::Transform::Update()
 {
 }
 
+void dae::Transform::FixedUpdate()
+{
+}
+
 void dae::Transform::Render()
 {
 }

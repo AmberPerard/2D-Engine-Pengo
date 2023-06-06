@@ -17,6 +17,7 @@ namespace dae
 		ColliderComponent& operator=(ColliderComponent&& other) = delete;
 
 		void Update() override;
+		void FixedUpdate() override;
 		void Render() override;
 		void RenderUI() override;
 

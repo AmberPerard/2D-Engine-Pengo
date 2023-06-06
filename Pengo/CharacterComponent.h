@@ -20,6 +20,7 @@ public:
 	CharacterComponent& operator=(CharacterComponent&& other) noexcept = delete;
 
 	void Update() override;
+	void FixedUpdate() override;
 	void Render() override;
 	void RenderUI() override;
 

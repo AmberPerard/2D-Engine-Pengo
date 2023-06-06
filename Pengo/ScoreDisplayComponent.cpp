@@ -16,6 +16,10 @@ void dae::ScoreDisplayComponent::Update()
 {
 }
 
+void dae::ScoreDisplayComponent::FixedUpdate()
+{
+}
+
 void dae::ScoreDisplayComponent::Render()
 {
 }

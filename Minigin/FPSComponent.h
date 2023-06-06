@@ -17,6 +17,7 @@ namespace dae
 		FPSComponent& operator=(FPSComponent&& other) = delete;
 
 		void Update() override;
+		void FixedUpdate() override;
 		void Render() override;
 		void RenderUI() override;
 

@@ -18,6 +18,10 @@ void CharacterComponent::Update()
 {
 }
 
+void CharacterComponent::FixedUpdate()
+{
+}
+
 void CharacterComponent::Render()
 {
 }

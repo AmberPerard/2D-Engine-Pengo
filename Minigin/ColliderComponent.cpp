@@ -20,6 +20,10 @@ void dae::ColliderComponent::Update()
 {
 }
 
+void dae::ColliderComponent::FixedUpdate()
+{
+}
+
 void dae::ColliderComponent::Render()
 {
 	if (m_IsDebug)
