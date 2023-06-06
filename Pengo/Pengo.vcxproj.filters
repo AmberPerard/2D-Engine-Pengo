@@ -48,6 +48,9 @@
     <ClCompile Include="PengoPlayer.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
+    <ClCompile Include="BlockComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LivesDisplayComponent.h">
@@ -62,7 +65,7 @@
     <ClInclude Include="GameCommands.h">
       <Filter>inputs</Filter>
     </ClInclude>
-    <ClInclude Include="EventTypes.h">
+    <ClInclude Include="Helpers.h">
       <Filter>Events</Filter>
     </ClInclude>
     <ClInclude Include="PengoLevelLoader.h">
@@ -73,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="PengoPlayer.h">
       <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

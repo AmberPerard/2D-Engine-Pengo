@@ -10,4 +10,13 @@ enum EventType {
 	ENEMY_HIT,
 	ENEMY_DIED,
 
-}; 
+};
+
+enum MovementDirection
+{
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
+	NONE
+};

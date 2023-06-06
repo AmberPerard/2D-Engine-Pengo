@@ -1,7 +1,7 @@
 #include "ScoreDisplayComponent.h"
 
 #include "CharacterComponent.h"
-#include "EventTypes.h"
+#include "Helpers.h"
 #include "TextComponent.h"
 #include "GameObject.h"
 #include "Observer.h"

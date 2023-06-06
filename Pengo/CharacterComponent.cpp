@@ -1,6 +1,6 @@
 #include "CharacterComponent.h"
 
-#include "EventTypes.h"
+#include "Helpers.h"
 #include "LivesDisplayComponent.h"
 #include "Subject.h"
 

@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BlockComponent.cpp" />
     <ClCompile Include="CharacterComponent.cpp" />
     <ClCompile Include="GameCommands.cpp" />
     <ClCompile Include="LivesDisplayComponent.cpp" />
@@ -168,8 +169,9 @@
     <ClCompile Include="ScoreDisplayComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BlockComponent.h" />
     <ClInclude Include="CharacterComponent.h" />
-    <ClInclude Include="EventTypes.h" />
+    <ClInclude Include="Helpers.h" />
     <ClInclude Include="GameCommands.h" />
     <ClInclude Include="LivesDisplayComponent.h" />
     <ClInclude Include="PengoLevelLoader.h" />
