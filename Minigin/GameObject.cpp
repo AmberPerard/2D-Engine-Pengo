@@ -37,6 +37,27 @@ void dae::GameObject::Update()
 	}
 }
 
+void dae::GameObject::FixedUpdate()
+{
+	for (const auto& child : m_pChildren)
+	{
+		child->FixedUpdate();
+	}
+
+
+	for (const auto& comp : m_pComponents)
+	{
+		if (!comp->IsMarkedForDeletion())
+		{
+			comp->FixedUpdate();
+		}
+		else
+		{
+			RemoveComponent(&comp);
+		}
+	}
+}
+
 void dae::GameObject::Render() const
 {
 	for (const auto& child : m_pChildren)

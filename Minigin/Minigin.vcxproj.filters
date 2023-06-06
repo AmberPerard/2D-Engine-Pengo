@@ -122,6 +122,9 @@
     <ClInclude Include="ColliderComponent.h">
       <Filter>Engine Files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="RigidBody.h">
+      <Filter>Engine Files\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseComponent.cpp">
@@ -222,6 +225,9 @@
       <Filter>Engine Files\Managers</Filter>
     </ClCompile>
     <ClCompile Include="ColliderComponent.cpp">
+      <Filter>Engine Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidBody.cpp">
       <Filter>Engine Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
