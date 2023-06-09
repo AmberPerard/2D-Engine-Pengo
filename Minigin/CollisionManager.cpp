@@ -57,7 +57,6 @@ bool dae::CollisionManager::CheckCollision(ColliderComponent* firstCollider, Col
 		(fPos.y + (fSize.y + fOffset.y)) >= sPos.y + sOffset.y &&
 		fPos.y + fOffset.y <= (sPos.y + sOffset.y + sSize.y))
 	{
-		std::cout << "Collision" << std::endl;
 		return true;
 	}
 	return false;

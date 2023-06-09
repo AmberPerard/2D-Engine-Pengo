@@ -26,6 +26,7 @@ void BlockComponent::RenderUI()
 
 void BlockComponent::HandleMovement()
 {
+	if(m_IsStatic) return;
 	if (!m_IsMovingBlock && !GetOwner()->GetComponent<dae::RigidBody>()) return;
 
 	auto rigidBody = GetOwner()->GetComponent<dae::RigidBody>();

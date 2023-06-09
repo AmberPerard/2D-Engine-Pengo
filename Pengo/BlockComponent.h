@@ -26,10 +26,12 @@ public:
 	bool IsSpawnBlock() const { return m_IsSpawnBlock; }
 
 	void BreakBlock();
+	void SetStatic(bool isStatic) { m_IsStatic = isStatic; }
 
 private:
 	bool m_IsSpawnBlock{ false };
 	bool m_IsMovingBlock{ false };
+	bool m_IsStatic{ false };
 
 	MovementDirection m_MovementDirection { MovementDirection::NONE };
 };
