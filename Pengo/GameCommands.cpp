@@ -14,8 +14,9 @@ Move::Move(std::shared_ptr<dae::GameObject> pActor, float speed, glm::vec2 dir, 
 void Move::Execute()
 {
 	glm::vec3 actorPos = m_pActor->GetTransform()->GetLocalPosition();
-	float actorPosX = actorPos.x + (m_Dir.x * GameTime::GetInstance().GetDeltaTime() * m_Speed);
-	float actorPosY = actorPos.y + (m_Dir.y * GameTime::GetInstance().GetDeltaTime() * m_Speed);
+	float actorPosX = actorPos.x + (m_Dir.x * 32);
+	float actorPosY = actorPos.y + (m_Dir.y * 32);
+	m_pActor->GetTransform()->SetForwardVector(m_Dir);
 	m_pActor->GetTransform()->SetPosition(actorPosX, actorPosY);
 }
 

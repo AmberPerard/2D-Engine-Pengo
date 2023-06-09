@@ -80,23 +80,23 @@ void CreatePlayer1(dae::Scene& scene)
 	player1->AddComponent<dae::RenderComponent>()->SetTexture("a1.png");
 	dae::ColliderComponent* collider = player1->AddComponent<dae::ColliderComponent>();
 	player1->AddComponent<CharacterComponent>();
-	collider->SetSize(glm::vec2{ 32, 32 });
+	collider->SetSize(glm::vec2{ 30, 30 });
 	collider->EnableDebug();
-	player1->GetTransform()->SetPosition(50, 150);
+	player1->GetTransform()->SetPosition(36, 36);
 	player1->GetTransform()->SetScale(2);
 	scene.Add(player1);
 
 	// player 1
-	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_w, dae::State::Hold,
+	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_w, dae::State::Release,
 		std::make_unique<Move>(player1, 200.f, glm::vec2{ 0, -1 })
 	);
-	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_s, dae::State::Hold,
+	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_s, dae::State::Release,
 		std::make_unique<Move>(player1, 200.f, glm::vec2{ 0, 1 })
 	);
-	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_a, dae::State::Hold,
+	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_a, dae::State::Release,
 		std::make_unique<Move>(player1, 200.f, glm::vec2{ -1, 0 })
 	);
-	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_d, dae::State::Hold,
+	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_d, dae::State::Release,
 		std::make_unique<Move>(player1, 200.f, glm::vec2{ 1, 0 })
 	);
 }

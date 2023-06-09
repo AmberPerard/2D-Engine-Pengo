@@ -42,14 +42,16 @@ void dae::CollisionManager::FixedUpdate()
 bool dae::CollisionManager::CheckCollision(ColliderComponent* firstCollider, ColliderComponent* secondCollider)
 {
 	auto fPos = firstCollider->GetOwnerPosition();
+	auto fOffset = firstCollider->GetOffset();
 	auto fSize = firstCollider->GetSize();
 	auto sPos = secondCollider->GetOwnerPosition();
+	auto sOffset = firstCollider->GetOffset();
 	auto sSize = secondCollider->GetSize();
 
-	if((fPos.x +fSize.x) >= sPos.x &&
-		fPos.x <= (sPos.x + sSize.x) &&
-		(fPos.y + fSize.y) >= sPos.y &&
-		fPos.y <= (sPos.y + sSize.y))
+	if((fPos.x - fOffset.x +fSize.x) >= sPos.x + sOffset.x &&
+		fPos.x + fOffset.x <= (sPos.x - sOffset.x + sSize.x) &&
+		(fPos.y - fOffset.y + fSize.y) >= sPos.y + sOffset.y &&
+		fPos.y + fOffset.y <= (sPos.y - sOffset. y + sSize.y))
 	{
 				return true;
 	}

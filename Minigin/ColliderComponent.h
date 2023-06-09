@@ -22,7 +22,9 @@ namespace dae
 		void RenderUI() override;
 
 		void SetSize(glm::vec2 size) { m_Size = size; }
+		void setOffset(glm::vec2 offset) { m_Offset = offset; }
 		glm::vec3 GetOwnerPosition() const;
+		glm::vec2 GetOffset() { return m_Offset; }
 		glm::vec2 GetSize() const { return m_Size; }
 		void OnCollision(ColliderComponent* other);
 		void SetCollisionCallback(CollisionCallback callback) { m_CollisionCallback = callback; }
@@ -32,6 +34,7 @@ namespace dae
 	private:
 		bool m_IsDebug{false};
 		glm::vec2 m_Size;
+		glm::vec2 m_Offset{2,2};
 		CollisionCallback m_CollisionCallback;
 	};
 }

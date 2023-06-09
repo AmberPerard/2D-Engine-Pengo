@@ -28,6 +28,9 @@ namespace dae
 		glm::vec3 GetWorldScale();
 		glm::vec3 GetLocalScale() { return m_localScale; }
 
+		glm::vec2 GetForwardVector() { return m_ForwardVector; }
+		void SetForwardVector(glm::vec2 forward) { m_ForwardVector = forward; }
+
 		void SetParent(Transform* gameObject);
 		void SetDirty() { m_isDirty = true; }
 		void SetDirtyScale() { m_isScaleDirty = true; }
@@ -45,6 +48,8 @@ namespace dae
 		glm::vec3 m_worldScale{1};
 		glm::vec3 m_localPosition{};
 		glm::vec3 m_worldPosition{};
+
+		glm::vec2 m_ForwardVector{0,1};
 
 		Transform* m_parent;
 
