@@ -34,7 +34,7 @@ namespace dae
 	private:
 		bool m_IsDebug{false};
 		glm::vec2 m_Size;
-		glm::vec2 m_Offset{2,2};
+		glm::vec2 m_Offset{0,0};
 		CollisionCallback m_CollisionCallback;
 	};
 }

@@ -23,8 +23,9 @@ void PengoLevelLoader::LoadLevel(const std::string& filePath, dae::Scene& scene)
 			}
 			auto block = std::make_shared<dae::GameObject>();
 			block->AddComponent<dae::RenderComponent>()->SetTexture("PengoBlock.png");
-			block->AddComponent<dae::ColliderComponent>()->SetSize(glm::vec2{blockDimensions.x, blockDimensions.y});
-			block.get()->GetComponent<dae::ColliderComponent>()->setOffset(glm::vec2{0,0});
+			auto collision = block->AddComponent<dae::ColliderComponent>();
+			collision->SetSize(glm::vec2{blockDimensions.x - 2, blockDimensions.y - 2});
+			collision->setOffset(glm::vec2{1,1});
 			block->AddComponent<BlockComponent>();
 			block->GetTransform()->SetPosition(36.f + (blockDimensions.x  * column) , 36.f + (blockDimensions.y * row));
 			block->GetTransform()->SetScale(scale);

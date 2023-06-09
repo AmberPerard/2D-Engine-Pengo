@@ -45,10 +45,11 @@ void CharacterComponent::OnCollision(dae::GameObject* otherCollider)
 	if (otherCollider->GetComponent<BlockComponent>())
 	{
 		auto size = otherCollider->GetComponent<dae::ColliderComponent>()->GetSize();
+		auto offset = otherCollider->GetComponent<dae::ColliderComponent>()->GetOffset();
 		auto transform = GetOwner()->GetTransform();
 		glm::vec2 lastDirection  = transform->GetForwardVector();
 		otherCollider->GetComponent<dae::ColliderComponent>()->EnableDebug();
-		transform->SetPosition(transform->GetLocalPosition().x + (size.x * -(lastDirection.x)), transform->GetLocalPosition().y + (size.y * -(lastDirection.y)));
+		transform->SetPosition(transform->GetLocalPosition().x + ((size.x + (offset.x*2))  * -(lastDirection.x)), transform->GetLocalPosition().y + ((size.y + (offset.y * 2)) * -(lastDirection.y)));
 	}
 }
 

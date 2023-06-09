@@ -1,5 +1,8 @@
 #include "CollisionManager.h"
 
+#include <iostream>
+#include <ostream>
+
 void dae::CollisionManager::Add(ColliderComponent* colliderComponent)
 {
 	//No duplicates
@@ -44,16 +47,18 @@ bool dae::CollisionManager::CheckCollision(ColliderComponent* firstCollider, Col
 	auto fPos = firstCollider->GetOwnerPosition();
 	auto fOffset = firstCollider->GetOffset();
 	auto fSize = firstCollider->GetSize();
+
 	auto sPos = secondCollider->GetOwnerPosition();
 	auto sOffset = firstCollider->GetOffset();
 	auto sSize = secondCollider->GetSize();
 
-	if((fPos.x - fOffset.x +fSize.x) >= sPos.x + sOffset.x &&
-		fPos.x + fOffset.x <= (sPos.x - sOffset.x + sSize.x) &&
-		(fPos.y - fOffset.y + fSize.y) >= sPos.y + sOffset.y &&
-		fPos.y + fOffset.y <= (sPos.y - sOffset. y + sSize.y))
+	if ((fPos.x + (fSize.x + fOffset.x)) >= sPos.x + sOffset.x &&
+		fPos.x + fOffset.x <= (sPos.x + sOffset.x + sSize.x) &&
+		(fPos.y + (fSize.y + fOffset.y)) >= sPos.y + sOffset.y &&
+		fPos.y + fOffset.y <= (sPos.y + sOffset.y + sSize.y))
 	{
-				return true;
+		std::cout << "Collision" << std::endl;
+		return true;
 	}
 	return false;
 }

@@ -80,7 +80,8 @@ void CreatePlayer1(dae::Scene& scene)
 	player1->AddComponent<dae::RenderComponent>()->SetTexture("a1.png");
 	dae::ColliderComponent* collider = player1->AddComponent<dae::ColliderComponent>();
 	player1->AddComponent<CharacterComponent>();
-	collider->SetSize(glm::vec2{ 30, 30 });
+	collider->SetSize(glm::vec2{ 26, 26 });
+	collider->setOffset(glm::vec2{ 3, 3 });
 	collider->EnableDebug();
 	player1->GetTransform()->SetPosition(36, 36);
 	player1->GetTransform()->SetScale(2);
