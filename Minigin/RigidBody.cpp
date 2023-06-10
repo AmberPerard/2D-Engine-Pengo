@@ -35,6 +35,6 @@ void dae::RigidBody::Move(const glm::vec2& moveVec)
 		newPos.x += m_Velocity.x;
 		newPos.y += m_Velocity.y;
 
-		GetOwner()->GetTransform()->SetPosition(newPos.x, newPos.y);
+		GetOwner()->GetTransform()->SetPosition({ newPos.x, newPos.y });
 	}
 }

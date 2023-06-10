@@ -1,5 +1,6 @@
 #pragma once
 #include "BaseComponent.h"
+#include "GameObject.h"
 #include "Helpers.h"
 
 class BlockComponent : public dae::BaseComponent
@@ -27,6 +28,9 @@ public:
 
 	void BreakBlock();
 	void SetStatic(bool isStatic) { m_IsStatic = isStatic; }
+
+	glm::vec2 GetPosition() const { return this->GetOwner()->GetTransform()->GetWorldPosition(); }
+	void OnCollision(const dae::GameObject* collision);
 
 private:
 	bool m_IsSpawnBlock{ false };

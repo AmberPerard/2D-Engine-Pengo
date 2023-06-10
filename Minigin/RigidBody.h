@@ -23,6 +23,8 @@ namespace dae
 		glm::vec2 GetMovementSpeed() const { return m_MovementSpeed; }
 		glm::vec2 GetVelocity()const { return m_Velocity; }
 
+		void SetMovementSpeed(const glm::vec2& speed) { m_MovementSpeed = speed; }
+
 	private:
 		glm::vec2 m_MovementSpeed{};
 		glm::vec2 m_Velocity{};

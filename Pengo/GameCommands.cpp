@@ -1,23 +1,44 @@
 #include "GameCommands.h"
 
+#include "BlocksManager.h"
 #include "CharacterComponent.h"
+#include "GameInfo.h"
 #include "GameTime.h"
 
-Move::Move(std::shared_ptr<dae::GameObject> pActor, float speed, glm::vec2 dir, float acceleration)
+Move::Move(std::shared_ptr<dae::GameObject> pActor, glm::vec2 dir,int blocksize)
 	: m_pActor(pActor),
 	m_Dir(dir),
-	m_Speed(speed),
-	m_Acceleration(acceleration)
+	m_Blocksize(blocksize)
 {
 }
 
 void Move::Execute()
 {
-	glm::vec3 actorPos = m_pActor->GetTransform()->GetLocalPosition();
-	float actorPosX = actorPos.x + (m_Dir.x * 32);
-	float actorPosY = actorPos.y + (m_Dir.y * 32);
+	glm::vec2 actorPos = m_pActor->GetTransform()->GetLocalPosition();
+	float actorPosX = actorPos.x + (m_Dir.x * m_Blocksize);
+	float actorPosY = actorPos.y + (m_Dir.y * m_Blocksize);
 	m_pActor->GetTransform()->SetForwardVector(m_Dir);
-	m_pActor->GetTransform()->SetPosition(actorPosX, actorPosY);
+	m_pActor->GetTransform()->SetPosition({ actorPosX, actorPosY });
+}
+
+Push::Push(std::shared_ptr<dae::GameObject> pActor)
+	:m_pActor(pActor)
+{
+}
+
+void Push::Execute()
+{
+	auto dir = m_pActor->GetTransform()->GetForwardVector();
+	auto actorPos = m_pActor->GetTransform()->GetWorldPosition();
+	glm::vec2 blocksize = GameInfo::GetInstance().GetBlockSize();
+	glm::vec2 nextBlockOver = { actorPos.x + (blocksize.x * dir.x), actorPos.y + (blocksize.y * dir.y) };
+//	glm::vec2 nextBlockOver2 = { nextBlockOver.x + (blocksize.x *2 * dir.x), nextBlockOver.y + (blocksize.y*2 * dir.y) };
+	auto blockToPush = BlocksManager::GetInstance().FindWall(nextBlockOver);
+	if(blockToPush != nullptr)
+	{
+			MovementDirection dirToPush = GameInfo::GetInstance().FindMovement(dir);
+			blockToPush->EnableMovement(dirToPush);
+	}
 }
 
 Kill::Kill(std::shared_ptr<dae::GameObject> pActor)

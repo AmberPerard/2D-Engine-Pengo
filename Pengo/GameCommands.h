@@ -4,13 +4,21 @@
 class Move final : public dae::Command
 {
 public:
-	Move(std::shared_ptr<dae::GameObject> pActor, float speed, glm::vec2 dir, float acceleration = 1.f);
+	Move(std::shared_ptr<dae::GameObject> pActor, glm::vec2 dir, int Blocksize);
 	void Execute() override;
 private:
 	std::shared_ptr<dae::GameObject> m_pActor{};
 	glm::vec2 m_Dir{};
-	float m_Speed{};
-	float m_Acceleration{};
+	int m_Blocksize{};
+};
+
+class Push final : public dae::Command
+{
+	public:
+	Push(std::shared_ptr<dae::GameObject> pActorr);
+	void Execute() override;
+	private:
+	std::shared_ptr<dae::GameObject> m_pActor{};
 };
 
 class Kill final : public dae::Command

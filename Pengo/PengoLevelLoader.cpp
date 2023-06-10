@@ -2,10 +2,12 @@
 #include <vector>
 
 #include "BlockComponent.h"
+#include "BlocksManager.h"
 #include "ColliderComponent.h"
 #include "GameObject.h"
 #include "JsonParser.h"
 #include "RenderComponent.h"
+#include "RigidBody.h"
 
 void PengoLevelLoader::LoadLevel(const std::string& filePath, dae::Scene& scene)
 {
@@ -26,42 +28,49 @@ void PengoLevelLoader::LoadLevel(const std::string& filePath, dae::Scene& scene)
 			auto collision = block->AddComponent<dae::ColliderComponent>();
 			collision->SetSize(glm::vec2{blockDimensions.x - 2, blockDimensions.y - 2});
 			collision->setOffset(glm::vec2{1,1});
-			block->AddComponent<BlockComponent>();
-			block->GetTransform()->SetPosition(36.f + (blockDimensions.x  * column) , 36.f + (blockDimensions.y * row));
+			//collision->EnableDebug();
+			auto blockComp = block->AddComponent<BlockComponent>();
+			BlocksManager::GetInstance().AddBlock(blockComp);
+			block->AddComponent<dae::RigidBody>()->SetMovementSpeed({200,200});
+			block->GetTransform()->SetPosition({37.f + (blockDimensions.x  * column) , 36.f + (blockDimensions.y * row)});
 			block->GetTransform()->SetScale(scale);
 			scene.Add(block);
 		}
 	}
+	buildSideWalls(scene);
+}
+
+void PengoLevelLoader::buildSideWalls(dae::Scene& scene)
+{
 	auto sideblockLeft = std::make_shared<dae::GameObject>();
 	sideblockLeft->AddComponent<BlockComponent>()->SetStatic(true);
 	auto collider = sideblockLeft->AddComponent<dae::ColliderComponent>();
 	collider->SetSize(glm::vec2{32, 480});
-	collider->EnableDebug();
-	sideblockLeft->GetTransform()->SetPosition(0, 36);
+	//collider->EnableDebug();
+	sideblockLeft->GetTransform()->SetPosition({ 3, 36 });
 	scene.Add(sideblockLeft);
 
 	auto sideblockRight = std::make_shared<dae::GameObject>();
 	sideblockRight->AddComponent<BlockComponent>()->SetStatic(true);
 	auto colliderRight = sideblockRight->AddComponent<dae::ColliderComponent>();
 	colliderRight->SetSize(glm::vec2{32, 480});
-	colliderRight->EnableDebug();
-	sideblockRight->GetTransform()->SetPosition(452, 36);
+	//colliderRight->EnableDebug();
+	sideblockRight->GetTransform()->SetPosition({ 452, 36 });
 	scene.Add(sideblockRight);
 
 	auto sideblockTop = std::make_shared<dae::GameObject>();
 	sideblockTop->AddComponent<BlockComponent>()->SetStatic(true);
 	auto colliderTop = sideblockTop->AddComponent<dae::ColliderComponent>();
-	colliderTop->SetSize(glm::vec2{480, 32});
-	colliderTop->EnableDebug();
-	sideblockTop->GetTransform()->SetPosition(36, 0);
+	colliderTop->SetSize(glm::vec2{416, 32});
+	//colliderTop->EnableDebug();
+	sideblockTop->GetTransform()->SetPosition({ 34, 3 });
 	scene.Add(sideblockTop);
 
 	auto sideblockBot = std::make_shared<dae::GameObject>();
 	sideblockBot->AddComponent<BlockComponent>()->SetStatic(true);
 	auto colliderBot = sideblockBot->AddComponent<dae::ColliderComponent>();
-	colliderBot->SetSize(glm::vec2{480, 32});
-	colliderBot->EnableDebug();
-	sideblockBot->GetTransform()->SetPosition(36, 512);
+	colliderBot->SetSize(glm::vec2{416, 32});
+	//colliderBot->EnableDebug();
+	sideblockBot->GetTransform()->SetPosition({ 34, 516 });
 	scene.Add(sideblockBot);
-
 }

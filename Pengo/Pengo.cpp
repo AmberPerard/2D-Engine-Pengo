@@ -57,7 +57,7 @@ void LoadPengoLevel1(dae::Scene& scene)
 
 	auto background = std::make_shared<dae::GameObject>();
 	background->AddComponent<dae::RenderComponent>()->SetTexture("PengoBackGround.png");
-	background->GetTransform()->SetPosition(20,20);
+	background->GetTransform()->SetPosition({ 20,20 });
 	background->GetTransform()->SetScale(2);
 	scene.Add(background);
 
@@ -67,7 +67,7 @@ void LoadPengoLevel1(dae::Scene& scene)
 	//controls
 	dae::InputManager::GetInstance().AddController();
 	CreatePlayer1(scene);
-	CreatePlayer2(scene);
+	//CreatePlayer2(scene);
 
 	ss.Play(MAIN_SONG, 60, dae::SoundType::Music); // play music
 	//ss.Play(PUNCH_BLOCK, 60, dae::SoundType::Effect); // play music
@@ -83,22 +83,26 @@ void CreatePlayer1(dae::Scene& scene)
 	collider->SetSize(glm::vec2{ 26, 26 });
 	collider->setOffset(glm::vec2{ 3, 3 });
 	collider->EnableDebug();
-	player1->GetTransform()->SetPosition(36, 36);
+	player1->GetTransform()->SetPosition({ 37, 36+32 });
 	player1->GetTransform()->SetScale(2);
 	scene.Add(player1);
 
 	// player 1
 	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_w, dae::State::Release,
-		std::make_unique<Move>(player1, 200.f, glm::vec2{ 0, -1 })
+		std::make_unique<Move>(player1, glm::vec2{ 0, -1 }, 32)
 	);
 	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_s, dae::State::Release,
-		std::make_unique<Move>(player1, 200.f, glm::vec2{ 0, 1 })
+		std::make_unique<Move>(player1, glm::vec2{ 0, 1 },32)
 	);
 	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_a, dae::State::Release,
-		std::make_unique<Move>(player1, 200.f, glm::vec2{ -1, 0 })
+		std::make_unique<Move>(player1, glm::vec2{ -1, 0 },32)
 	);
 	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_d, dae::State::Release,
-		std::make_unique<Move>(player1, 200.f, glm::vec2{ 1, 0 })
+		std::make_unique<Move>(player1,  glm::vec2{ 1, 0 },32)
+	);
+
+	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_r, dae::State::Release,
+		std::make_unique<Push>(player1)
 	);
 }
 
@@ -110,22 +114,22 @@ void CreatePlayer2(dae::Scene& scene)
 	player2->AddComponent<CharacterComponent>();
 	dae::ColliderComponent* collider2 = player2->AddComponent<dae::ColliderComponent>();
 	collider2->SetSize(glm::vec2{ 32, 32 });
-	player2->GetTransform()->SetPosition(320 + 20, 300 + 10);
+	player2->GetTransform()->SetPosition({ 320 + 20, 300 + 10 });
 	player2->GetTransform()->SetScale(2);
 	scene.Add(player2);
 
 	// player 2
 	dae::InputManager::GetInstance().CreateControllerCommand(dae::XController::ControllerButton::Up, dae::State::Hold,
-		std::make_unique<Move>(player2, 100.f, glm::vec2{ 0, -1 })
+		std::make_unique<Move>(player2, glm::vec2{ 0, -1 },32)
 	);
 	dae::InputManager::GetInstance().CreateControllerCommand(dae::XController::ControllerButton::Down, dae::State::Hold,
-		std::make_unique<Move>(player2, 100.f, glm::vec2{ 0, 1 })
+		std::make_unique<Move>(player2,  glm::vec2{ 0, 1 },32)
 	);
 	dae::InputManager::GetInstance().CreateControllerCommand(dae::XController::ControllerButton::Left, dae::State::Hold,
-		std::make_unique<Move>(player2, 100.f, glm::vec2{ -1, 0 })
+		std::make_unique<Move>(player2,  glm::vec2{ -1, 0 },32)
 	);
 	dae::InputManager::GetInstance().CreateControllerCommand(dae::XController::ControllerButton::Right, dae::State::Hold,
-		std::make_unique<Move>(player2, 100.f, glm::vec2{ 1, 0 })
+		std::make_unique<Move>(player2,  glm::vec2{ 1, 0 },32)
 	);
 }
 

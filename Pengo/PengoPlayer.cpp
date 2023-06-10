@@ -8,7 +8,7 @@ PengoPlayer::PengoPlayer(dae::Scene& scene, glm::vec2 position, float scale, std
 	auto player = std::make_shared<dae::GameObject>();
 	player->AddComponent<dae::RenderComponent>()->SetTexture(texturePath);
 	player->AddComponent<CharacterComponent>();
-	player->GetTransform()->SetPosition(position.x,position.y);
+	player->GetTransform()->SetPosition({ position.x,position.y });
 	player->GetTransform()->SetScale(scale);
 	scene.Add(player);
 }

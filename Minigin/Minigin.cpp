@@ -113,6 +113,7 @@ void dae::Minigin::Run(const std::function<void()>& load)
 		if (lag >= MsPerFrame)
 		{
 			CollisionManager::GetInstance().FixedUpdate();
+			sceneManager.FixedUpdate();
 			lag -= MsPerFrame;
 		}
 

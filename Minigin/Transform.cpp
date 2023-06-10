@@ -40,20 +40,8 @@ void dae::Transform::UpdateWorldPos()
 	m_isDirty = false;
 }
 
-void dae::Transform::SetPosition(float x, float y)
-{
-	SetPosition(x, y, 0);
-}
 
-void dae::Transform::SetPosition(const float x, const float y, const float z)
-{
-	m_localPosition.x = x;
-	m_localPosition.y = y;
-	m_localPosition.z = z;
-	SetDirty();
-}
-
-void dae::Transform::SetPosition(glm::vec3 pos)
+void dae::Transform::SetPosition(glm::vec2 pos)
 {
 	m_localPosition = pos;
 	SetDirty();
@@ -61,29 +49,16 @@ void dae::Transform::SetPosition(glm::vec3 pos)
 
 void dae::Transform::SetScale(float scale)
 {
-	SetScale(scale, scale, scale);
+	SetScale({ scale, scale });
 }
 
-void dae::Transform::SetScale(float x, float y)
-{
-	SetScale(x, y, 0);
-}
-
-void dae::Transform::SetScale(float x, float y, float z)
-{
-	m_localScale.x = x;
-	m_localScale.y = y;
-	m_localScale.z = z;
-	SetDirtyScale();
-}
-
-void dae::Transform::SetScale(glm::vec3 pos)
+void dae::Transform::SetScale(glm::vec2 pos)
 {
 	m_localScale = pos;
 	SetDirtyScale();
 }
 
-glm::vec3 dae::Transform::GetWorldPosition()
+glm::vec2 dae::Transform::GetWorldPosition()
 {
 	if (m_isDirty)
 	{
@@ -92,7 +67,7 @@ glm::vec3 dae::Transform::GetWorldPosition()
 	return m_worldPosition;
 }
 
-glm::vec3 dae::Transform::GetWorldScale()
+glm::vec2 dae::Transform::GetWorldScale()
 {
 	if (m_isScaleDirty)
 	{

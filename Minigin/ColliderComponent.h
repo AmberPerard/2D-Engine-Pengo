@@ -23,7 +23,7 @@ namespace dae
 
 		void SetSize(glm::vec2 size) { m_Size = size; }
 		void setOffset(glm::vec2 offset) { m_Offset = offset; }
-		glm::vec3 GetOwnerPosition() const;
+		glm::vec2 GetOwnerPosition() const;
 		glm::vec2 GetOffset() { return m_Offset; }
 		glm::vec2 GetSize() const { return m_Size; }
 		void OnCollision(ColliderComponent* other);

@@ -48,8 +48,7 @@ void CharacterComponent::OnCollision(dae::GameObject* otherCollider)
 		auto offset = otherCollider->GetComponent<dae::ColliderComponent>()->GetOffset();
 		auto transform = GetOwner()->GetTransform();
 		glm::vec2 lastDirection  = transform->GetForwardVector();
-		otherCollider->GetComponent<dae::ColliderComponent>()->EnableDebug();
-		transform->SetPosition(transform->GetLocalPosition().x + ((size.x + (offset.x*2))  * -(lastDirection.x)), transform->GetLocalPosition().y + ((size.y + (offset.y * 2)) * -(lastDirection.y)));
+		transform->SetPosition({ transform->GetLocalPosition().x + ((size.x + (offset.x * 2)) * -(lastDirection.x)), transform->GetLocalPosition().y + ((size.y + (offset.y * 2)) * -(lastDirection.y)) });
 	}
 }
 
@@ -80,6 +79,11 @@ void CharacterComponent::GetHit()
 	{
 		Die();
 	}
+}
+
+void CharacterComponent::Push()
+{
+	
 }
 
 void CharacterComponent::AddObserver(dae::Observer* observer)

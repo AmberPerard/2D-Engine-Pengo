@@ -160,8 +160,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BlockComponent.cpp" />
+    <ClCompile Include="BlocksManager.cpp" />
     <ClCompile Include="CharacterComponent.cpp" />
     <ClCompile Include="GameCommands.cpp" />
+    <ClCompile Include="GameInfo.cpp" />
     <ClCompile Include="LivesDisplayComponent.cpp" />
     <ClCompile Include="Pengo.cpp" />
     <ClCompile Include="PengoLevelLoader.cpp" />
@@ -170,7 +172,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlockComponent.h" />
+    <ClInclude Include="BlocksManager.h" />
     <ClInclude Include="CharacterComponent.h" />
+    <ClInclude Include="GameInfo.h" />
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="GameCommands.h" />
     <ClInclude Include="LivesDisplayComponent.h" />

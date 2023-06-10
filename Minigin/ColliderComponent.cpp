@@ -39,7 +39,7 @@ void dae::ColliderComponent::RenderUI()
 {
 }
 
-glm::vec3 dae::ColliderComponent::GetOwnerPosition() const
+glm::vec2 dae::ColliderComponent::GetOwnerPosition() const
 {
 	return this->GetOwner()->GetTransform()->GetWorldPosition();
 }

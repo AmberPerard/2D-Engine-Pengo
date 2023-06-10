@@ -25,6 +25,9 @@
     <Filter Include="Prefabs">
       <UniqueIdentifier>{b58024ad-d790-4cf4-84be-489f09b69f17}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{433663d4-b21e-4ff1-9f9d-a14fac2edec2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LivesDisplayComponent.cpp">
@@ -50,6 +53,12 @@
     </ClCompile>
     <ClCompile Include="BlockComponent.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GameInfo.cpp">
+      <Filter>Events</Filter>
+    </ClCompile>
+    <ClCompile Include="BlocksManager.cpp">
+      <Filter>Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +88,12 @@
     </ClInclude>
     <ClInclude Include="BlockComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="BlocksManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInfo.h">
+      <Filter>Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
