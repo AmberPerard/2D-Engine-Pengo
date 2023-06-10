@@ -82,7 +82,7 @@ void CreatePlayer1(dae::Scene& scene)
 	player1->AddComponent<CharacterComponent>();
 	collider->SetSize(glm::vec2{ 26, 26 });
 	collider->setOffset(glm::vec2{ 3, 3 });
-	collider->EnableDebug();
+	//collider->EnableDebug();
 	player1->GetTransform()->SetPosition({ 37, 36+32 });
 	player1->GetTransform()->SetScale(2);
 	scene.Add(player1);

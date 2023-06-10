@@ -195,6 +195,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BaseComponent.h" />
+    <ClInclude Include="BaseState.h" />
     <ClInclude Include="ColliderComponent.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="Font.h" />
@@ -218,6 +219,7 @@
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SoundLoggerSystem.h" />
     <ClInclude Include="SoundSystem.h" />
+    <ClInclude Include="StateMachine.h" />
     <ClInclude Include="Subject.h" />
     <ClInclude Include="TextComponent.h" />
     <ClInclude Include="Texture2D.h" />
@@ -235,6 +237,7 @@
     <ClCompile Include="..\3rdParty\imgui\imgui_tables.cpp" />
     <ClCompile Include="..\3rdParty\imgui\imgui_widgets.cpp" />
     <ClCompile Include="BaseComponent.cpp" />
+    <ClCompile Include="BaseState.cpp" />
     <ClCompile Include="ColliderComponent.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="Font.cpp" />
@@ -255,6 +258,7 @@
     <ClCompile Include="SDLSoundSystem.cpp" />
     <ClCompile Include="ServiceManager.cpp" />
     <ClCompile Include="SoundLoggerSystem.cpp" />
+    <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="Subject.cpp" />
     <ClCompile Include="TextComponent.cpp" />
     <ClCompile Include="Texture2D.cpp" />

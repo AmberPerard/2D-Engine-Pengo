@@ -5,7 +5,7 @@
 #include "GameInfo.h"
 #include "GameTime.h"
 
-Move::Move(std::shared_ptr<dae::GameObject> pActor, glm::vec2 dir,int blocksize)
+Move::Move(std::shared_ptr<dae::GameObject> pActor, glm::vec2 dir, int blocksize)
 	: m_pActor(pActor),
 	m_Dir(dir),
 	m_Blocksize(blocksize)
@@ -32,12 +32,20 @@ void Push::Execute()
 	auto actorPos = m_pActor->GetTransform()->GetWorldPosition();
 	glm::vec2 blocksize = GameInfo::GetInstance().GetBlockSize();
 	glm::vec2 nextBlockOver = { actorPos.x + (blocksize.x * dir.x), actorPos.y + (blocksize.y * dir.y) };
-//	glm::vec2 nextBlockOver2 = { nextBlockOver.x + (blocksize.x *2 * dir.x), nextBlockOver.y + (blocksize.y*2 * dir.y) };
+	glm::vec2 nextBlockOver2 = { nextBlockOver.x + (blocksize.x * dir.x), nextBlockOver.y + (blocksize.y * dir.y) };
 	auto blockToPush = BlocksManager::GetInstance().FindWall(nextBlockOver);
-	if(blockToPush != nullptr)
+	if (blockToPush != nullptr)
 	{
+		auto blockNextToPushBlock = BlocksManager::GetInstance().FindWall(nextBlockOver2);
+		if (!blockNextToPushBlock)
+		{
 			MovementDirection dirToPush = GameInfo::GetInstance().FindMovement(dir);
 			blockToPush->EnableMovement(dirToPush);
+		}
+		else
+		{
+			blockToPush->BreakBlock();
+		}
 	}
 }
 

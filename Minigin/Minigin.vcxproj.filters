@@ -33,6 +33,9 @@
     <Filter Include="Engine Files\Sound">
       <UniqueIdentifier>{acd0a21a-6be6-408a-bd53-4fa6917b2508}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine Files\State">
+      <UniqueIdentifier>{3584cee6-5d64-456d-b9c9-474c0d7e1cce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -124,6 +127,12 @@
     </ClInclude>
     <ClInclude Include="RigidBody.h">
       <Filter>Engine Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseState.h">
+      <Filter>Engine Files\State</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine.h">
+      <Filter>Engine Files\State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -229,6 +238,12 @@
     </ClCompile>
     <ClCompile Include="RigidBody.cpp">
       <Filter>Engine Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseState.cpp">
+      <Filter>Engine Files\State</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachine.cpp">
+      <Filter>Engine Files\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

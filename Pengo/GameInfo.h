@@ -9,7 +9,10 @@ class GameInfo final : public dae::Singleton<GameInfo>
 public:
 	GameInfo() = default;
 	~GameInfo() = default;
-
+	GameInfo(const GameInfo& other) = delete;
+	GameInfo(GameInfo&& other) = delete;
+	GameInfo& operator=(const GameInfo& other) = delete;
+	GameInfo& operator=(GameInfo&& other) = delete;
 
 	int GetNrOfRows() const { return NrOfRows; }
 	int GetNrOfColumns() const { return NrOfColums; }
