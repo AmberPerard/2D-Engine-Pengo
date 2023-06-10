@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Events">
-      <UniqueIdentifier>{17afddcd-aba0-4201-b6db-4f5406633b5c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Level">
       <UniqueIdentifier>{efd31084-a97a-47ca-8b16-aaf930adc914}</UniqueIdentifier>
     </Filter>
@@ -27,6 +24,12 @@
     </Filter>
     <Filter Include="Managers">
       <UniqueIdentifier>{433663d4-b21e-4ff1-9f9d-a14fac2edec2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="State">
+      <UniqueIdentifier>{a3434115-e734-4cb0-991d-a23bc124e879}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="helpers">
+      <UniqueIdentifier>{17afddcd-aba0-4201-b6db-4f5406633b5c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -55,10 +58,13 @@
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="GameInfo.cpp">
-      <Filter>Events</Filter>
+      <Filter>helpers</Filter>
     </ClCompile>
     <ClCompile Include="BlocksManager.cpp">
       <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="BlockStates.cpp">
+      <Filter>State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -75,7 +81,7 @@
       <Filter>inputs</Filter>
     </ClInclude>
     <ClInclude Include="Helpers.h">
-      <Filter>Events</Filter>
+      <Filter>helpers</Filter>
     </ClInclude>
     <ClInclude Include="PengoLevelLoader.h">
       <Filter>Level</Filter>
@@ -93,7 +99,10 @@
       <Filter>Managers</Filter>
     </ClInclude>
     <ClInclude Include="GameInfo.h">
-      <Filter>Events</Filter>
+      <Filter>helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockStates.h">
+      <Filter>State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

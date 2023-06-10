@@ -1,5 +1,7 @@
 #include "BlockComponent.h"
 
+#include <iostream>
+
 #include "ColliderComponent.h"
 #include "GameInfo.h"
 #include "GameObject.h"
@@ -13,6 +15,7 @@ BlockComponent::BlockComponent(dae::GameObject* gameObject)
 		dae::ColliderComponent::CollisionCallback callback = [&](dae::GameObject* hit) { this->OnCollision(hit); };
 		GetOwner()->GetComponent<dae::ColliderComponent>()->SetCollisionCallback(callback);
 	}
+
 }
 
 void BlockComponent::Update()
@@ -21,7 +24,6 @@ void BlockComponent::Update()
 
 void BlockComponent::FixedUpdate()
 {
-	HandleMovement();
 }
 
 void BlockComponent::Render()
@@ -30,45 +32,6 @@ void BlockComponent::Render()
 
 void BlockComponent::RenderUI()
 {
-}
-
-void BlockComponent::HandleMovement()
-{
-	if(m_IsStatic) return;
-	if (!m_IsMovingBlock) return;
-	//if(!GetOwner()->GetComponent<dae::RigidBody>()) return;
-
-	auto rigidBody = GetOwner()->GetComponent<dae::RigidBody>();
-
-	switch (m_MovementDirection)
-	{
-	case UP:
-		//move up
-		this->GetOwner()->GetTransform()->SetForwardVector(DirectionMap.at(UP));
-		rigidBody->Move(DirectionMap.at(UP));
-		break;
-	case DOWN:
-		//move down
-		this->GetOwner()->GetTransform()->SetForwardVector(DirectionMap.at(DOWN));
-		rigidBody->Move(DirectionMap.at(DOWN));
-		break;
-	case LEFT:
-		//move left
-		this->GetOwner()->GetTransform()->SetForwardVector(DirectionMap.at(LEFT));
-		rigidBody->Move(DirectionMap.at(LEFT));
-		break;
-	case RIGHT:
-		//move right
-		this->GetOwner()->GetTransform()->SetForwardVector(DirectionMap.at(RIGHT));
-		rigidBody->Move(DirectionMap.at(RIGHT));
-		break;
-	case NONE:
-		//do nothing
-		this->GetOwner()->GetTransform()->SetForwardVector(DirectionMap.at(NONE));
-		rigidBody->Move(DirectionMap.at(NONE));
-		break;
-	default:;
-	}
 }
 
 void BlockComponent::EnableMovement(MovementDirection direction)
@@ -100,12 +63,32 @@ void BlockComponent::OnCollision(const dae::GameObject* collision)
 	if(!m_IsMovingBlock)return;
 
 	//other collider is a block or wall
-	if(collision->GetComponent<BlockComponent>() != nullptr)
+	auto otherBlockComp = collision->GetComponent<BlockComponent>();
+	if(otherBlockComp != nullptr)
 	{
 		DisableMovement();
-		auto offset = collision->GetComponent<dae::ColliderComponent>()->GetOffset();
-		auto transform = GetOwner()->GetTransform();
-		glm::vec2 lastDirection = transform->GetForwardVector();
-		transform->SetPosition({ transform->GetLocalPosition().x + (( offset.x*2) * -(lastDirection.x)), transform->GetLocalPosition().y + (( offset.y*2) * -(lastDirection.y)) });
+		glm::vec2 lastDirection = GetOwner()->GetTransform()->GetForwardVector();
+		const auto otherCol = otherBlockComp->GetColumn();
+		const auto otherRow = otherBlockComp->GetRow();
+
+		const auto newCol = otherCol + (1 * -int(lastDirection.x));
+		const auto newRow = otherRow + (1 * -int(lastDirection.y));
+
+		const auto newPosX = newCol * GameInfo::GetInstance().GetBlockSize().x + GameInfo::GetInstance().GetPlayFieldOffset().x;
+		const auto newPosY = newRow * GameInfo::GetInstance().GetBlockSize().y + GameInfo::GetInstance().GetPlayFieldOffset().y;
+
+		GetOwner()->GetTransform()->SetPosition(glm::vec2{ newPosX,newPosY });
+		////auto offset = collision->GetComponent<dae::ColliderComponent>()->GetOffset();
+		//auto transform = GetOwner()->GetTransform()->GetWorldPosition();
+
+
+		//const int nr_of_column_at = (int)std::floor((transform.x - GameInfo::GetInstance().GetPlayFieldOffset().x) / GameInfo::GetInstance().GetBlockSize().x +0.5);
+		//const int nr_of_row_at = (int)std::floor((transform.y + GameInfo::GetInstance().GetPlayFieldOffset().y) / GameInfo::GetInstance().GetBlockSize().y + 0.5);
+
+		//auto newPos = glm::vec2{ (nr_of_column_at * GameInfo::GetInstance().GetBlockSize().x),(nr_of_row_at * GameInfo::GetInstance().GetBlockSize().y )};
+
+		//GetOwner()->GetTransform()->SetWorldPosition(newPos);
+		//transform = GetOwner()->GetTransform()->GetWorldPosition();
+		//std::cout << transform.x << " " << transform.y << std::endl;
 	}
 }

@@ -21,12 +21,15 @@ public:
 	glm::vec2 GetBlockSize() const { return m_BlockSize; }
 	glm::vec2 GetCollisionOffset() const { return m_CollisionOffset; }
 
+	glm::vec2 GetPlayFieldOffset() const { return m_PlayFieldOffset; }
+
 	MovementDirection FindMovement(glm::vec2 input);
 
 private:
 	int NrOfRows{15};
 	int NrOfColums{13};
 
+	glm::vec2 m_PlayFieldOffset{ 37,36 };
 	glm::vec2 m_CollisionSize{26,26 };
 	glm::vec2 m_CollisionOffset{ 3,3 };
 	glm::vec2 m_BlockSize{ 32,32 };

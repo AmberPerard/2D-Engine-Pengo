@@ -20,7 +20,6 @@ void dae::StateMachine::Update()
 	if (state != nullptr)
 	{
 		m_state->Exit(GetOwner());
-		delete m_state;
 
 		m_state = std::move(state);
 		m_state->Enter(GetOwner());
@@ -29,6 +28,7 @@ void dae::StateMachine::Update()
 
 void dae::StateMachine::FixedUpdate()
 {
+	m_state->FixedUpdate(GetOwner());
 }
 
 void dae::StateMachine::Render()
@@ -42,7 +42,6 @@ void dae::StateMachine::RenderUI()
 void dae::StateMachine::SetState(std::unique_ptr<BaseState> state)
 {
 	m_state->Exit(GetOwner());
-	delete m_state;
 	m_state = std::move(state);
 	m_state->Enter(GetOwner());
 }

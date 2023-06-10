@@ -161,6 +161,7 @@
   <ItemGroup>
     <ClCompile Include="BlockComponent.cpp" />
     <ClCompile Include="BlocksManager.cpp" />
+    <ClCompile Include="BlockStates.cpp" />
     <ClCompile Include="CharacterComponent.cpp" />
     <ClCompile Include="GameCommands.cpp" />
     <ClCompile Include="GameInfo.cpp" />
@@ -173,6 +174,7 @@
   <ItemGroup>
     <ClInclude Include="BlockComponent.h" />
     <ClInclude Include="BlocksManager.h" />
+    <ClInclude Include="BlockStates.h" />
     <ClInclude Include="CharacterComponent.h" />
     <ClInclude Include="GameInfo.h" />
     <ClInclude Include="Helpers.h" />

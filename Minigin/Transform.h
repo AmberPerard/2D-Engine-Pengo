@@ -14,6 +14,7 @@ namespace dae
 		Transform& operator=(Transform&& other) = delete;
 
 		void SetPosition(glm::vec2 pos);
+		void SetWorldPosition(glm::vec2 pos) { m_worldPosition = pos; }
 
 		void SetScale(float scale);
 		void SetScale(glm::vec2 pos);

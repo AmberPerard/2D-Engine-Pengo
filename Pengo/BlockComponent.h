@@ -18,9 +18,10 @@ public:
 	void Render() override;
 	void RenderUI() override;
 
-	void HandleMovement();
 	void EnableMovement(MovementDirection direction);
 	void DisableMovement() { m_IsMovingBlock = false; }
+	bool IsMoving() const { return m_IsMovingBlock; }
+	MovementDirection GetMovementDirection() const { return m_MovementDirection; }
 
 	void MakeSpawnBlock(bool isSpawner);
 	void SpawnFromBlock();
@@ -28,14 +29,24 @@ public:
 
 	void BreakBlock();
 	void SetStatic(bool isStatic) { m_IsStatic = isStatic; }
+	bool IsStatic() const { return m_IsStatic; }
 
 	glm::vec2 GetPosition() const { return this->GetOwner()->GetTransform()->GetWorldPosition(); }
+
 	void OnCollision(const dae::GameObject* collision);
+
+	int GetRow() const { return m_Row; }
+	int GetColumn() const { return m_Col; }
+	void SetRow(int row) { m_Row = row; }
+	void SetColumn(int col) { m_Col = col; }
 
 private:
 	bool m_IsSpawnBlock{ false };
 	bool m_IsMovingBlock{ false };
 	bool m_IsStatic{ false };
 
-	MovementDirection m_MovementDirection { MovementDirection::NONE };
+	int m_Row{ 0 };
+	int m_Col{ 0 };
+
+	MovementDirection m_MovementDirection{ MovementDirection::NONE };
 };
