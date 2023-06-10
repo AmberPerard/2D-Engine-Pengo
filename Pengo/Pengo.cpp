@@ -62,7 +62,7 @@ void LoadPengoLevel1(dae::Scene& scene)
 	scene.Add(background);
 
 	//Load Level 1
-	PengoLevelLoader::LoadLevel("../Data/Level1.json", scene);
+	PengoLevelLoader::LoadLevel("../Data/Level2.json", scene);
 
 	//controls
 	dae::InputManager::GetInstance().AddController();

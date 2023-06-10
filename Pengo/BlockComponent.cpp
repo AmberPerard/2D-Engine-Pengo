@@ -78,17 +78,7 @@ void BlockComponent::OnCollision(const dae::GameObject* collision)
 		const auto newPosY = newRow * GameInfo::GetInstance().GetBlockSize().y + GameInfo::GetInstance().GetPlayFieldOffset().y;
 
 		GetOwner()->GetTransform()->SetPosition(glm::vec2{ newPosX,newPosY });
-		////auto offset = collision->GetComponent<dae::ColliderComponent>()->GetOffset();
-		//auto transform = GetOwner()->GetTransform()->GetWorldPosition();
-
-
-		//const int nr_of_column_at = (int)std::floor((transform.x - GameInfo::GetInstance().GetPlayFieldOffset().x) / GameInfo::GetInstance().GetBlockSize().x +0.5);
-		//const int nr_of_row_at = (int)std::floor((transform.y + GameInfo::GetInstance().GetPlayFieldOffset().y) / GameInfo::GetInstance().GetBlockSize().y + 0.5);
-
-		//auto newPos = glm::vec2{ (nr_of_column_at * GameInfo::GetInstance().GetBlockSize().x),(nr_of_row_at * GameInfo::GetInstance().GetBlockSize().y )};
-
-		//GetOwner()->GetTransform()->SetWorldPosition(newPos);
-		//transform = GetOwner()->GetTransform()->GetWorldPosition();
-		//std::cout << transform.x << " " << transform.y << std::endl;
+		m_Row = newRow;
+		m_Col = newCol;
 	}
 }
