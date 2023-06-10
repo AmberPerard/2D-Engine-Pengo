@@ -2,10 +2,13 @@
 
 #include <iostream>
 
+#include "BlocksManager.h"
+#include "BlockStates.h"
 #include "ColliderComponent.h"
 #include "GameInfo.h"
 #include "GameObject.h"
 #include "RigidBody.h"
+#include "StateMachine.h"
 
 BlockComponent::BlockComponent(dae::GameObject* gameObject)
 	:BaseComponent(gameObject)
@@ -16,6 +19,11 @@ BlockComponent::BlockComponent(dae::GameObject* gameObject)
 		GetOwner()->GetComponent<dae::ColliderComponent>()->SetCollisionCallback(callback);
 	}
 
+}
+
+BlockComponent::~BlockComponent()
+{
+	BlocksManager::GetInstance().RemoveBlock(this);
 }
 
 void BlockComponent::Update()
@@ -37,6 +45,7 @@ void BlockComponent::RenderUI()
 void BlockComponent::EnableMovement(MovementDirection direction)
 {
 	m_IsMovingBlock = true;
+	GetOwner()->GetComponent<dae::StateMachine>()->SetState(std::make_unique<WallIdleState>());
 	m_MovementDirection = direction;
 }
 
@@ -56,6 +65,8 @@ void BlockComponent::SpawnFromBlock()
 void BlockComponent::BreakBlock()
 {
 	//set the state to being broken
+	GetOwner()->GetComponent<dae::StateMachine>()->SetState(std::make_unique<WallBreakingState>());
+
 }
 
 void BlockComponent::OnCollision(const dae::GameObject* collision)

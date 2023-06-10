@@ -78,3 +78,21 @@ void WallMovingState::FixedUpdate(dae::GameObject* object)
 		break;
 	}
 }
+
+std::unique_ptr<dae::BaseState> WallBreakingState::Update(dae::GameObject*)
+{
+	return nullptr;
+}
+
+void WallBreakingState::Enter(dae::GameObject* object)
+{
+	object->Delete();
+}
+
+void WallBreakingState::Exit(dae::GameObject*)
+{
+}
+
+void WallBreakingState::FixedUpdate(dae::GameObject*)
+{
+}

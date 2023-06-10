@@ -21,16 +21,26 @@ void dae::GameObject::Update()
 {
 	for (const auto& child : m_pChildren)
 	{
-		child->Update();
+		if (child == nullptr) continue;
+		if (!child->IsMarkedForDeletion())
+		{
+			child->Update();
+		}
+		else
+		{
+			RemoveChildFromCollection(child);
+		}
 	}
 
 
 	for (const auto& comp : m_pComponents)
 	{
-		if(!comp->IsMarkedForDeletion())
+		if (comp == nullptr) continue;
+		if (!comp->IsMarkedForDeletion())
 		{
 			comp->Update();
-		}else
+		}
+		else
 		{
 			RemoveComponent(&comp);
 		}
@@ -41,12 +51,21 @@ void dae::GameObject::FixedUpdate()
 {
 	for (const auto& child : m_pChildren)
 	{
-		child->FixedUpdate();
+		if (child == nullptr) continue;
+		if (!child->IsMarkedForDeletion()) 
+		{
+			child->FixedUpdate();
+		}
+		else
+		{
+			RemoveChildFromCollection(child);
+		}
 	}
 
 
 	for (const auto& comp : m_pComponents)
 	{
+		if (comp == nullptr) continue;
 		if (!comp->IsMarkedForDeletion())
 		{
 			comp->FixedUpdate();
@@ -86,9 +105,9 @@ void dae::GameObject::RenderUI() const
 
 void dae::GameObject::SetParent(std::shared_ptr<GameObject> parent, bool keepWorldPosition)
 {
-	if(parent)
+	if (parent)
 	{
-		if(keepWorldPosition)
+		if (keepWorldPosition)
 		{
 			m_pTransform->SetPosition(m_pTransform->GetLocalPosition() - parent->GetTransform()->GetWorldPosition());
 		}

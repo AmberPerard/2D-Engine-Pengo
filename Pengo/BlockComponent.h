@@ -7,7 +7,7 @@ class BlockComponent : public dae::BaseComponent
 {
 public:
 	BlockComponent(dae::GameObject* gameObject);
-	~BlockComponent() override = default;
+	~BlockComponent() override;
 	BlockComponent(const BlockComponent& other) = delete;
 	BlockComponent(BlockComponent&& other) noexcept = delete;
 	BlockComponent& operator=(const BlockComponent& other) = delete;

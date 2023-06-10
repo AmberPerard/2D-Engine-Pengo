@@ -27,3 +27,16 @@ public:
 private:
 		BlockComponent* m_pBlockcomponent{};
 };
+
+class WallBreakingState : public dae::BaseState
+{
+public:
+	WallBreakingState() = default;
+	std::unique_ptr<BaseState> Update(dae::GameObject* object) override;
+	void Enter(dae::GameObject* object) override;
+	void Exit(dae::GameObject* object) override;
+	void FixedUpdate(dae::GameObject* object) override;
+
+private:
+	BlockComponent* m_pBlockcomponent{};
+};

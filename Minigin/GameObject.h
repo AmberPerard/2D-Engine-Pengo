@@ -21,6 +21,9 @@ namespace dae
 		void FixedUpdate();
 		void Render() const;
 		void RenderUI() const;
+
+		void Delete() { m_MarkedForDeletion = true; }
+		bool IsMarkedForDeletion() const { return m_MarkedForDeletion; }
 		
 		// Scenegraph
 		GameObject* GetParent() const { return m_Parent; }
@@ -37,6 +40,7 @@ namespace dae
 		Transform* GetTransform() const { return m_pTransform; }
 
 	private:
+		bool m_MarkedForDeletion{ false };
 		std::vector<std::unique_ptr<BaseComponent>> m_pComponents{};
 
 		GameObject* m_Parent{ nullptr };
