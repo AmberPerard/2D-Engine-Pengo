@@ -9,6 +9,7 @@
 #include "CharacterComponent.h"
 #include "ColliderComponent.h"
 #include "GameCommands.h"
+#include "GameInfo.h"
 #include "GameObject.h"
 #include "InputManager.h"
 #include "Minigin.h"
@@ -24,15 +25,18 @@
 #include "SoundLoggerSystem.h"
 #include "TextComponent.h"
 
-void LoadPengoLevel1(dae::Scene& scene);
+void LoadPengoLevel(dae::Scene& scene, std::string levelFile);
 void CreatePlayer1(dae::Scene& scene);
 void CreatePlayer2(dae::Scene& scene);
 
 void load()
 {
-	auto& scene = dae::SceneManager::GetInstance().CreateScene("Game: Pengo - Amber Perard");
-	LoadPengoLevel1(scene);
+	dae::Scene& scene = dae::SceneManager::GetInstance().CreateScene("Game: Pengo - Amber Perard");
+	LoadPengoLevel(scene, "../Data/Level1.json");
 
+	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_F1, dae::State::Release,
+		std::make_unique<SwitchLevel>()
+	);
 }
 
 int main(int, char* []) {
@@ -41,7 +45,7 @@ int main(int, char* []) {
 	return 0;
 }
 
-void LoadPengoLevel1(dae::Scene& scene)
+void LoadPengoLevel(dae::Scene& scene, std::string levelFile)
 {
 #if _DEBUG
 	dae::ServiceManager::register_sound_system(
@@ -62,7 +66,7 @@ void LoadPengoLevel1(dae::Scene& scene)
 	scene.Add(background);
 
 	//Load Level 1
-	PengoLevelLoader::LoadLevel("../Data/Level2.json", scene);
+	PengoLevelLoader::LoadLevel(levelFile, scene);
 
 	//controls
 	dae::InputManager::GetInstance().AddController();
@@ -83,7 +87,7 @@ void CreatePlayer1(dae::Scene& scene)
 	collider->SetSize(glm::vec2{ 26, 26 });
 	collider->setOffset(glm::vec2{ 3, 3 });
 	//collider->EnableDebug();
-	player1->GetTransform()->SetPosition({ 37, 36+32 });
+	player1->GetTransform()->SetPosition({ 37, 36 + 32 });
 	player1->GetTransform()->SetScale(2);
 	scene.Add(player1);
 
@@ -92,13 +96,13 @@ void CreatePlayer1(dae::Scene& scene)
 		std::make_unique<Move>(player1, glm::vec2{ 0, -1 }, 32)
 	);
 	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_s, dae::State::Release,
-		std::make_unique<Move>(player1, glm::vec2{ 0, 1 },32)
+		std::make_unique<Move>(player1, glm::vec2{ 0, 1 }, 32)
 	);
 	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_a, dae::State::Release,
-		std::make_unique<Move>(player1, glm::vec2{ -1, 0 },32)
+		std::make_unique<Move>(player1, glm::vec2{ -1, 0 }, 32)
 	);
 	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_d, dae::State::Release,
-		std::make_unique<Move>(player1,  glm::vec2{ 1, 0 },32)
+		std::make_unique<Move>(player1, glm::vec2{ 1, 0 }, 32)
 	);
 
 	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_r, dae::State::Release,
@@ -120,16 +124,16 @@ void CreatePlayer2(dae::Scene& scene)
 
 	// player 2
 	dae::InputManager::GetInstance().CreateControllerCommand(dae::XController::ControllerButton::Up, dae::State::Hold,
-		std::make_unique<Move>(player2, glm::vec2{ 0, -1 },32)
+		std::make_unique<Move>(player2, glm::vec2{ 0, -1 }, 32)
 	);
 	dae::InputManager::GetInstance().CreateControllerCommand(dae::XController::ControllerButton::Down, dae::State::Hold,
-		std::make_unique<Move>(player2,  glm::vec2{ 0, 1 },32)
+		std::make_unique<Move>(player2, glm::vec2{ 0, 1 }, 32)
 	);
 	dae::InputManager::GetInstance().CreateControllerCommand(dae::XController::ControllerButton::Left, dae::State::Hold,
-		std::make_unique<Move>(player2,  glm::vec2{ -1, 0 },32)
+		std::make_unique<Move>(player2, glm::vec2{ -1, 0 }, 32)
 	);
 	dae::InputManager::GetInstance().CreateControllerCommand(dae::XController::ControllerButton::Right, dae::State::Hold,
-		std::make_unique<Move>(player2,  glm::vec2{ 1, 0 },32)
+		std::make_unique<Move>(player2, glm::vec2{ 1, 0 }, 32)
 	);
 }
 

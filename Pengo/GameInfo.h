@@ -7,6 +7,12 @@
 class GameInfo final : public dae::Singleton<GameInfo>
 {
 public:
+	enum Level
+	{
+		level1,
+		level2,
+		level3
+	};
 	GameInfo() = default;
 	~GameInfo() = default;
 	GameInfo(const GameInfo& other) = delete;
@@ -25,9 +31,19 @@ public:
 
 	MovementDirection FindMovement(glm::vec2 input);
 
+	Level GetCurrentLevel() const { return currentLevel; }
+	Level GetNextLevel() const { return LevelToSwapTo; }
+	void SetCurrentLevel(Level level) { currentLevel = level; }
+	void SetNextLevel(int levelID) { LevelToSwapTo = Level(levelID); }
+	int GetMaxScenes() const { return maxScenes; }
+
 private:
 	int NrOfRows{15};
 	int NrOfColums{13};
+
+	int maxScenes{ 3 };
+	Level currentLevel{ Level::level2 };
+	Level LevelToSwapTo{ Level::level1 };
 
 	glm::vec2 m_PlayFieldOffset{ 37,36 };
 	glm::vec2 m_CollisionSize{26,26 };

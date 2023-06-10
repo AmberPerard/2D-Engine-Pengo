@@ -47,3 +47,10 @@ public:
 private:
 	std::shared_ptr<dae::GameObject> m_pActor{};
 };
+
+class SwitchLevel final : public dae::Command
+{
+public:
+	SwitchLevel() = default;
+	void Execute() override;
+};

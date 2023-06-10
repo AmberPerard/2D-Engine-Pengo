@@ -1,9 +1,11 @@
 #include "GameCommands.h"
 
+#include <iostream>
+
 #include "BlocksManager.h"
 #include "CharacterComponent.h"
 #include "GameInfo.h"
-#include "GameTime.h"
+#include "SceneManager.h"
 
 Move::Move(std::shared_ptr<dae::GameObject> pActor, glm::vec2 dir, int blocksize)
 	: m_pActor(pActor),
@@ -67,6 +69,12 @@ CrushEnemy::CrushEnemy(std::shared_ptr<dae::GameObject> pActor)
 void CrushEnemy::Execute()
 {
 	m_pActor->GetComponent<CharacterComponent>()->GetCrushed();
+}
+
+
+void SwitchLevel::Execute()
+{
+	std::cout << "Switching level" << std::endl;
 }
 
 HitEnemy::HitEnemy(std::shared_ptr<dae::GameObject> pActor)

@@ -28,11 +28,12 @@ void Scene::Update()
 {
 	for (auto& object : m_objects)
 	{
-		if(object == nullptr) continue;
+		if (object == nullptr) continue;
 		if (!object->IsMarkedForDeletion())
 		{
 			object->Update();
-		}else
+		}
+		else
 		{
 			Remove(object);
 		}
@@ -44,8 +45,8 @@ void Scene::FixedUpdate()
 	for (auto& object : m_objects)
 	{
 		if (object == nullptr) continue;
-		if(object->IsMarkedForDeletion()) continue;
-			object->FixedUpdate();
+		if (object->IsMarkedForDeletion()) continue;
+		object->FixedUpdate();
 	}
 }
 
@@ -62,6 +63,14 @@ void Scene::RenderUI()
 	for (const auto& object : m_objects)
 	{
 		object->RenderUI();
+	}
+}
+
+void Scene::Unload()
+{
+	for (auto& object : m_objects)
+	{
+		Remove(object);
 	}
 }
 
