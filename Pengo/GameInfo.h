@@ -50,7 +50,7 @@ private:
 	Level LevelToSwapTo{ Level::level1 };
 
 
-	glm::vec2 m_PlayFieldOffset{ 37, 36 };
+	glm::vec2 m_PlayFieldOffset{ 37, 86 };
 	glm::vec2 m_CollisionSize{26, 26 };
 	glm::vec2 m_CollisionOffset{ 3, 3 };
 	glm::vec2 m_BlockSize{ 32, 32 };

@@ -29,6 +29,20 @@ void LoadPengoLevel(dae::Scene& scene, std::string levelFile);
 void CreatePlayer1(dae::Scene& scene);
 void CreatePlayer2(dae::Scene& scene);
 
+void loadLevel()
+{
+	dae::InputManager::GetInstance().Clear();
+	dae::InputManager::GetInstance().AddController();
+
+	std::shared_ptr<dae::Scene> newScene = std::make_shared<dae::Scene>("Game: Pengo - Amber Perard");
+	LoadPengoLevel(*newScene, GameInfo::GetInstance().m_CurrentMap);
+	dae::SceneManager::GetInstance().LoadScene(newScene);
+
+	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_F1, dae::State::Release,
+		std::make_unique<SwitchLevel>()
+	);
+}
+
 void load()
 {
 #if _DEBUG
@@ -43,16 +57,10 @@ void load()
 	ss.AddSoundEffect(PengoSounds[PUNCH_BLOCK], PUNCH_BLOCK);
 
 
-	dae::InputManager::GetInstance().Clear();
-	dae::InputManager::GetInstance().AddController();
+	loadLevel();
 
-	std::shared_ptr<dae::Scene> newScene = std::make_shared<dae::Scene>("Game: Pengo - Amber Perard");
-	LoadPengoLevel(*newScene, GameInfo::GetInstance().m_CurrentMap);
-	dae::SceneManager::GetInstance().LoadScene(newScene);
 
-	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_F1, dae::State::Release,
-		std::make_unique<SwitchLevel>()
-	);
+
 }
 
 int main(int, char* []) {
@@ -66,7 +74,7 @@ void LoadPengoLevel(dae::Scene& scene, std::string levelFile)
 
 	auto background = std::make_shared<dae::GameObject>();
 	background->AddComponent<dae::RenderComponent>()->SetTexture("PengoBackGround.png");
-	background->GetTransform()->SetPosition({ 20,20 });
+	background->GetTransform()->SetPosition({ 20,70 });
 	background->GetTransform()->SetScale(2);
 	scene.Add(background);
 
@@ -93,7 +101,7 @@ void CreatePlayer1(dae::Scene& scene)
 	collider->SetSize(glm::vec2{ 26, 26 });
 	collider->setOffset(glm::vec2{ 3, 3 });
 	//collider->EnableDebug();
-	player1->GetTransform()->SetPosition({ 37, 36 + 32 });
+	player1->GetTransform()->SetPosition({ GameInfo::GetInstance().GetPlayFieldOffset().x, GameInfo::GetInstance().GetPlayFieldOffset().y + 32 });
 	player1->GetTransform()->SetScale(2);
 	scene.Add(player1);
 

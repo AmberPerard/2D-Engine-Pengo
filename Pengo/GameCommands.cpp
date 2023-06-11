@@ -73,7 +73,7 @@ void CrushEnemy::Execute()
 }
 
 
-void load();
+void loadLevel();
 
 void SwitchLevel::Execute()
 {
@@ -83,17 +83,17 @@ void SwitchLevel::Execute()
 	case GameInfo::level1:
 		GameInfo::GetInstance().SetCurrentLevel(GameInfo::level2);
 		GameInfo::GetInstance().m_CurrentMap = GameInfo::GetInstance().maps[GameInfo::level2];
-		load();
+		loadLevel();
 		break;
 	case GameInfo::level2:
 		GameInfo::GetInstance().SetCurrentLevel(GameInfo::level3);
 		GameInfo::GetInstance().m_CurrentMap = GameInfo::GetInstance().maps[GameInfo::level3];
-		load();
+		loadLevel();
 		break;
 	case GameInfo::level3:
 		GameInfo::GetInstance().SetCurrentLevel(GameInfo::level1);
 		GameInfo::GetInstance().m_CurrentMap = GameInfo::GetInstance().maps[GameInfo::level1];
-		load();
+		loadLevel();
 		break;
 	}
 
