@@ -3,6 +3,8 @@
 
 void dae::SceneManager::LoadScene(std::shared_ptr<Scene> scene)
 {
+	if(m_pActiveScene != nullptr)
+		m_pActiveScene->RemoveAll();
 	m_pActiveScene = scene;
 }
 

@@ -66,9 +66,6 @@
     <ClCompile Include="BlockStates.cpp">
       <Filter>State</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerState.cpp">
-      <Filter>State</Filter>
-    </ClCompile>
     <ClCompile Include="MenuButtonComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -110,11 +107,11 @@
     <ClInclude Include="BlockStates.h">
       <Filter>State</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerState.h">
-      <Filter>State</Filter>
-    </ClInclude>
     <ClInclude Include="MenuButtonComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Minigin\JsonParser.h">
+      <Filter>helpers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

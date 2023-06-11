@@ -1,11 +1,14 @@
 #include "CharacterComponent.h"
 
+#include <SDL_syswm.h>
+
 #include "BlockComponent.h"
 #include "ColliderComponent.h"
 #include "GameInfo.h"
 #include "GameObject.h"
 #include "Helpers.h"
 #include "LivesDisplayComponent.h"
+#include "PengoSounds.h"
 #include "SceneManager.h"
 #include "ServiceManager.h"
 #include "Subject.h"
@@ -26,16 +29,17 @@ CharacterComponent::CharacterComponent(dae::GameObject* gameObject, dae::LivesDi
 	}
 }
 
-void loadLevel();
+void LoadMenuScene();
 
 void CharacterComponent::Update()
 {
 	if(m_NrOfLives < 0)
 	{
 		auto& ss = dae::ServiceManager::get_sound_system();
+		ss.Play(Sounds::LOST, 60, dae::Effect);
+		Sleep(2000);
 		ss.PauseSound(); // play music
-		auto scene = dae::SceneManager::GetInstance().GetScene("Menu");
-		dae::SceneManager::GetInstance().LoadScene(scene);
+		LoadMenuScene();
 
 	}
 }
@@ -68,6 +72,8 @@ void CharacterComponent::OnCollision(dae::GameObject* otherCollider)
 void CharacterComponent::Die()
 {
 	int lives = GetLives();
+	auto& ss = dae::ServiceManager::get_sound_system();
+	ss.Play(Sounds::DYING, 40, dae::Effect);
 	SetLives(--lives);
 	m_CharacterSubject->Notify(PLAYER_DIED, this->GetOwner());
 	if (GetLives() < 0)

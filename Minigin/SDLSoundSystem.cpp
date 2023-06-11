@@ -85,7 +85,7 @@ public:
 							Mix_Music* musicEffect = Mix_LoadMUS(m_SoundsToLoad[message.id].c_str());
 							m_SoundMusic[message.id] = musicEffect;
 						}
-						Mix_PlayMusic(m_SoundMusic[message.id], 0);
+						Mix_PlayMusic(m_SoundMusic[message.id], -1);
 						break;
 					}
 					case Effect:

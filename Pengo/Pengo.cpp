@@ -7,6 +7,7 @@
 #include <iostream>
 #include "CharacterComponent.h"
 #include "ColliderComponent.h"
+#include "CollisionManager.h"
 #include "GameCommands.h"
 #include "GameInfo.h"
 #include "GameObject.h"
@@ -30,25 +31,34 @@ void LoadPengoLevel(dae::Scene& scene, std::string levelFile);
 void LoadMenu(dae::Scene& scene);
 void CreatePlayer1(dae::Scene& scene);
 void CreatePlayer2(dae::Scene& scene);
+void InitializeSound();
 
 void loadLevel()
 {
 	dae::InputManager::GetInstance().Clear();
 	dae::InputManager::GetInstance().AddController();
+	dae::CollisionManager::GetInstance();
 
 	std::shared_ptr<dae::Scene> SinglePlayer = std::make_shared<dae::Scene>("SinglePlayer");
 	dae::SceneManager::GetInstance().AddScene(SinglePlayer);
 	LoadPengoLevel(*SinglePlayer, GameInfo::GetInstance().m_CurrentMap);
 
 	dae::SceneManager::GetInstance().LoadScene(SinglePlayer);
+	auto& ss = dae::ServiceManager::get_sound_system();
+	ss.Play(Sounds::START_SONG, 70, dae::Effect);
 }
 
-void load()
+void LoadMenuScene()
 {
 	std::shared_ptr<dae::Scene> Menu = std::make_shared<dae::Scene>("Menu");
 	LoadMenu(*Menu);
 	dae::SceneManager::GetInstance().AddScene(Menu);
 	dae::SceneManager::GetInstance().LoadScene(Menu);
+}
+
+void load()
+{
+	LoadMenuScene();
 
 #if _DEBUG
 	dae::ServiceManager::register_sound_system(
@@ -57,9 +67,7 @@ void load()
 	dae::ServiceManager::register_sound_system(std::make_unique<dae::SDLSoundSystem>());
 #endif
 
-	auto& ss = dae::ServiceManager::get_sound_system();
-	ss.AddSoundMusic(PengoSounds[MAIN_SONG], MAIN_SONG);
-	ss.AddSoundEffect(PengoSounds[PUNCH_BLOCK], PUNCH_BLOCK);
+	InitializeSound();
 }
 
 int main(int, char* []) {
@@ -85,7 +93,7 @@ void LoadPengoLevel(dae::Scene& scene, std::string levelFile)
 	CreatePlayer1(scene);
 	//CreatePlayer2(scene);
 
-	ss.Play(MAIN_SONG, 60, dae::SoundType::Music); // play music
+	ss.Play(MAIN_SONG, 40, dae::SoundType::Music); // play music
 	//ss.Play(PUNCH_BLOCK, 60, dae::SoundType::Effect); // play music
 
 }
@@ -206,4 +214,21 @@ void LoadMenu(dae::Scene& scene)
 	button->SetSceneToOpen("SinglePlayer");
 	logo->GetTransform()->SetPosition({ 244-(renderComp->GetTextureSize().x/2) ,301 - (renderComp->GetTextureSize().y / 2) });
 	scene.Add(logo);
+
+	auto& ss = dae::ServiceManager::get_sound_system();
+	ss.Play(Sounds::START, 60, dae::Effect);
+}
+
+void InitializeSound()
+{
+	auto& ss = dae::ServiceManager::get_sound_system();
+	ss.AddSoundMusic(PengoSounds[MAIN_SONG], MAIN_SONG);
+	ss.AddSoundEffect(PengoSounds[START], START);
+	ss.AddSoundEffect(PengoSounds[START_SONG], START_SONG);
+	ss.AddSoundEffect(PengoSounds[END_SONG], END_SONG);
+	ss.AddSoundEffect(PengoSounds[DESTORY_BLOCK], DESTORY_BLOCK);
+	ss.AddSoundEffect(PengoSounds[STOP_BLOCK], STOP_BLOCK);
+	ss.AddSoundEffect(PengoSounds[LOST], LOST);
+	ss.AddSoundEffect(PengoSounds[ENEMY_BLOCK_KILL], ENEMY_BLOCK_KILL);
+	ss.AddSoundEffect(PengoSounds[DYING], DYING);
 }

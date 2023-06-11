@@ -1,6 +1,8 @@
 #include "BlockStates.h"
 
+#include "PengoSounds.h"
 #include "RigidBody.h"
+#include "ServiceManager.h"
 
 std::unique_ptr<dae::BaseState> WallIdleState::Update(dae::GameObject*)
 {
@@ -29,6 +31,8 @@ std::unique_ptr<dae::BaseState> WallMovingState::Update(dae::GameObject*)
 {
 	if (!m_pBlockcomponent->IsMoving())
 	{
+		auto& ss = dae::ServiceManager::get_sound_system();
+		ss.Play(Sounds::STOP_BLOCK, 20, dae::Effect);
 		return std::make_unique<WallIdleState>();
 	}
 	return nullptr;
@@ -86,6 +90,8 @@ std::unique_ptr<dae::BaseState> WallBreakingState::Update(dae::GameObject*)
 
 void WallBreakingState::Enter(dae::GameObject* object)
 {
+	auto& ss = dae::ServiceManager::get_sound_system();
+	ss.Play(Sounds::DESTORY_BLOCK, 20, dae::Effect);
 	object->Delete();
 }
 

@@ -92,7 +92,7 @@ void dae::Minigin::Run(const std::function<void()>& load)
 	bool doContinue = true;
 	auto lastTime = std::chrono::high_resolution_clock::now();
 
-	const int frameRateCap{ 144 };
+	const int frameRateCap{ 60 };
 	const int minMsPerFrame{ 1000 / frameRateCap };
 
 	const float MsPerFrame = 1.f / frameRateCap;

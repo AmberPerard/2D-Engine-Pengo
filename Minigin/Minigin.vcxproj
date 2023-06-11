@@ -204,7 +204,6 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="InputManager.h" />
-    <ClInclude Include="JsonParser.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Minigin.h" />
     <ClInclude Include="NullSoundSystem.h" />

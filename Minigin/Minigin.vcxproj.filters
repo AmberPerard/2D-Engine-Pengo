@@ -98,9 +98,6 @@
     <ClInclude Include="Keyboard.h">
       <Filter>Engine Files\Input</Filter>
     </ClInclude>
-    <ClInclude Include="JsonParser.h">
-      <Filter>Engine Files\Helpers</Filter>
-    </ClInclude>
     <ClInclude Include="ServiceManager.h">
       <Filter>Engine Files\ServiceManager</Filter>
     </ClInclude>
