@@ -92,7 +92,7 @@ void PengoLevelLoader::buildSideWalls(dae::Scene& scene)
 		auto blockComp = sideblock->AddComponent<BlockComponent>();
 		blockComp->SetStatic(true);
 		blockComp->SetRow(row);
-		blockComp->SetColumn(columns + 1);
+		blockComp->SetColumn(columns );
 		auto collider = sideblock->AddComponent<dae::ColliderComponent>();
 		collider->SetSize(glm::vec2{dimensions.x - 2, dimensions.y - 2});
 		collider->setOffset(glm::vec2{1, 1});
@@ -107,7 +107,7 @@ void PengoLevelLoader::buildSideWalls(dae::Scene& scene)
 		auto sideblock = std::make_shared<dae::GameObject>();
 		auto blockComp = sideblock->AddComponent<BlockComponent>();
 		blockComp->SetStatic(true);
-		blockComp->SetRow(rows + 1);
+		blockComp->SetRow(rows);
 		blockComp->SetColumn(column);
 		auto collider = sideblock->AddComponent<dae::ColliderComponent>();
 		collider->SetSize(glm::vec2{dimensions.x - 2, dimensions.y - 2});
