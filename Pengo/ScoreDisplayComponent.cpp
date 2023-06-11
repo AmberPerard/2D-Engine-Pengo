@@ -34,14 +34,6 @@ void dae::ScoreDisplayComponent::OnNotify(int event, GameObject* actor)
 	int newScore{ };
 	switch (event)
 	{
-	case PLAYER_DIED:
-
-			newScore = actorCharacterComp->GetScore() + m_HighScore;
-			m_text = "Score: " + std::to_string(newScore);
-			actorCharacterComp->SetScore(newScore);
-			pTextComponent->SetText(m_text);
-
-		break;
 	case ENEMY_CRUSHED:
 
 			newScore = actorCharacterComp->GetScore() + m_HighScore;

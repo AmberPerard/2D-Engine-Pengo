@@ -20,6 +20,7 @@
 #include "ResourceManager.h"
 #include "Scene.h"
 #include "SceneManager.h"
+#include "ScoreDisplayComponent.h"
 #include "SDLSoundSystem.h"
 #include "ServiceManager.h"
 #include "SoundLoggerSystem.h"
@@ -58,9 +59,6 @@ void load()
 
 
 	loadLevel();
-
-
-
 }
 
 int main(int, char* []) {
@@ -89,15 +87,42 @@ void LoadPengoLevel(dae::Scene& scene, std::string levelFile)
 	auto& ss = dae::ServiceManager::get_sound_system();
 	ss.Play(MAIN_SONG, 60, dae::SoundType::Music); // play music
 	//ss.Play(PUNCH_BLOCK, 60, dae::SoundType::Effect); // play music
+
 }
 
 void CreatePlayer1(dae::Scene& scene)
 {
+	auto font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 20);
+
+	//player 1 display Lives 
+	auto player1Lives = std::make_shared<dae::GameObject>();
+	player1Lives->AddComponent<dae::RenderComponent>();
+	auto text = player1Lives->AddComponent<dae::TextComponent>();
+	text->SetFont(font);
+	text->SetText("Lives 3");
+	text->SetColor({ 255,10,10 });
+	auto displayComponentPlayer1 = player1Lives->AddComponent<dae::LivesDisplayComponent>();
+	player1Lives->GetTransform()->SetPosition({ GameInfo::GetInstance().GetPlayFieldOffset().x, 20});
+	scene.Add(player1Lives);
+
+	//player 1 display score 
+	auto player1Score = std::make_shared<dae::GameObject>();
+	player1Score->AddComponent<dae::RenderComponent>();
+	text = player1Score->AddComponent<dae::TextComponent>();
+	text->SetFont(font);
+	text->SetText("Score: 0");
+	text->SetColor({ 255,10,10 });
+	auto scoreComponentPlayer1 = player1Score->AddComponent<dae::ScoreDisplayComponent>();
+	player1Score->GetTransform()->SetPosition({ GameInfo::GetInstance().GetPlayFieldOffset().x + 100, 20});
+	scene.Add(player1Score);
+
 	//player 1
 	auto player1 = std::make_shared<dae::GameObject>();
 	player1->AddComponent<dae::RenderComponent>()->SetTexture("a1.png");
 	dae::ColliderComponent* collider = player1->AddComponent<dae::ColliderComponent>();
 	player1->AddComponent<CharacterComponent>();
+	player1->GetComponent<CharacterComponent>()->AddObserver(displayComponentPlayer1);
+	player1->GetComponent<CharacterComponent>()->AddObserver(scoreComponentPlayer1);
 	collider->SetSize(glm::vec2{ 26, 26 });
 	collider->setOffset(glm::vec2{ 3, 3 });
 	//collider->EnableDebug();
@@ -121,6 +146,19 @@ void CreatePlayer1(dae::Scene& scene)
 
 	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_r, dae::State::Release,
 		std::make_unique<Push>(player1)
+	);
+
+	// Tempo buttons to kill and hurt the enemy
+	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_f, dae::State::Release,
+		std::make_unique<Kill>(player1)
+	);
+
+	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_j, dae::State::Release,
+		std::make_unique<HitEnemy>(player1)
+	);
+
+	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_k, dae::State::Release,
+		std::make_unique<CrushEnemy>(player1)
 	);
 }
 

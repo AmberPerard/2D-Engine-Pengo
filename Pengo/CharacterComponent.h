@@ -37,7 +37,6 @@ public:
 	void GetCrushed();
 	void GetHit();
 
-	void Push();
 	std::unique_ptr<dae::Subject> m_CharacterSubject;
 
 private:

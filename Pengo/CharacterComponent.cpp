@@ -81,11 +81,6 @@ void CharacterComponent::GetHit()
 	}
 }
 
-void CharacterComponent::Push()
-{
-	
-}
-
 void CharacterComponent::AddObserver(dae::Observer* observer)
 {
 	m_CharacterSubject->AddObserver(observer);
