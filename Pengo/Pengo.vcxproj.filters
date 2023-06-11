@@ -66,6 +66,9 @@
     <ClCompile Include="BlockStates.cpp">
       <Filter>State</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerState.cpp">
+      <Filter>State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LivesDisplayComponent.h">
@@ -102,6 +105,9 @@
       <Filter>helpers</Filter>
     </ClInclude>
     <ClInclude Include="BlockStates.h">
+      <Filter>State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerState.h">
       <Filter>State</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,6 +2,7 @@
 
 #include "BlockComponent.h"
 #include "ColliderComponent.h"
+#include "GameInfo.h"
 #include "GameObject.h"
 #include "Helpers.h"
 #include "LivesDisplayComponent.h"
@@ -23,8 +24,16 @@ CharacterComponent::CharacterComponent(dae::GameObject* gameObject, dae::LivesDi
 	}
 }
 
+void loadLevel();
+
 void CharacterComponent::Update()
 {
+	if(m_NrOfLives < 0)
+	{
+		GameInfo::GetInstance().SetCurrentLevel(GameInfo::level2);
+		GameInfo::GetInstance().m_CurrentMap = GameInfo::GetInstance().maps[GameInfo::level2];
+		loadLevel();
+	}
 }
 
 void CharacterComponent::FixedUpdate()

@@ -169,6 +169,7 @@
     <ClCompile Include="Pengo.cpp" />
     <ClCompile Include="PengoLevelLoader.cpp" />
     <ClCompile Include="PengoPlayer.cpp" />
+    <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="ScoreDisplayComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +184,7 @@
     <ClInclude Include="PengoLevelLoader.h" />
     <ClInclude Include="PengoPlayer.h" />
     <ClInclude Include="PengoSounds.h" />
+    <ClInclude Include="PlayerState.h" />
     <ClInclude Include="ScoreDisplayComponent.h" />
   </ItemGroup>
   <ItemGroup>

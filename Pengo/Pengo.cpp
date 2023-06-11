@@ -5,7 +5,6 @@
 #endif
 
 #include <iostream>
-
 #include "CharacterComponent.h"
 #include "ColliderComponent.h"
 #include "GameCommands.h"
@@ -37,6 +36,10 @@ void loadLevel()
 
 	std::shared_ptr<dae::Scene> newScene = std::make_shared<dae::Scene>("Game: Pengo - Amber Perard");
 	LoadPengoLevel(*newScene, GameInfo::GetInstance().m_CurrentMap);
+
+	std::shared_ptr<dae::Scene> newScene2 = std::make_shared<dae::Scene>("Game: Pengo - Amber Perard");
+	LoadPengoLevel(*newScene2, GameInfo::GetInstance().m_CurrentMap);
+
 	dae::SceneManager::GetInstance().LoadScene(newScene);
 
 	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_F1, dae::State::Release,
@@ -120,9 +123,9 @@ void CreatePlayer1(dae::Scene& scene)
 	auto player1 = std::make_shared<dae::GameObject>();
 	player1->AddComponent<dae::RenderComponent>()->SetTexture("a1.png");
 	dae::ColliderComponent* collider = player1->AddComponent<dae::ColliderComponent>();
-	player1->AddComponent<CharacterComponent>();
-	player1->GetComponent<CharacterComponent>()->AddObserver(displayComponentPlayer1);
-	player1->GetComponent<CharacterComponent>()->AddObserver(scoreComponentPlayer1);
+	auto charachter = player1->AddComponent<CharacterComponent>();
+	charachter->AddObserver(displayComponentPlayer1);
+	charachter->AddObserver(scoreComponentPlayer1);
 	collider->SetSize(glm::vec2{ 26, 26 });
 	collider->setOffset(glm::vec2{ 3, 3 });
 	//collider->EnableDebug();
