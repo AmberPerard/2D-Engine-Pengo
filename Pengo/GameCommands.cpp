@@ -5,6 +5,7 @@
 #include "BlocksManager.h"
 #include "CharacterComponent.h"
 #include "GameInfo.h"
+#include "Scene.h"
 #include "SceneManager.h"
 
 Move::Move(std::shared_ptr<dae::GameObject> pActor, glm::vec2 dir, int blocksize)

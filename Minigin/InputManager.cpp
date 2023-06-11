@@ -111,3 +111,11 @@ void dae::InputManager::CreateKeyboardCommand(SDL_KeyCode button, State state, s
 	m_KeyboardCommands.insert(std::pair{ keyThing, std::move(command) });
 }
 
+void dae::InputManager::Clear()
+{
+	m_KeyboardCommands.clear();
+	m_ConsoleCommands.clear();
+	m_Controllers.clear();
+}
+
+

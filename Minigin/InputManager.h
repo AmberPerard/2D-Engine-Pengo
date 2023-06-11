@@ -36,7 +36,7 @@ namespace dae
 		//keyboard stuff
 		std::unique_ptr<Keyboard> m_Keyboard {std::make_unique<Keyboard>()};
 		void CreateKeyboardCommand(SDL_KeyCode button, State state, std::unique_ptr<Command> command);
-
+		void Clear();
 	private:
 		void UpdateConsoleInput();
 		void UpdateKeyboardInput();

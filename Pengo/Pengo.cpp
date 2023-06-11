@@ -31,8 +31,11 @@ void CreatePlayer2(dae::Scene& scene);
 
 void load()
 {
-	dae::Scene& scene = dae::SceneManager::GetInstance().CreateScene("Game: Pengo - Amber Perard");
-	LoadPengoLevel(scene, "../Data/Level1.json");
+	dae::InputManager::GetInstance().Clear();
+
+	std::shared_ptr<dae::Scene> newScene = std::make_shared<dae::Scene>("Game: Pengo - Amber Perard");
+	LoadPengoLevel(*newScene, "../Data/Level1.json");
+	dae::SceneManager::GetInstance().LoadScene(newScene);
 
 	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_F1, dae::State::Release,
 		std::make_unique<SwitchLevel>()
