@@ -69,6 +69,15 @@
     <ClCompile Include="MenuButtonComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleSnowBeeAI.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LivesDisplayComponent.h">
@@ -112,6 +121,15 @@
     </ClInclude>
     <ClInclude Include="..\Minigin\JsonParser.h">
       <Filter>helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleSnowBeeAI.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -8,6 +8,7 @@
 #include "CharacterComponent.h"
 #include "ColliderComponent.h"
 #include "CollisionManager.h"
+#include "EnemyComponent.h"
 #include "GameCommands.h"
 #include "GameInfo.h"
 #include "GameObject.h"
@@ -19,11 +20,13 @@
 #include "PengoSounds.h"
 #include "RenderComponent.h"
 #include "ResourceManager.h"
+#include "RigidBody.h"
 #include "Scene.h"
 #include "SceneManager.h"
 #include "ScoreDisplayComponent.h"
 #include "SDLSoundSystem.h"
 #include "ServiceManager.h"
+#include "SimpleSnowBeeAI.h"
 #include "SoundLoggerSystem.h"
 #include "TextComponent.h"
 
@@ -32,6 +35,7 @@ void LoadMenu(dae::Scene& scene);
 void CreatePlayer1(dae::Scene& scene);
 void CreatePlayer2(dae::Scene& scene);
 void InitializeSound();
+void LoadEmenies(dae::Scene& scene);
 
 void loadLevel()
 {
@@ -42,6 +46,7 @@ void loadLevel()
 	std::shared_ptr<dae::Scene> SinglePlayer = std::make_shared<dae::Scene>("SinglePlayer");
 	dae::SceneManager::GetInstance().AddScene(SinglePlayer);
 	LoadPengoLevel(*SinglePlayer, GameInfo::GetInstance().m_CurrentMap);
+	LoadEmenies(*SinglePlayer);
 
 	dae::SceneManager::GetInstance().LoadScene(SinglePlayer);
 	auto& ss = dae::ServiceManager::get_sound_system();
@@ -96,6 +101,8 @@ void LoadPengoLevel(dae::Scene& scene, std::string levelFile)
 	ss.Play(MAIN_SONG, 40, dae::SoundType::Music); // play music
 	//ss.Play(PUNCH_BLOCK, 60, dae::SoundType::Effect); // play music
 
+
+
 }
 
 void CreatePlayer1(dae::Scene& scene)
@@ -134,7 +141,7 @@ void CreatePlayer1(dae::Scene& scene)
 	collider->SetSize(glm::vec2{ 26, 26 });
 	collider->setOffset(glm::vec2{ 3, 3 });
 	//collider->EnableDebug();
-	player1->GetTransform()->SetPosition({ GameInfo::GetInstance().GetPlayFieldOffset().x, GameInfo::GetInstance().GetPlayFieldOffset().y + 32 });
+	player1->GetTransform()->SetPosition({ GameInfo::GetInstance().GetPlayFieldOffset().x + (GameInfo::GetInstance().GetBlockSize().x * 5), GameInfo::GetInstance().GetPlayFieldOffset().y + (GameInfo::GetInstance().GetBlockSize().y * 7) });
 	player1->GetTransform()->SetScale(2);
 	scene.Add(player1);
 
@@ -231,4 +238,22 @@ void InitializeSound()
 	ss.AddSoundEffect(PengoSounds[LOST], LOST);
 	ss.AddSoundEffect(PengoSounds[ENEMY_BLOCK_KILL], ENEMY_BLOCK_KILL);
 	ss.AddSoundEffect(PengoSounds[DYING], DYING);
+}
+
+void LoadEmenies(dae::Scene& scene)
+{
+	//test enemy
+	auto enemy = std::make_shared<dae::GameObject>();
+	enemy->AddComponent<dae::RenderComponent>()->SetTexture("a2.png");
+	enemy->AddComponent<dae::RigidBody>()->SetMovementSpeed({50,50});
+	auto collider = enemy->AddComponent<dae::ColliderComponent>();
+	auto enemyComp = enemy->AddComponent<EnemyComponent>();
+	collider->SetSize(glm::vec2{ 26, 26 });
+	collider->setOffset(glm::vec2{ 3, 3 });
+	collider->EnableDebug();
+	enemyComp->Start();
+	enemy->GetTransform()->SetPosition({ GameInfo::GetInstance().GetPlayFieldOffset().x, GameInfo::GetInstance().GetPlayFieldOffset().y });
+	enemy->GetTransform()->SetScale(2);
+	enemy->AddComponent<SimpleSnowBeeAI>();
+	scene.Add(enemy);
 }

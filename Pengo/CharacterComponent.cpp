@@ -71,6 +71,7 @@ void CharacterComponent::OnCollision(dae::GameObject* otherCollider)
 
 void CharacterComponent::Die()
 {
+	//place back at center and move arounds
 	int lives = GetLives();
 	auto& ss = dae::ServiceManager::get_sound_system();
 	ss.Play(Sounds::DYING, 40, dae::Effect);

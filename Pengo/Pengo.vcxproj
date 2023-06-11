@@ -163,6 +163,8 @@
     <ClCompile Include="BlocksManager.cpp" />
     <ClCompile Include="BlockStates.cpp" />
     <ClCompile Include="CharacterComponent.cpp" />
+    <ClCompile Include="EnemyComponent.cpp" />
+    <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="GameCommands.cpp" />
     <ClCompile Include="GameInfo.cpp" />
     <ClCompile Include="LivesDisplayComponent.cpp" />
@@ -171,6 +173,7 @@
     <ClCompile Include="PengoLevelLoader.cpp" />
     <ClCompile Include="PengoPlayer.cpp" />
     <ClCompile Include="ScoreDisplayComponent.cpp" />
+    <ClCompile Include="SimpleSnowBeeAI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Minigin\JsonParser.h" />
@@ -178,6 +181,8 @@
     <ClInclude Include="BlocksManager.h" />
     <ClInclude Include="BlockStates.h" />
     <ClInclude Include="CharacterComponent.h" />
+    <ClInclude Include="EnemyComponent.h" />
+    <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="GameInfo.h" />
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="GameCommands.h" />
@@ -187,6 +192,7 @@
     <ClInclude Include="PengoPlayer.h" />
     <ClInclude Include="PengoSounds.h" />
     <ClInclude Include="ScoreDisplayComponent.h" />
+    <ClInclude Include="SimpleSnowBeeAI.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui.ini" />
