@@ -54,3 +54,12 @@ public:
 	SwitchLevel() = default;
 	void Execute() override;
 };
+
+class MuteAllSounds final : public dae::Command
+{
+public:
+	MuteAllSounds() = default;
+	void Execute() override;
+private:
+	bool m_Muted = false;
+};

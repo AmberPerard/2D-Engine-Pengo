@@ -7,6 +7,7 @@
 #include "GameInfo.h"
 #include "Scene.h"
 #include "SceneManager.h"
+#include "ServiceManager.h"
 
 Move::Move(std::shared_ptr<dae::GameObject> pActor, glm::vec2 dir, int blocksize)
 	: m_pActor(pActor),
@@ -97,6 +98,19 @@ void SwitchLevel::Execute()
 		break;
 	}
 
+}
+
+void MuteAllSounds::Execute()
+{
+	m_Muted = !m_Muted;
+	auto& ss = dae::ServiceManager::get_sound_system();
+	if (m_Muted)
+	{
+		ss.UnpauseSound();
+	}else
+	{
+		ss.PauseSound();
+	}
 }
 
 HitEnemy::HitEnemy(std::shared_ptr<dae::GameObject> pActor)

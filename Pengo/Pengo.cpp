@@ -164,6 +164,10 @@ void CreatePlayer1(dae::Scene& scene)
 	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_F1, dae::State::Release,
 		std::make_unique<SwitchLevel>()
 	);
+
+	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_m, dae::State::Release,
+		std::make_unique<MuteAllSounds>()
+	);
 }
 
 void CreatePlayer2(dae::Scene& scene)
