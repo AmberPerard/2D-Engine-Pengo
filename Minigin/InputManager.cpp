@@ -67,6 +67,7 @@ void dae::InputManager::UpdateKeyboardInput()
 {
 	// Initialize previous keyboard state
 	m_Keyboard->Update();
+	size_t i{};
 	for (auto& command : m_KeyboardCommands)
 	{
 		switch (command.first.first)
@@ -90,6 +91,8 @@ void dae::InputManager::UpdateKeyboardInput()
 			}
 			break;
 		}
+		i++;
+		if (i == m_KeyboardCommands.size()) break;
 	}
 }
 

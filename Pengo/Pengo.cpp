@@ -31,10 +31,23 @@ void CreatePlayer2(dae::Scene& scene);
 
 void load()
 {
+#if _DEBUG
+	dae::ServiceManager::register_sound_system(
+		std::make_unique<dae::SoundLoggerSystem>(std::make_unique<dae::SDLSoundSystem>()));
+#else
+	dae::ServiceManager::register_sound_system(std::make_unique<dae::SDLSoundSystem>());
+#endif
+
+	auto& ss = dae::ServiceManager::get_sound_system();
+	ss.AddSoundMusic(PengoSounds[MAIN_SONG], MAIN_SONG);
+	ss.AddSoundEffect(PengoSounds[PUNCH_BLOCK], PUNCH_BLOCK);
+
+
 	dae::InputManager::GetInstance().Clear();
+	dae::InputManager::GetInstance().AddController();
 
 	std::shared_ptr<dae::Scene> newScene = std::make_shared<dae::Scene>("Game: Pengo - Amber Perard");
-	LoadPengoLevel(*newScene, "../Data/Level1.json");
+	LoadPengoLevel(*newScene, GameInfo::GetInstance().m_CurrentMap);
 	dae::SceneManager::GetInstance().LoadScene(newScene);
 
 	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_F1, dae::State::Release,
@@ -50,17 +63,6 @@ int main(int, char* []) {
 
 void LoadPengoLevel(dae::Scene& scene, std::string levelFile)
 {
-#if _DEBUG
-	dae::ServiceManager::register_sound_system(
-		std::make_unique<dae::SoundLoggerSystem>(std::make_unique<dae::SDLSoundSystem>()));
-#else
-	dae::ServiceManager::register_sound_system(std::make_unique<dae::SDLSoundSystem>());
-#endif
-
-	auto& ss = dae::ServiceManager::get_sound_system();
-	ss.AddSoundMusic(PengoSounds[MAIN_SONG], MAIN_SONG);
-	ss.AddSoundEffect(PengoSounds[PUNCH_BLOCK], PUNCH_BLOCK);
-
 
 	auto background = std::make_shared<dae::GameObject>();
 	background->AddComponent<dae::RenderComponent>()->SetTexture("PengoBackGround.png");
@@ -76,6 +78,7 @@ void LoadPengoLevel(dae::Scene& scene, std::string levelFile)
 	CreatePlayer1(scene);
 	//CreatePlayer2(scene);
 
+	auto& ss = dae::ServiceManager::get_sound_system();
 	ss.Play(MAIN_SONG, 60, dae::SoundType::Music); // play music
 	//ss.Play(PUNCH_BLOCK, 60, dae::SoundType::Effect); // play music
 }

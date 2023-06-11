@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #include <glm/vec2.hpp>
 
 #include "Helpers.h"
@@ -37,19 +38,21 @@ public:
 	void SetNextLevel(int levelID) { LevelToSwapTo = Level(levelID); }
 	int GetMaxScenes() const { return maxScenes; }
 
+	std::string m_CurrentMap{ "../Data/Level1.json" };
+	std::vector<std::string> maps{
+		"../Data/Level1.json", "../Data/Level2.json", "../Data/Level3.json" };
 private:
 	int NrOfRows{15};
-	int NrOfColums{13};
+	int NrOfColums{ 13 };
 
 	int maxScenes{ 3 };
 	Level currentLevel{ Level::level2 };
 	Level LevelToSwapTo{ Level::level1 };
 
-	glm::vec2 m_PlayFieldOffset{ 37,36 };
-	glm::vec2 m_CollisionSize{26,26 };
-	glm::vec2 m_CollisionOffset{ 3,3 };
-	glm::vec2 m_BlockSize{ 32,32 };
 
-
+	glm::vec2 m_PlayFieldOffset{ 37, 36 };
+	glm::vec2 m_CollisionSize{26, 26 };
+	glm::vec2 m_CollisionOffset{ 3, 3 };
+	glm::vec2 m_BlockSize{ 32, 32 };
 
 };

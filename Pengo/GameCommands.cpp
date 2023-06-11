@@ -73,9 +73,30 @@ void CrushEnemy::Execute()
 }
 
 
+void load();
+
 void SwitchLevel::Execute()
 {
 	std::cout << "Switching level" << std::endl;
+	switch (GameInfo::GetInstance().GetCurrentLevel())
+	{
+	case GameInfo::level1:
+		GameInfo::GetInstance().SetCurrentLevel(GameInfo::level2);
+		GameInfo::GetInstance().m_CurrentMap = GameInfo::GetInstance().maps[GameInfo::level2];
+		load();
+		break;
+	case GameInfo::level2:
+		GameInfo::GetInstance().SetCurrentLevel(GameInfo::level3);
+		GameInfo::GetInstance().m_CurrentMap = GameInfo::GetInstance().maps[GameInfo::level3];
+		load();
+		break;
+	case GameInfo::level3:
+		GameInfo::GetInstance().SetCurrentLevel(GameInfo::level1);
+		GameInfo::GetInstance().m_CurrentMap = GameInfo::GetInstance().maps[GameInfo::level1];
+		load();
+		break;
+	}
+
 }
 
 HitEnemy::HitEnemy(std::shared_ptr<dae::GameObject> pActor)
