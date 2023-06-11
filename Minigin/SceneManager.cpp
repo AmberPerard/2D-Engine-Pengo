@@ -34,3 +34,20 @@ void dae::SceneManager::RenderUI()
 
 }
 
+std::shared_ptr<dae::Scene> dae::SceneManager::GetScene(std::string name)
+{
+	for (auto scene : m_pScenes)
+	{
+		if (scene->GetName() == name)
+		{
+			return scene;
+		}
+	}
+	return nullptr;
+}
+
+void dae::SceneManager::AddScene(std::shared_ptr<Scene> scene)
+{
+	m_pScenes.push_back(scene);
+}
+

@@ -6,6 +6,8 @@
 #include "GameObject.h"
 #include "Helpers.h"
 #include "LivesDisplayComponent.h"
+#include "SceneManager.h"
+#include "ServiceManager.h"
 #include "Subject.h"
 
 CharacterComponent::CharacterComponent(dae::GameObject* gameObject, dae::LivesDisplayComponent* livesDisplay)
@@ -30,9 +32,11 @@ void CharacterComponent::Update()
 {
 	if(m_NrOfLives < 0)
 	{
-		GameInfo::GetInstance().SetCurrentLevel(GameInfo::level2);
-		GameInfo::GetInstance().m_CurrentMap = GameInfo::GetInstance().maps[GameInfo::level2];
-		loadLevel();
+		auto& ss = dae::ServiceManager::get_sound_system();
+		ss.PauseSound(); // play music
+		auto scene = dae::SceneManager::GetInstance().GetScene("Menu");
+		dae::SceneManager::GetInstance().LoadScene(scene);
+
 	}
 }
 

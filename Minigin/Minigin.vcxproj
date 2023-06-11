@@ -196,6 +196,7 @@
   <ItemGroup>
     <ClInclude Include="BaseComponent.h" />
     <ClInclude Include="BaseState.h" />
+    <ClInclude Include="ButtonComponent.h" />
     <ClInclude Include="ColliderComponent.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="Font.h" />
@@ -238,6 +239,7 @@
     <ClCompile Include="..\3rdParty\imgui\imgui_widgets.cpp" />
     <ClCompile Include="BaseComponent.cpp" />
     <ClCompile Include="BaseState.cpp" />
+    <ClCompile Include="ButtonComponent.cpp" />
     <ClCompile Include="ColliderComponent.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="Font.cpp" />

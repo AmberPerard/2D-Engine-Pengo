@@ -166,6 +166,7 @@
     <ClCompile Include="GameCommands.cpp" />
     <ClCompile Include="GameInfo.cpp" />
     <ClCompile Include="LivesDisplayComponent.cpp" />
+    <ClCompile Include="MenuButtonComponent.cpp" />
     <ClCompile Include="Pengo.cpp" />
     <ClCompile Include="PengoLevelLoader.cpp" />
     <ClCompile Include="PengoPlayer.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="GameCommands.h" />
     <ClInclude Include="LivesDisplayComponent.h" />
+    <ClInclude Include="MenuButtonComponent.h" />
     <ClInclude Include="PengoLevelLoader.h" />
     <ClInclude Include="PengoPlayer.h" />
     <ClInclude Include="PengoSounds.h" />

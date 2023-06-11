@@ -96,7 +96,7 @@ public:
 							Mix_Chunk* soundEffect = Mix_LoadWAV(m_SoundsToLoad[message.id].c_str());
 							m_SoundEffects[message.id] = soundEffect;
 						}
-						Mix_PlayChannel(-1, m_SoundEffects[message.id], 0);
+						Mix_PlayChannel(1, m_SoundEffects[message.id], 0);
 						break;
 					}
 					}
@@ -113,19 +113,55 @@ public:
 
 	void PauseSound()
 	{
-
+		// Pause all active sound channels
+		for (int i = 0; i < MIX_CHANNELS; i++) {
+			if (Mix_Playing(i)) {
+				Mix_Pause(i);
+			}
+		}
+		// Pause music channels
+		Mix_PauseMusic();
 	}
 	void UnpauseSound()
 	{
-
+		// Unpause all paused sound channels
+		for (int i = 0; i < MIX_CHANNELS; i++) {
+			if (Mix_Paused(i)) {
+				Mix_Resume(i);
+			}
+		}
+		// Pause music channels
+		Mix_ResumeMusic();
 	}
 	void IncreaseVolume()
 	{
-
+		// Increase the volume for all active sound channels
+		for (int i = 0; i < MIX_CHANNELS; i++) {
+			if (Mix_Playing(i)) {
+				int currentVolume = Mix_Volume(i, -1);
+				Mix_Volume(i, ++currentVolume);
+			}
+		}
+		if (Mix_PlayingMusic())
+		{
+			int currentVolume = Mix_VolumeMusic(-1);
+			Mix_VolumeMusic(--currentVolume);
+		}
 	}
 	void DecreaseVolume()
 	{
-
+		// decrease the volume for all active sound channels
+		for (int i = 0; i < MIX_CHANNELS; i++) {
+			if (Mix_Playing(i)) {
+				int currentVolume = Mix_Volume(i, -1);
+				Mix_Volume(i, --currentVolume);
+			}
+		}
+		if (Mix_PlayingMusic())
+		{
+			int currentVolume = Mix_VolumeMusic(-1);
+			Mix_VolumeMusic(--currentVolume);
+		}
 	}
 	void AddSoundEffect(const std::string& filename, sound_id id)
 	{

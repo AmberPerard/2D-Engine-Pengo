@@ -1,4 +1,6 @@
 #include "InputManager.h"
+
+#include <SDL_syswm.h>
 #include <backends/imgui_impl_sdl2.h>
 
 bool dae::InputManager::ProcessInput()
@@ -12,6 +14,23 @@ bool dae::InputManager::ProcessInput()
 
 		//process event for IMGUI
 		ImGui_ImplSDL2_ProcessEvent(&e);
+
+		if (e.type == SDL_MOUSEBUTTONDOWN)	{	
+			glm::vec2 mousePos{ static_cast<float>(e.button.x), static_cast<float>(602 -  e.button.y) };
+			switch (e.button.button)
+			{
+			case SDL_BUTTON_LEFT:
+				m_isPressed = true;
+				m_MousePosition = mousePos;
+				break;
+			}
+		}
+
+		if (e.type == SDL_MOUSEBUTTONUP)
+		{
+			if (e.button.button == SDL_BUTTON_LEFT)
+				m_isPressed = false;
+		}
 	}
 	// Check controller keys
 	UpdateConsoleInput();

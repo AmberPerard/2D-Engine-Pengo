@@ -28,9 +28,9 @@ void dae::RenderComponent::Render()
 		{
 			const auto& pos = transform->GetWorldPosition();
 			const auto& scale = transform->GetWorldScale();
-			const auto& textureSize =  m_texture->GetSize();
-			const float width = static_cast<float>(textureSize.x) * scale.x;
-			const float height= static_cast<float>(textureSize.y) * scale.y;
+			m_textureSize =  m_texture->GetSize();
+			const float width = static_cast<float>(m_textureSize.x) * scale.x;
+			const float height= static_cast<float>(m_textureSize.y) * scale.y;
 			Renderer::GetInstance().RenderTexture(*m_texture, pos.x, pos.y,width,height);
 		}else
 		{
@@ -46,9 +46,11 @@ void dae::RenderComponent::RenderUI()
 void dae::RenderComponent::SetTexture(const std::string& filename)
 {
 	m_texture = ResourceManager::GetInstance().LoadTexture(filename);
+	m_textureSize = m_texture->GetSize();
 }
 
 void dae::RenderComponent::SetTexture(std::shared_ptr<Texture2D> texture)
 {
 	m_texture = texture;
+	m_textureSize = m_texture->GetSize();
 }

@@ -134,6 +134,9 @@
     <ClInclude Include="StateMachine.h">
       <Filter>Engine Files\State</Filter>
     </ClInclude>
+    <ClInclude Include="ButtonComponent.h">
+      <Filter>Engine Files\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseComponent.cpp">
@@ -244,6 +247,9 @@
     </ClCompile>
     <ClCompile Include="StateMachine.cpp">
       <Filter>Engine Files\State</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonComponent.cpp">
+      <Filter>Engine Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -69,6 +69,9 @@
     <ClCompile Include="PlayerState.cpp">
       <Filter>State</Filter>
     </ClCompile>
+    <ClCompile Include="MenuButtonComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LivesDisplayComponent.h">
@@ -109,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="PlayerState.h">
       <Filter>State</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuButtonComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

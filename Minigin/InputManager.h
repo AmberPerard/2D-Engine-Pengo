@@ -37,6 +37,11 @@ namespace dae
 		std::unique_ptr<Keyboard> m_Keyboard {std::make_unique<Keyboard>()};
 		void CreateKeyboardCommand(SDL_KeyCode button, State state, std::unique_ptr<Command> command);
 		void Clear();
+
+		//mouse stuff
+		glm::vec2 GetMousePos()const { return m_MousePosition; }
+		bool IsMousePress() const { return m_isPressed; }
+
 	private:
 		void UpdateConsoleInput();
 		void UpdateKeyboardInput();
@@ -51,5 +56,10 @@ namespace dae
 
 		ControllerCommandsMap m_ConsoleCommands{};
 		std::vector<std::unique_ptr<XController>> m_Controllers{};
+
+		glm::vec2 m_MousePosition{};
+		bool m_MouseUp = false;
+		bool m_isPressed{ false };
+
 	};
 }

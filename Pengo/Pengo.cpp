@@ -11,6 +11,7 @@
 #include "GameInfo.h"
 #include "GameObject.h"
 #include "InputManager.h"
+#include "MenuButtonComponent.h"
 #include "Minigin.h"
 #include "PengoLevelLoader.h"
 #include "PengoPlayer.h"
@@ -26,6 +27,7 @@
 #include "TextComponent.h"
 
 void LoadPengoLevel(dae::Scene& scene, std::string levelFile);
+void LoadMenu(dae::Scene& scene);
 void CreatePlayer1(dae::Scene& scene);
 void CreatePlayer2(dae::Scene& scene);
 
@@ -34,21 +36,20 @@ void loadLevel()
 	dae::InputManager::GetInstance().Clear();
 	dae::InputManager::GetInstance().AddController();
 
-	std::shared_ptr<dae::Scene> newScene = std::make_shared<dae::Scene>("Game: Pengo - Amber Perard");
-	LoadPengoLevel(*newScene, GameInfo::GetInstance().m_CurrentMap);
+	std::shared_ptr<dae::Scene> SinglePlayer = std::make_shared<dae::Scene>("SinglePlayer");
+	dae::SceneManager::GetInstance().AddScene(SinglePlayer);
+	LoadPengoLevel(*SinglePlayer, GameInfo::GetInstance().m_CurrentMap);
 
-	std::shared_ptr<dae::Scene> newScene2 = std::make_shared<dae::Scene>("Game: Pengo - Amber Perard");
-	LoadPengoLevel(*newScene2, GameInfo::GetInstance().m_CurrentMap);
-
-	dae::SceneManager::GetInstance().LoadScene(newScene);
-
-	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_F1, dae::State::Release,
-		std::make_unique<SwitchLevel>()
-	);
+	dae::SceneManager::GetInstance().LoadScene(SinglePlayer);
 }
 
 void load()
 {
+	std::shared_ptr<dae::Scene> Menu = std::make_shared<dae::Scene>("Menu");
+	LoadMenu(*Menu);
+	dae::SceneManager::GetInstance().AddScene(Menu);
+	dae::SceneManager::GetInstance().LoadScene(Menu);
+
 #if _DEBUG
 	dae::ServiceManager::register_sound_system(
 		std::make_unique<dae::SoundLoggerSystem>(std::make_unique<dae::SDLSoundSystem>()));
@@ -59,9 +60,6 @@ void load()
 	auto& ss = dae::ServiceManager::get_sound_system();
 	ss.AddSoundMusic(PengoSounds[MAIN_SONG], MAIN_SONG);
 	ss.AddSoundEffect(PengoSounds[PUNCH_BLOCK], PUNCH_BLOCK);
-
-
-	loadLevel();
 }
 
 int main(int, char* []) {
@@ -72,7 +70,7 @@ int main(int, char* []) {
 
 void LoadPengoLevel(dae::Scene& scene, std::string levelFile)
 {
-
+	auto& ss = dae::ServiceManager::get_sound_system();
 	auto background = std::make_shared<dae::GameObject>();
 	background->AddComponent<dae::RenderComponent>()->SetTexture("PengoBackGround.png");
 	background->GetTransform()->SetPosition({ 20,70 });
@@ -87,7 +85,6 @@ void LoadPengoLevel(dae::Scene& scene, std::string levelFile)
 	CreatePlayer1(scene);
 	//CreatePlayer2(scene);
 
-	auto& ss = dae::ServiceManager::get_sound_system();
 	ss.Play(MAIN_SONG, 60, dae::SoundType::Music); // play music
 	//ss.Play(PUNCH_BLOCK, 60, dae::SoundType::Effect); // play music
 
@@ -163,6 +160,10 @@ void CreatePlayer1(dae::Scene& scene)
 	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_k, dae::State::Release,
 		std::make_unique<CrushEnemy>(player1)
 	);
+
+	dae::InputManager::GetInstance().CreateKeyboardCommand(SDLK_F1, dae::State::Release,
+		std::make_unique<SwitchLevel>()
+	);
 }
 
 void CreatePlayer2(dae::Scene& scene)
@@ -192,3 +193,13 @@ void CreatePlayer2(dae::Scene& scene)
 	);
 }
 
+void LoadMenu(dae::Scene& scene)
+{
+	auto logo = std::make_shared<dae::GameObject>();
+	auto renderComp = logo->AddComponent<dae::RenderComponent>();
+	renderComp->SetTexture("Logo_better.png");
+	auto button = logo->AddComponent<MenuButtonComponent>();
+	button->SetSceneToOpen("SinglePlayer");
+	logo->GetTransform()->SetPosition({ 244-(renderComp->GetTextureSize().x/2) ,301 - (renderComp->GetTextureSize().y / 2) });
+	scene.Add(logo);
+}
